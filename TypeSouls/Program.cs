@@ -56,9 +56,15 @@ var choice = new SelectionPrompt<string>()
             "GitHub",
             "Exit Game"
         });
+var choice2 = new SelectionPrompt<string>()
+    .AddChoices("Travel", "Level up", "View map", "Save game", "Save and exit game");
 var rule = new Rule("You reached Anor Londo");
 rule.LeftJustified();
-//Align.Center(new Markup(bonfireImage));
+////Align.Center(new Markup(bonfireImage));
+AnsiConsole.Markup(bonfireImage);
 AnsiConsole.Write(rule);
+AnsiConsole.WriteLine();
+AnsiConsole.Prompt(choice2);
+
 //AnsiConsole.Prompt(choice);
 
