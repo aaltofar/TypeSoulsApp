@@ -1,8 +1,5 @@
-# TypeSoulsApp
-# Type Souls
-
 # WOULD
-
+<details>
 # W
 
 Et tekstbasert konsollspill satt til Dark Souls 1
@@ -68,7 +65,7 @@ Logic design
 # D
 
 Data design
-
+</details>
 # Generelle notater og tanker
 
 - Bruke spectreconsole til grafikk
