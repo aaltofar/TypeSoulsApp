@@ -1,8 +1,20 @@
-# Type Souls
+<pre>
+@@@@@@@  @@@ @@@  @@@@@@@   @@@@@@@@      @@@@@@    @@@@@@   @@@  @@@  @@@        @@@@@@   
+@@@@@@@  @@@ @@@  @@@@@@@@  @@@@@@@@     @@@@@@@   @@@@@@@@  @@@  @@@  @@@       @@@@@@@   
+  @@!    @@! !@@  @@!  @@@  @@!          !@@       @@!  @@@  @@!  @@@  @@!       !@@       
+  !@!    !@! @!!  !@!  @!@  !@!          !@!       !@!  @!@  !@!  @!@  !@!       !@!       
+  @!!     !@!@!   @!@@!@!   @!!!:!       !!@@!!    @!@  !@!  @!@  !@!  @!!       !!@@!!    
+  !!!      @!!!   !!@!!!    !!!!!:        !!@!!!   !@!  !!!  !@!  !!!  !!!        !!@!!!   
+  !!:      !!:    !!:       !!:               !:!  !!:  !!!  !!:  !!!  !!:            !:!  
+  :!:      :!:    :!:       :!:              !:!   :!:  !:!  :!:  !:!   :!:          !:!   
+   ::       ::     ::        :: ::::     :::: ::   ::::: ::  ::::: ::   :: ::::  :::: ::   
+    :        :      :         :::::       :::::     :::::     ::::::     :::::    :::::</pre>
+
+
 
 # WOULD
 
-# Walk through it
+  <details><summary># Walk through it</summary>
 
 Et tekstbasert konsollspill satt til Dark Souls 1
 
@@ -28,8 +40,8 @@ Selve gameplayet vil skje når spilleren beveger seg fra en bonfire til en annen
 Når spilleren beveger seg vil en funksjon kjøre for å se hvor mange fiender en må sloss mot før man er fremme. 5-10 stykker vil være normalt, pluss en invasjon hvis man er så uheldig. Mellom hver fiende vil man kunne få muligheten til å dra tilbake til forrige bonfire, men man mister da all progresjon til neste område og må sloss mot alle fiendene på nytt. Hvis området man går til har en boss vil man først måtte ta alle fiendene og så sloss mot bossen uten å kunne raste. Slår man bossen vil man få masse exp og også låse opp neste område. Bosser og områder er fargekodet, så en GRØNN boss vil låse opp GRØNNE områder. Levler man opp vil man få en liten bonus til alle attributter, og man vil også få  5 attributtpoeng man kan sette i hvem av statsene man vil. I Firelink Shrine vil man kunne få muligheten til å “respecce”, det vil si at man fjerner alle attributtpoeng man har satt ut for å kunne sette dem ut igjen der man ønsker.
 
 Spillet er ferdig når spilleren har tatt siste boss, som befinner seg i Kiln of the First Flame, og for å komme seg dit må man ta bossen i Dukes Archives.
-
-# Open up the requirements
+  </details>
+    <details><summary># Open up the requirements</summary>
 
 Hva har jeg behov for i dette spillet?
 
@@ -39,8 +51,8 @@ Hva har jeg behov for i dette spillet?
 - Formler for damage og stats
 - Arrow key menu, velge menyvalg ved å bruke piltaster eller WASD.
 - En stabil timer for hvor lang tid man har på å skrive inn riktig ord i combat
-
-# Ui design
+  </details>
+      <details><summary># Ui design</summary>
 
 Ui design
 
@@ -55,8 +67,8 @@ Ui for combat
 ![Screenshot_7.png](Type%20Souls%208c7ad71f30c142838a629d56a741af1c/Screenshot_7.png)
 
 Spilleren har her kommet til en bonfire og har her flere muligheter for hva den kan gjøre
-
-# Logic design
+</details>
+    <details><summary># Logic design</summary>
 
 # Timer
 
@@ -75,8 +87,8 @@ Spilleren må kunne reise fra ett område til ett annet, så det trengs en sjekk
 # WorldMap
 
 En litt stor utfordring her blir å tegne opp verdenskartet. Det skal tegnes som et hierarkitre, som illustrert i bildet over. Det skal gå fint å gjøre med spectreconsole så lenge jeg setter opp klassene riktig, og logikken her bør kanskje håndteres av en WorldMap klasse?
-
-# Data design
+</details>
+      <details><summary># Data design</summary>
 
 # MajorArea
 
@@ -96,7 +108,7 @@ Class for alle områder under et MajorArea, de vil ha en property for ParentArea
 
 - MajorArea ParentArea - Hvilket hovedområde dette subarea hører til
 - SubArea LeadsTo - hvilket område man kan gå til herfra
-
+  
 # Spiller
 
 Spillerklassen vil det her bare finnes en eneste instans av i hvert spill.
@@ -113,7 +125,6 @@ Spillerklassen vil det her bare finnes en eneste instans av i hvert spill.
 - PlayerStats stats - Et objekt med alle statsene til spilleren
 - int BossKills - antall bosser spilleren har drept, tilsier hvilke områder spilleren har låst opp
 - bool Humanity - om spilleren er menneskelig eller ikke. skrus til false når spilleren dør og til true når spilleren får et boss eller invasion kill
-
 # Enemy
 
 Klassen til fiendene, de er like men har noen forskjellige navn og helseverdier som trekkes når en ny fiende blir instansiert
@@ -136,7 +147,7 @@ Klassen for kamp, instansieres hver gang spilleren møter en fiende
 - Enemy EnemyToFight - fienden spilleren møter i kamp, kampen varer til EnemyToFight ikke har mer Health
 - list<string> Words - ordene spilleren må skrive for å gjøre skade på motstanderen.
 - Timer TypeTimer - Tiden spilleren har på å skrive hvert ord. resettes for hvert ord man skal skrive
-
+  
 # Timer
 
 Klassen for timer. instansieres i hvert battle og tar inn spilleren som en property. Sekundene til timeren vil avhenge av spilleren sin Intellect stat. 
@@ -144,8 +155,8 @@ Klassen for timer. instansieres i hvert battle og tar inn spilleren som en prope
 ### Props
 
 - int Seconds - default=2sekunder og for hver tiende intellect spilleren har legges det til et halvt sekund
-
-# Generelle notater og tanker
+  </details>
+<details><summary># Generelle notater og tanker</summary>
 
 - Bruke spectreconsole til grafikk
 - Combat består av å skrive ord rett og fort
