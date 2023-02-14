@@ -38,7 +38,7 @@ Kartet består av en forenklet versjon av Dark Souls 1 mappet.
 
 
 <details><summary>WOULD</summary>
-  <details><summary>W</summary><blockquote>
+  <details><summary>Walk through it</summary><blockquote>
     Et tekstbasert konsollspill satt til Dark Souls 1
 
 Spilleren blir møtt av login screen, hvor spiller kan velge å starte nytt spill eller fortsette et påbegynt. Data lagres LOKALT til å begynne med, database utforskes
@@ -66,7 +66,7 @@ Når spilleren beveger seg vil en funksjon kjøre for å se hvor mange fiender e
 Spillet er ferdig når spilleren har tatt siste boss, som befinner seg i Kiln of the First Flame, og for å komme seg dit må man ta bossen i Dukes Archives.
   </blockquote></details>
   
- <details><summary>O</summary><blockquote>
+ <details><summary>Open up the requirements</summary><blockquote>
    
  
 Open up the requirements
@@ -81,9 +81,8 @@ Hva har jeg behov for i dette spillet?
 - En stabil timer for hvor lang tid man har på å skrive inn riktig ord i combat
    
  </blockquote></details>
-  <details><summary>U</summary><blockquote>
-Ui design
-
+  <details><summary>Ui design</summary><blockquote>
+    
 ![Screenshot_6.png](Type%20Souls%208c7ad71f30c142838a629d56a741af1c/Screenshot_6.png)
 
 Start game screen, denne skjermen er det spilleren møter ved spillstart.
@@ -97,11 +96,11 @@ Ui for combat
 Spilleren har her kommet til en bonfire og har her flere muligheter for hva den kan gjøre
  </blockquote></details>
   
-   <details><summary>L</summary><blockquote>
+   <details><summary>Logic design</summary><blockquote>
 Logic design
  </blockquote></details>
   
-   <details><summary>D</summary><blockquote>
+   <details><summary>Data design</summary><blockquote>
      Data design
  </blockquote></details>
 
