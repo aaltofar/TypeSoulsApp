@@ -11,14 +11,15 @@
 Type Souls er et typingspill satt i Dark Souls universet, spesifikt Dark Souls 1. Hensikten med spillet er å tilby et typisk typing game, skrivespill på norsk, hvor man må skrive ord og setninger for å bekjempe fiender. Spillet har også RPG elementer i form av historie, stats og karakterbygging.
 
 <details><summary># Generelle notater og tanker</summary>
-- Bruke spectreconsole til grafikk
-- Combat består av å skrive ord rett og fort
-- Combat gir exp, ikke drops
-- Exp kan brukes til å levle opp med
-- Liste opp map som et hierarki-tre
-- Områder skal kunne gjenspilles, dvs man kan farme exp ved å bevege seg mellom bonfires
-- Bosser respawner IKKE
-
+<ul>
+<li>- Bruke spectreconsole til grafikk</li>
+<li>- Combat består av å skrive ord rett og fort</li>
+<li>- Combat gir exp, ikke drops</li>
+<li>- Exp kan brukes til å levle opp med</li>
+<li>- Liste opp map som et hierarki-tre</li>
+<li>- Områder skal kunne gjenspilles, dvs man kan farme exp ved å bevege seg mellom bonfires</li>
+<li>- Bosser respawner IKKE</li>
+</ul>
 ### Stats!
 
 | Strength | Økt damage |
