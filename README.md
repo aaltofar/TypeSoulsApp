@@ -1,7 +1,7 @@
 <details><summary>WOULD</summary>
 # W
-
-Et tekstbasert konsollspill satt til Dark Souls 1
+  <details><summary>W</summary><blockquote>
+    Et tekstbasert konsollspill satt til Dark Souls 1
 
 Spilleren blir møtt av login screen, hvor spiller kan velge å starte nytt spill eller fortsette et påbegynt. Data lagres LOKALT til å begynne med, database utforskes
 
@@ -26,6 +26,8 @@ Selve gameplayet vil skje når spilleren beveger seg fra en bonfire til en annen
 Når spilleren beveger seg vil en funksjon kjøre for å se hvor mange fiender en må sloss mot før man er fremme. 5-10 stykker vil være normalt, pluss en invasjon hvis man er så uheldig. Mellom hver fiende vil man kunne få muligheten til å dra tilbake til forrige bonfire, men man mister da all progresjon til neste område og må sloss mot alle fiendene på nytt. Hvis området man går til har en boss vil man først måtte ta alle fiendene og så sloss mot bossen uten å kunne raste. Slår man bossen vil man få masse exp og også låse opp neste område. Bosser og områder er fargekodet, så en GRØNN boss vil låse opp GRØNNE områder. Levler man opp vil man få en liten bonus til alle attributter, og man vil også få  5 attributtpoeng man kan sette i hvem av statsene man vil. I Firelink Shrine vil man kunne få muligheten til å “respecce”, det vil si at man fjerner alle attributtpoeng man har satt ut for å kunne sette dem ut igjen der man ønsker.
 
 Spillet er ferdig når spilleren har tatt siste boss, som befinner seg i Kiln of the First Flame, og for å komme seg dit må man ta bossen i Dukes Archives.
+
+  </blockquote></details>
 
 # O
 
