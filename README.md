@@ -1,4 +1,4 @@
-@@@@@@@  @@@ @@@  @@@@@@@   @@@@@@@@      @@@@@@    @@@@@@   @@@  @@@  @@@        @@@@@@   
+<pre>@@@@@@@  @@@ @@@  @@@@@@@   @@@@@@@@      @@@@@@    @@@@@@   @@@  @@@  @@@        @@@@@@   
 @@@@@@@  @@@ @@@  @@@@@@@@  @@@@@@@@     @@@@@@@   @@@@@@@@  @@@  @@@  @@@       @@@@@@@   
   @@!    @@! !@@  @@!  @@@  @@!          !@@       @@!  @@@  @@!  @@@  @@!       !@@       
   !@!    !@! @!!  !@!  @!@  !@!          !@!       !@!  @!@  !@!  @!@  !@!       !@!       
@@ -7,8 +7,7 @@
   !!:      !!:    !!:       !!:               !:!  !!:  !!!  !!:  !!!  !!:            !:!  
   :!:      :!:    :!:       :!:              !:!   :!:  !:!  :!:  !:!   :!:          !:!   
    ::       ::     ::        :: ::::     :::: ::   ::::: ::  ::::: ::   :: ::::  :::: ::   
-    :        :      :         :::::       :::::     :::::     ::::::     :::::    :::::
-
+    :        :      :         :::::       :::::     :::::     ::::::     :::::    :::::</pre>
 Type Souls er et typingspill satt i Dark Souls universet, spesifikt Dark Souls 1. Hensikten med spillet er å tilby et typisk typing game, skrivespill på norsk, hvor man må skrive ord og setninger for å bekjempe fiender. Spillet har også RPG elementer i form av historie, stats og karakterbygging.
 
 <details><summary># Generelle notater og tanker</summary>
