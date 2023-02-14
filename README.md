@@ -1,5 +1,4 @@
-# WOULD
-<details>
+<details><WOULD></summary>
 # W
 
 Et tekstbasert konsollspill satt til Dark Souls 1
