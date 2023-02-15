@@ -157,7 +157,8 @@ Klassen for timer. instansieres i hvert battle og tar inn spilleren som en prope
 
 - int Seconds - default=2sekunder og for hver tiende intellect spilleren har legges det til et halvt sekund
   </details>
-<details><summary>#Generelle notater og tanker</summary>
+  
+  #Generelle notater og tanker
 
 - Bruke spectreconsole til grafikk
 - Combat består av å skrive ord rett og fort
