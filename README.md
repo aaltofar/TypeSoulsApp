@@ -12,9 +12,9 @@
 
 
 
-#WOULD
+<h1>WOULD</h1>
 
-  <details><summary>##Walk through it</summary>
+  <details><summary><h2>Walk through it</h2></summary>
 
 Et tekstbasert konsollspill satt til Dark Souls 1
 
@@ -41,7 +41,7 @@ Når spilleren beveger seg vil en funksjon kjøre for å se hvor mange fiender e
 
 Spillet er ferdig når spilleren har tatt siste boss, som befinner seg i Kiln of the First Flame, og for å komme seg dit må man ta bossen i Dukes Archives.
   </details>
-    <details><summary>##Open up the requirements</summary>
+    <details><summary><h2>Open up the requirements</h2></summary>
 
 Hva har jeg behov for i dette spillet?
 
@@ -52,7 +52,7 @@ Hva har jeg behov for i dette spillet?
 - Arrow key menu, velge menyvalg ved å bruke piltaster eller WASD.
 - En stabil timer for hvor lang tid man har på å skrive inn riktig ord i combat
   </details>
-      <details><summary>##Ui design</summary>
+      <details><summary><h2>Ui design</h2></summary>
 
 Ui design
 
@@ -68,52 +68,52 @@ Ui for combat
 
 Spilleren har her kommet til en bonfire og har her flere muligheter for hva den kan gjøre
 </details>
-    <details><summary># Logic design</summary>
+    <details><summary><h2>Logic design</h2></summary>
 
-###Timer
+<h2>Timer</h2>
 
 Timeren må ha en default tid, rundt 2 sekunder, men den må kunne endres for hvert poeng spilleren plasserer i sin Intelligence stat.
 
 Timeren må også kunne resettes for hver gang spilleren skriver et ord rett i combat.
 
-###Words
+<h2>Words</h2>
 
 Når spilleren er i combat må den skrive inn ett ord for hver gang den skal gjøre skade på motstanderen. Ordet må skrives rett og være ferdig skrevet før timeren har gått ut. Jeg tenker at her er det lurt å lese hver enkelt bokstav spilleren skriver, readkey. Skriver spilleren feil bokstav går det fint så lenge man klarer å skrive rett bokstav etterpå, og ordet er ferdig skrevet før tiden går ut. Klarer man ikke dette vil fienden gjøre skade på spilleren. I bossfights vil det fungere litt annerledes. Skriver man feil bokstav i en bossfight vil bossen gjøre skade med en gang, og ordet kastes. Man er altså nødt til å ha 100% rettskrevenhet i bosskamper for å ikke miste liv. Når spilleren får opp ordet den skal skrive vil man kjøre en readkey i konsollen som sjekker om den er den samme som stringen WordToWrite på indeksplassering [0], er den rett vil man så skrive inn en ny bokstav som sjekkes mot indeksplassering[1] osv osv til ordet er ferdig skrevet. 
 
-###Travel
+<h2>Travel</h2>
 
 Spilleren må kunne reise fra ett område til ett annet, så det trengs en sjekk for å liste opp alle områder som spilleren har mulighet til å reise til. 
 
-##WorldMap
+<h2>WorldMap</h2>
 
 En litt stor utfordring her blir å tegne opp verdenskartet. Det skal tegnes som et hierarkitre, som illustrert i bildet over. Det skal gå fint å gjøre med spectreconsole så lenge jeg setter opp klassene riktig, og logikken her bør kanskje håndteres av en WorldMap klasse?
 </details>
-      <details><summary>##Data design</summary>
+      <details><summary><h2>Data design</h2></summary>
 
-##MajorArea
+<h2>MajorArea</h2>
 
 Class for alle områder som leder til sub-areas. Disse vil være Firelink Shrine, Depths, Undead Parish og Sen’s Fortress. Disse er Major Areas fordi de unlockes av en boss i et annet område og vises først i world mappet.
 
-###Props:
+<h3>Props:</h3>
 
 - string AreaName - Navn på området
 - list<SubArea> LeadsTo - Hvilke children den har, altså hvilke subareas dette main area har tilknytning til
 - string ReqBossKill - Hvilken boss man må ha drept for å kunne entre dette området
 
-##SubArea
+<h2>SubArea</h2>
 
 Class for alle områder under et MajorArea, de vil ha en property for ParentArea, en property for LeadsTo-området man kan gå videre til, og også navnet sitt.
 
-###Props:
+<h3>Props:</h3>
 
 - MajorArea ParentArea - Hvilket hovedområde dette subarea hører til
 - SubArea LeadsTo - hvilket område man kan gå til herfra
   
-##Spiller
+<h2>Spiller</h2>
 
 Spillerklassen vil det her bare finnes en eneste instans av i hvert spill.
 
-###Props
+<h3>Props</h3>
 
 - int Level - spillerens level
 - int CurrentExp - hvor mye exp spilleren har
@@ -126,11 +126,11 @@ Spillerklassen vil det her bare finnes en eneste instans av i hvert spill.
 - int BossKills - antall bosser spilleren har drept, tilsier hvilke områder spilleren har låst opp
 - bool Humanity - om spilleren er menneskelig eller ikke. skrus til false når spilleren dør og til true når spilleren får et boss eller invasion kill
 
-##Enemy
+<h2>Enemy</h2>
 
 Klassen til fiendene, de er like men har noen forskjellige navn og helseverdier som trekkes når en ny fiende blir instansiert
 
-###Props
+<h3>Props</h3>
 
 - list<string> EnemyNamesList - En liste over alle fiendetypene, alle mulige navn på fiende
 - string EnemyName - Trekkes tilfeldig fra EnemyNamesList
@@ -139,36 +139,38 @@ Klassen til fiendene, de er like men har noen forskjellige navn og helseverdier 
 - int Damage - skaden fienden gjør om du den får sjans til å slå, skaleres med EnemyLevel
 - bool IsDead - Settes til true når EnemyHealth når 0
 
-##Battle
+<h2>Battle</h2>
 
 Klassen for kamp, instansieres hver gang spilleren møter en fiende
 
-###Props
+<h3>Props</h3>
 
 - Enemy EnemyToFight - fienden spilleren møter i kamp, kampen varer til EnemyToFight ikke har mer Health
 - list<string> Words - ordene spilleren må skrive for å gjøre skade på motstanderen.
 - Timer TypeTimer - Tiden spilleren har på å skrive hvert ord. resettes for hvert ord man skal skrive
   
-##Timer
+<h2>Timer</h2>
 
 Klassen for timer. instansieres i hvert battle og tar inn spilleren som en property. Sekundene til timeren vil avhenge av spilleren sin Intellect stat. 
 
-###Props
+<h3>Props</h3>
 
 - int Seconds - default=2sekunder og for hver tiende intellect spilleren har legges det til et halvt sekund
   </details>
   
-  #Generelle notater og tanker
+  <h1>Generelle notater og tanker</h1>
 
-- Bruke spectreconsole til grafikk
-- Combat består av å skrive ord rett og fort
-- Combat gir exp, ikke drops
-- Exp kan brukes til å levle opp med
-- Liste opp map som et hierarki-tre
-- Områder skal kunne gjenspilles, dvs man kan farme exp ved å bevege seg mellom bonfires
-- Bosser respawner IKKE
-
-###Stats!
+<ul>
+<li>Bruke spectreconsole til grafikk</li>
+<li>Combat består av å skrive ord rett og fort</li>
+<li>Combat gir exp, ikke drops</li>
+<li>Exp kan brukes til å levle opp med</li>
+<li>Liste opp map som et hierarki-tre</li>
+<li>Områder skal kunne gjenspilles, dvs man kan farme exp ved å bevege seg mellom bonfires</li>
+<li>Bosser respawner IKKE</li>
+</ul>
+  
+  <h3>Stats!</h3>
 
 | Strength | Økt damage |
 | --- | --- |
