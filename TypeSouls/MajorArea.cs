@@ -8,11 +8,6 @@ namespace TypeSouls;
 internal class MajorArea
 {
     public string AreaName { get; set; }
-    public List<Location> Locations { get; set; }
-
-    public MajorArea(string name)
-    {
-        AreaName = name;
-    }
+    public List<SubArea> Bonfires { get; set; }
 }
 

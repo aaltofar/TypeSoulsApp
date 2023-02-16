@@ -5,13 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TypeSouls;
-internal class Location
+internal class SubArea
 {
-    public string LocationName { get; set; }
-
-    public Location(string name)
-    {
-        LocationName = name;
-    }
+    public string BonfireName { get; set; }
 }
-
