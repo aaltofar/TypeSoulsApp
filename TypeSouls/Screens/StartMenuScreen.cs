@@ -48,11 +48,11 @@ internal class StartMenuScreen
                 break;
 
             case "New Game":
-                CreateCharacterScreen();
+                CreateCharacterScreen.CreateCharacter();
                 break;
 
             case "GitHub":
-                OpenGitHub();
+                //OpenGitHub();
                 break;
 
             case "Exit Game":

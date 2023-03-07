@@ -7,12 +7,12 @@ using System.Timers;
 using Timer = System.Timers.Timer;
 
 namespace TypeSouls;
-internal class Battle
+public class Battle
 {
     public Random R { get; set; }
     private List<string> AllWordsList { get; set; }
     private Stopwatch Timer { get; set; }
-    private string Word { get; }
+    private string Word { get; set; }
     private string WrittenLetters { get; set; }
     private Timer MyTimer { get; set; }
     public Battle()
@@ -51,7 +51,7 @@ internal class Battle
         }
     }
 
-    bool PlayWordGame()
+    public bool PlayWordGame()
     {
         InitTimer();
 

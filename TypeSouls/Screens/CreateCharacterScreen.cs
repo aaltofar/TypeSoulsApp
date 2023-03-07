@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 namespace TypeSouls.Screens;
 internal class CreateCharacterScreen
 {
+    static public void CreateCharacter()
+    {
 
+    }
 }
 
