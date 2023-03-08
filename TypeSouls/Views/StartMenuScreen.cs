@@ -48,7 +48,7 @@ internal class StartMenuScreen
                 break;
 
             case "New Game":
-                CreateCharacterScreen.CreateCharacter();
+                //CreateCharacterScreen.CreateCharacter();
                 break;
 
             case "GitHub":

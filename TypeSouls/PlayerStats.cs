@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TypeSouls;
-internal class PlayerStats
+
+public class PlayerStats
 {
     public int Strength { get; set; }
     public int Intellect { get; set; }

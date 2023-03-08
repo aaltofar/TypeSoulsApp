@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TypeSouls;
-internal class SubArea
+
+public class SubArea
 {
     public string BonfireName { get; set; }
 }

@@ -1,16 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
+using System.Data;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using TypeSouls.Screens;
 namespace TypeSouls;
-internal class Player
+[Serializable]
+public class Player
 {
     public int Level { get; set; }
     public string Class { get; set; }
     public string CharName { get; set; }
     public int CurrentExp { get; set; }
+    [JsonIgnore]
     public double MaxExp => 100 * Math.Pow(1.1, (Level - 1));
     public (MajorArea, SubArea) Location { get; set; }
     public int MaxHealth => 50 + (Stats.Endurance * 10);
@@ -19,6 +24,7 @@ internal class Player
     public PlayerStats Stats { get; set; }
     public int BossKills { get; set; }
     public bool Humanity { get; set; }
+    public int EstusAmount { get; set; }
 
     public Player()
     {
@@ -26,6 +32,39 @@ internal class Player
         Stats = new PlayerStats();
         CurrentHealth = MaxHealth;
         Humanity = true;
+    }
+
+    public void CreateCharacter()
+    {
+        CharName = Screens.CreateCharacter.NameCharacter();
+        Class = Screens.CreateCharacter.ChooseClass();
+
+        switch (Class)
+        {
+            case "Warrior":
+                Stats.Strength = 10;
+                break;
+
+            case "Knight":
+                Stats.Endurance = 10;
+                break;
+
+            case "Sorcerer":
+                Stats.Intellect = 10;
+                break;
+
+            case "Cleric":
+                Stats.Faith = 10;
+                break;
+
+            case "Depraved":
+                Stats.Endurance = 1;
+                Stats.Faith = 1;
+                Stats.Intellect = 1;
+                Stats.Strength = 1;
+                Level = 1;
+                break;
+        }
     }
 
 }
