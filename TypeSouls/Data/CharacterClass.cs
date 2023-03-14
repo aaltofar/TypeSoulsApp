@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TypeSouls;
+namespace TypeSouls.Data;
 public class CharacterClass
 {
-    public String ClassName { get; set; }
+    public string ClassName { get; set; }
     public int Strength { get; set; }
     public int Intellect { get; set; }
     public int Endurance { get; set; }

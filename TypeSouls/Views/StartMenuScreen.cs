@@ -1,11 +1,6 @@
 ﻿using Spectre.Console;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace TypeSouls.Screens;
+namespace TypeSouls.Views;
 internal class StartMenuScreen
 {
     public static void StartMenu()

@@ -6,8 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using TypeSouls.Screens;
-namespace TypeSouls;
+using TypeSouls.Areas;
+using TypeSouls.Data;
+
+namespace TypeSouls.Entities;
 [Serializable]
 public class Player
 {
@@ -16,9 +18,9 @@ public class Player
     public string CharName { get; set; }
     public int CurrentExp { get; set; }
     [JsonIgnore]
-    public double MaxExp => 100 * Math.Pow(1.1, (Level - 1));
+    public double MaxExp => 100 * Math.Pow(1.1, Level - 1);
     public (MajorArea, SubArea) Location { get; set; }
-    public int MaxHealth => 50 + (Stats.Endurance * 10);
+    public int MaxHealth => 50 + Stats.Endurance * 10;
     public int CurrentHealth { get; set; }
     public int StatPointsToPlace { get; set; }
     public PlayerStats Stats { get; set; }
@@ -36,8 +38,8 @@ public class Player
 
     public void CreateCharacter()
     {
-        CharName = Screens.CreateCharacter.NameCharacter();
-        Class = Screens.CreateCharacter.ChooseClass();
+        CharName = Views.CreateCharacter.NameCharacter();
+        Class = Views.CreateCharacter.ChooseClass();
 
         switch (Class)
         {

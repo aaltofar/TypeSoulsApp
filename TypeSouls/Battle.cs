@@ -4,11 +4,13 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Timers;
+using TypeSouls.Entities;
 using Timer = System.Timers.Timer;
 
 namespace TypeSouls;
 public class Battle
 {
+    public Enemy Opponent { get; set; }
     public Random R { get; set; }
     private List<string> AllWordsList { get; set; }
     private Stopwatch Timer { get; set; }

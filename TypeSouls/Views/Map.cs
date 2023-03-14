@@ -1,61 +1,110 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Spectre.Console;
+using System.Reflection.Emit;
+using TypeSouls.Areas;
 
-namespace TypeSouls.Screens;
+namespace TypeSouls.Views;
 internal class Map
 {
-    public static void DrawMap()
+    public static Tree DrawMap()
     {
-        //var root = new Tree("World Map");
+        var root = new Tree("[green]World Map[/]");
 
-        //// Store lokasjoner som AddNode til ROOT
-        //List<MajorArea> allAreas = new();
+        List<MajorArea> allAreas = new();
 
-        //List<string> majorAreas = new List<string>()
-        //{
-        //    "Firelink Shrine",
-        //    "Undead Burg",
-        //    "Catacombs",
-        //    "Sen's Fortress",
-        //    "Depths",
-        //};
+        var FirelinkShrine = new MajorArea("Firelink Shrine", new SubArea[]
+        {
+            new SubArea("New Londo Ruins"),
+            new SubArea("The Abyss", "Four Kings"),
+            new SubArea("Kiln of the First Flame", "Gwyn, Lord of Cinder")
+        });
 
-        //var Firelink = new MajorArea(majorAreas[0]);
-        //var UndeadBurg = new MajorArea(majorAreas[1]);
-        //var Catacombs = new MajorArea(majorAreas[2]);
-        //var Sens = new MajorArea(majorAreas[3]);
-        //var Depths = new MajorArea(majorAreas[4]);
+        var Depths = new MajorArea("The Depths", new SubArea[]
+        {
+            new SubArea("Blighttown"),
+            new SubArea("Poison Swamp"),
+            new SubArea("Quelaag's Domain", "Chaos Witch Quelaag")
+        });
 
-        //Firelink.Locations.Add(new Location("New Londo Ruins"));
-        //Firelink.Locations.Add(new Location("The Abyss"));
+        var UndeadParish = new MajorArea("Undead Parish", new SubArea[]
+        {
+            new SubArea("New Londo Ruins", "Bell Gargoyles"),
+            new SubArea("Darkroot Garden"),
+            new SubArea("Darkroot Basin", "Hydra")
+        });
 
-        //UndeadBurg.Locations.Add(new Location("Depths"));
-        //UndeadBurg.Locations.Add(new Location("Darkroot Garden"));
+        var SensFortress = new MajorArea("Sen's Fortress", "Iron Golem", new SubArea[]
+        {
+            new SubArea("Anor Londo", "Ornstein and Smough"),
+            new SubArea("The Dukes Archives", "Seath the Scaleless")
+        });
 
-        //Depths.Locations.Add(new Location("Blighttown"));
-        //Depths.Locations.Add(new Location("Poison Swamp"));
-        //Depths.Locations.Add(new Location("Lost Izalith"));
+        allAreas.Add(FirelinkShrine);
+        allAreas.Add(Depths);
+        allAreas.Add(UndeadParish);
+        allAreas.Add(SensFortress);
 
-        //Sens.Locations.Add(new Location("Anor Londo"));
-        //Sens.Locations.Add(new Location("The Dukes Archives"));
+        for (int i = 0; i < allAreas.Count; i++)
+        {
+            var aToAdd = allAreas[i];
+            var a = root.AddNode(aToAdd.DecoratedName);
 
-        //Catacombs.Locations.Add(new Location("Tomb of the Giants"));
+            foreach (var s in aToAdd.LeadsTo)
+                a.AddNode(s.DecoratedName);
+        }
 
-        //allAreas.Add(Firelink);
-        //allAreas.Add(UndeadBurg);
-        //allAreas.Add(Catacombs);
-        //allAreas.Add(Sens);
-        //allAreas.Add(Depths);
-
-        //foreach (var m in allAreas)
-        //{
-        //    root.AddNode(m.AreaName);
-        //}
-        //// Render the tree
         //AnsiConsole.Write(root);
+        //MapLegend();
+        //AnsiConsole.Write("Press [L] to toggle legend");
+        return root;
+    }
+
+    public static void MapScreen()
+    {
+        ConsoleKey key;
+        ConsoleKey lastKey = ConsoleKey.NoName;
+        AnsiConsole.Write(DrawMap());
+        Console.WriteLine();
+        AnsiConsole.Write("Press [L] to toggle legend or [BACKSPACE] to exit");
+        Console.WriteLine();
+        key = Console.ReadKey(true).Key;
+
+        while (key != ConsoleKey.Backspace)
+        {
+            if (key == ConsoleKey.L && key != lastKey)
+            {
+                Console.Clear();
+                AnsiConsole.Write(DrawMap());
+                Console.WriteLine();
+                AnsiConsole.Write("Press [L] to toggle legend or [BACKSPACE] to exit");
+                Console.WriteLine();
+                MapLegend();
+                key = Console.ReadKey(true).Key;
+                lastKey = key;
+            }
+            else
+            {
+                Console.Clear();
+                AnsiConsole.Write(DrawMap());
+                Console.WriteLine();
+                AnsiConsole.Write("Press [L] to toggle legend or [BACKSPACE] to exit");
+                Console.WriteLine();
+                key = Console.ReadKey(true).Key;
+                lastKey = ConsoleKey.NoName;
+            }
+        }
+    }
+
+    static void MapLegend()
+    {
+        Console.WriteLine();
+        AnsiConsole.Markup(@"
+******************************
+*  [blue]Major Areas[/]               *
+*  [wheat1]Area without a boss[/]       *
+*  [orange1]Area with an alive boss[/]   *
+*  [green]Area with a killed boss[/]   *
+******************************");
+
     }
 }
 

@@ -1,9 +1,7 @@
-﻿using Spectre.Console;
-using System.Diagnostics;
-using System.Text;
-using Spectre.Console.Rendering;
+﻿using System.Diagnostics;
+using Spectre.Console;
 
-namespace TypeSouls.Screens;
+namespace TypeSouls.Views;
 public static class Screens
 {
     public static void StartMenu()
@@ -37,8 +35,6 @@ public static class Screens
         AnsiConsole.Write(rule);
         AnsiConsole.WriteLine();
         var choice = AnsiConsole.Prompt(choiceList);
-
-
         HandleMenuChoice(choice);
     }
 

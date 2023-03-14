@@ -1,11 +1,6 @@
 ﻿using Spectre.Console;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace TypeSouls.Screens;
+namespace TypeSouls.Views;
 internal static class CreateCharacter
 {
     private static string[] _classes = new[]

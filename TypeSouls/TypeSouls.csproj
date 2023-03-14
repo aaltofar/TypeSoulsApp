@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\" />
+    <Folder Include="Entities\" />
   </ItemGroup>
 
 </Project>
