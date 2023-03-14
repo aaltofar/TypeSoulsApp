@@ -7,8 +7,9 @@ using TypeSouls;
 using TypeSouls.Views;
 
 Console.OutputEncoding = Encoding.UTF8;
-
-GameLogic game = new GameLogic();
+//AnsiConsole.Markup("[red]■■■■■■■■■■■■■■■■■■■■■■[/]");
+//GameLogic game = new GameLogic();
+//StartMenuScreen.StartMenu();
 //game.InitGame();
 //game.SaveGame();
 //Map.MapScreen();

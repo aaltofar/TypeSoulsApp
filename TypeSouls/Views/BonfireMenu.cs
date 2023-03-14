@@ -6,11 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TypeSouls.Views;
-internal class BonfireMenu
+public static class BonfireMenu
 {
-    static public void BonfireScreen()
-    {
-        var bonfireImage = @"
+    static readonly string BonfireImage = @"
             [grey54]       ⠀⠀⢀⣤⣤⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
             ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠻⣿⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
             ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⣯⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -43,24 +41,41 @@ internal class BonfireMenu
             [orange3 slowblink]⠀⣾⢟⠿⠿⢶⣮⡙⢏⢢⡀[/][red1 rapidblink]⢠⡌⣿⣿⡿⠟⡿⢳⣼⣿⣿⣿⣾⣿⣧⣤⣤[/]⠀[orange3 slowblink]⣤⣿⣿⣭⣿⠁⠀⠀⣀⣈⣧⠀[/]
             [orange3 slowblink]⢺⣥⢿⠾⠿⠿⠿⡿⠚⢋⣠⠯⣿⢉⢉⠻⠾⠛⢿⣿⠻⠿⢛⢋⣤⣯⣭⠽⠶⣾⣻⢿⣻⢿⠶⢛⣻⡿⢽⠄[/]
             ";
-
+    public static void BonfireScreen()
+    {
         var choice2 = new SelectionPrompt<string>()
             .AddChoices(
                 "Travel",
                 "View Character",
                 "Level up",
                 "View map",
-                "Save game",
                 "Save and exit game");
-        var rule = new Rule();
-        var locationTitle = new FigletText("Anor Londo");
-        rule.LeftJustified();
-        AnsiConsole.Markup(bonfireImage);
+        BonfireHeader();
+        Console.WriteLine();
+
+        Console.WriteLine();
+        AnsiConsole.Prompt(choice2);
+
+    }
+
+    static void BonfireHeader()
+    {
+        var rule = new Rule()
+        {
+            Justification = Justify.Left,
+        };
+        var font = FigletFont.Load("starwars.flf");
+        var locationTitle = new FigletText(font, "Anor Londo")
+        {
+            Color = Color.Orange1
+        };
+        AnsiConsole.Markup(BonfireImage);
         Console.WriteLine();
         AnsiConsole.Write(locationTitle);
         Console.WriteLine();
         AnsiConsole.Write(rule);
         AnsiConsole.WriteLine();
-        AnsiConsole.Prompt(choice2);
+
     }
+
 }

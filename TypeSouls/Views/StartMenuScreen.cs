@@ -1,8 +1,10 @@
 ﻿using Spectre.Console;
+using TypeSouls.Audio;
 
 namespace TypeSouls.Views;
 internal class StartMenuScreen
 {
+
     public static void StartMenu()
     {
         string logo = @"[slowblink darkorange]                                                                          
@@ -17,6 +19,9 @@ internal class StartMenuScreen
            ::       ::     ::        :: ::::     :::: ::   ::::: ::  ::::: ::   :: ::::  :::: ::   
             :        :      :         :::::       :::::     :::::     ::::::     :::::    :::::
         [/]";
+        var menuMusic = new CachedSound("menuMusic.wav");
+        AudioPlaybackEngine.Instance.PlaySound(menuMusic);
+
         var choiceList = new SelectionPrompt<string>()
                 .AddChoices(new[] {
                     "Continue",
@@ -24,6 +29,7 @@ internal class StartMenuScreen
                     "GitHub",
                     "Exit Game"
                 });
+
         var rule = new Rule("Type Souls v0.1");
         rule.Justification = Justify.Center;
         AnsiConsole.Markup(logo);
