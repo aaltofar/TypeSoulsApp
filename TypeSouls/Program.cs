@@ -4,6 +4,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Text.Json;
 using TypeSouls;
+using TypeSouls.Entities;
 using TypeSouls.Views;
 
 Console.OutputEncoding = Encoding.UTF8;
@@ -13,7 +14,9 @@ Console.OutputEncoding = Encoding.UTF8;
 //game.InitGame();
 //game.SaveGame();
 //Map.MapScreen();
-BonfireMenu.BonfireScreen();
+var player = new Player();
+ViewCharacter.ViewStats(player);
+//BonfireMenu.BonfireScreen();
 //game.ContinueGame();
 
 //game.testThis();

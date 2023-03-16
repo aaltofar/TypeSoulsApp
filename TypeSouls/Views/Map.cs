@@ -3,7 +3,7 @@ using System.Reflection.Emit;
 using TypeSouls.Areas;
 
 namespace TypeSouls.Views;
-internal class Map
+public class Map
 {
     public static Tree DrawMap()
     {
@@ -60,13 +60,12 @@ internal class Map
 
     public static void MapScreen()
     {
-        ConsoleKey key;
         ConsoleKey lastKey = ConsoleKey.NoName;
         AnsiConsole.Write(DrawMap());
         Console.WriteLine();
         AnsiConsole.Write("Press [L] to toggle legend or [BACKSPACE] to exit");
         Console.WriteLine();
-        key = Console.ReadKey(true).Key;
+        var key = Console.ReadKey(true).Key;
 
         while (key != ConsoleKey.Backspace)
         {

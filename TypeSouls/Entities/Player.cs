@@ -25,7 +25,6 @@ public class Player
     public int StatPointsToPlace { get; set; }
     public PlayerStats Stats { get; set; }
     public int BossKills { get; set; }
-    public bool Humanity { get; set; }
     public int EstusAmount { get; set; }
 
     public Player()
@@ -33,7 +32,8 @@ public class Player
         Level = 1;
         Stats = new PlayerStats();
         CurrentHealth = MaxHealth;
-        Humanity = true;
+        CharName = "Steve Cook";
+        Class = "Warrior";
     }
 
     public void CreateCharacter()
@@ -67,6 +67,13 @@ public class Player
                 Level = 1;
                 break;
         }
+    }
+
+    public void LevelUp()
+    {
+        Level++;
+        StatPointsToPlace += 5;
+        Stats.LevelUpAllStats(Class);
     }
 
 }

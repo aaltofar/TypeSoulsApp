@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using TypeSouls.Entities;
 
 namespace TypeSouls;
-public class GameLogic
+public class GameService
 {
     public Player ActivePlayer { get; set; }
     private String _saveFileName = "saveFile.json";

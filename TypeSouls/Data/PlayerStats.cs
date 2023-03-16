@@ -12,6 +12,7 @@ public class PlayerStats
     public int Intellect { get; set; }
     public int Endurance { get; set; }
     public int Faith { get; set; }
+    public bool Humanity { get; set; }
 
     public PlayerStats()
     {
@@ -19,14 +20,60 @@ public class PlayerStats
         Intellect = 5;
         Endurance = 5;
         Faith = 5;
+        Humanity = true;
     }
 
-    public void LevelUpAllStats()
+    public void LevelUpAllStats(string Class)
     {
         Strength++;
         Intellect++;
         Endurance++;
         Faith++;
+        LevelEfficiencyStat(Class);
     }
+
+    private void LevelEfficiencyStat(string Class)
+    {
+        switch (Class)
+        {
+            case "Warrior":
+                Strength++;
+                break;
+            case "Knight":
+                Endurance++;
+                break;
+            case "Cleric":
+                Faith++;
+                break;
+            case "Sorcerer":
+                Intellect++;
+                break;
+        }
+    }
+
+    //public void PlaceStatPoints(String stat)
+    //{
+    //    switch (stat)
+    //    {
+    //        case "Strength":
+
+    //            break;
+    //        case "Endurance":
+    //            break;
+    //        case "Intellect":
+    //            break;
+    //        case "Faith":
+    //            break;
+    //    }
+    //}
+
+    public (string, string)[] GetStatArray() => new[]
+    {
+            ("Strength", Strength.ToString()),
+            ("Intellect", Intellect.ToString()),
+            ("Endurance", Endurance.ToString()),
+            ("Faith", Faith.ToString()),
+            ("Humanity", Humanity.ToString())
+    };
 }
 

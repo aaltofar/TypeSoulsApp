@@ -41,7 +41,7 @@ public static class BonfireMenu
             [orange3 slowblink]⠀⣾⢟⠿⠿⢶⣮⡙⢏⢢⡀[/][red1 rapidblink]⢠⡌⣿⣿⡿⠟⡿⢳⣼⣿⣿⣿⣾⣿⣧⣤⣤[/]⠀[orange3 slowblink]⣤⣿⣿⣭⣿⠁⠀⠀⣀⣈⣧⠀[/]
             [orange3 slowblink]⢺⣥⢿⠾⠿⠿⠿⡿⠚⢋⣠⠯⣿⢉⢉⠻⠾⠛⢿⣿⠻⠿⢛⢋⣤⣯⣭⠽⠶⣾⣻⢿⣻⢿⠶⢛⣻⡿⢽⠄[/]
             ";
-    public static void BonfireScreen()
+    public static string BonfireScreen()
     {
         var choice2 = new SelectionPrompt<string>()
             .AddChoices(
@@ -52,18 +52,14 @@ public static class BonfireMenu
                 "Save and exit game");
         BonfireHeader();
         Console.WriteLine();
-
         Console.WriteLine();
-        AnsiConsole.Prompt(choice2);
 
+        return AnsiConsole.Prompt(choice2);
     }
 
     static void BonfireHeader()
     {
-        var rule = new Rule()
-        {
-            Justification = Justify.Left,
-        };
+        var rule = new Rule();
         var font = FigletFont.Load("starwars.flf");
         var locationTitle = new FigletText(font, "Anor Londo")
         {
@@ -75,7 +71,6 @@ public static class BonfireMenu
         Console.WriteLine();
         AnsiConsole.Write(rule);
         AnsiConsole.WriteLine();
-
     }
 
 }
