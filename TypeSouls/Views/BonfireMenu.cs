@@ -9,12 +9,12 @@ using TypeSouls.Areas;
 namespace TypeSouls.Views;
 public class BonfireMenu
 {
-    public IArea Area { get; set; }
+    public IArea Area { get; init; }
 
-    //public BonfireMenu(IArea area)
-    //{
-    //    Area = area;
-    //}
+    public BonfireMenu(IArea area)
+    {
+        Area = area;
+    }
 
     static readonly string BonfireImage = @"
             [grey54]       ⠀⠀⢀⣤⣤⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
