@@ -2,7 +2,7 @@
 
 namespace TypeSouls.Areas;
 
-public class SubArea
+public class SubArea : IArea
 {
     public string AreaName { get; set; }
     public Boss? AreaBoss { get; set; }

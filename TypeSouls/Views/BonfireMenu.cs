@@ -4,10 +4,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TypeSouls.Areas;
 
 namespace TypeSouls.Views;
-public static class BonfireMenu
+public class BonfireMenu
 {
+    public IArea Area { get; set; }
+
+    //public BonfireMenu(IArea area)
+    //{
+    //    Area = area;
+    //}
+
     static readonly string BonfireImage = @"
             [grey54]       ⠀⠀⢀⣤⣤⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
             ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠻⣿⣿⣿⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -41,27 +49,28 @@ public static class BonfireMenu
             [orange3 slowblink]⠀⣾⢟⠿⠿⢶⣮⡙⢏⢢⡀[/][red1 rapidblink]⢠⡌⣿⣿⡿⠟⡿⢳⣼⣿⣿⣿⣾⣿⣧⣤⣤[/]⠀[orange3 slowblink]⣤⣿⣿⣭⣿⠁⠀⠀⣀⣈⣧⠀[/]
             [orange3 slowblink]⢺⣥⢿⠾⠿⠿⠿⡿⠚⢋⣠⠯⣿⢉⢉⠻⠾⠛⢿⣿⠻⠿⢛⢋⣤⣯⣭⠽⠶⣾⣻⢿⣻⢿⠶⢛⣻⡿⢽⠄[/]
             ";
-    public static string BonfireScreen()
+    public string BonfireScreen()
     {
-        var choice2 = new SelectionPrompt<string>()
+        Console.Clear();
+        var menuChoices = new SelectionPrompt<string>()
             .AddChoices(
                 "Travel",
+                "Venture forth",
+                "View map",
                 "View Character",
                 "Level up",
-                "View map",
                 "Save and exit game");
         BonfireHeader();
         Console.WriteLine();
         Console.WriteLine();
 
-        return AnsiConsole.Prompt(choice2);
+        return AnsiConsole.Prompt(menuChoices);
     }
 
-    static void BonfireHeader()
+    private void BonfireHeader()
     {
         var rule = new Rule();
-        var font = FigletFont.Load("starwars.flf");
-        var locationTitle = new FigletText(font, "Anor Londo")
+        var locationTitle = new FigletText(Area.AreaName)
         {
             Color = Color.Orange1
         };

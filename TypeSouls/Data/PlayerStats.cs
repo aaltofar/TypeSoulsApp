@@ -69,11 +69,11 @@ public class PlayerStats
 
     public (string, string)[] GetStatArray() => new[]
     {
-            ("Strength", Strength.ToString()),
-            ("Intellect", Intellect.ToString()),
-            ("Endurance", Endurance.ToString()),
-            ("Faith", Faith.ToString()),
-            ("Humanity", Humanity.ToString())
+            (nameof(Strength), Strength.ToString()),
+            (nameof(Intellect), Intellect.ToString()),
+            (nameof(Endurance), Endurance.ToString()),
+            (nameof(Faith), Faith.ToString()),
+            (nameof(Humanity), Humanity.ToString())
     };
 }
 

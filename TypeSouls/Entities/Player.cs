@@ -19,7 +19,7 @@ public class Player
     public int CurrentExp { get; set; }
     [JsonIgnore]
     public double MaxExp => 100 * Math.Pow(1.1, Level - 1);
-    public (MajorArea, SubArea) Location { get; set; }
+    public IArea Location { get; set; }
     public int MaxHealth => 50 + Stats.Endurance * 10;
     public int CurrentHealth { get; set; }
     public int StatPointsToPlace { get; set; }
@@ -34,6 +34,7 @@ public class Player
         CurrentHealth = MaxHealth;
         CharName = "Steve Cook";
         Class = "Warrior";
+        Location = new MajorArea("Firelink Shrine");
     }
 
     public void CreateCharacter()

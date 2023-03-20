@@ -9,13 +9,15 @@ using TypeSouls.Views;
 
 Console.OutputEncoding = Encoding.UTF8;
 //AnsiConsole.Markup("[red]■■■■■■■■■■■■■■■■■■■■■■[/]");
-//GameLogic game = new GameLogic();
+var player = new Player();
+GameService game = new GameService();
+game.InitGame();
+game.GameLoop();
 //StartMenuScreen.StartMenu();
+//ViewCharacter.ViewStats(player);
 //game.InitGame();
 //game.SaveGame();
 //Map.MapScreen();
-var player = new Player();
-ViewCharacter.ViewStats(player);
 //BonfireMenu.BonfireScreen();
 //game.ContinueGame();
 

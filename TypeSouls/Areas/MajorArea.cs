@@ -1,6 +1,6 @@
 ﻿namespace TypeSouls.Areas;
 
-public class MajorArea
+public class MajorArea : IArea
 {
     public string AreaName { get; set; }
     public string DecoratedName { get; set; }

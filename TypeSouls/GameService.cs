@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using TypeSouls.Entities;
+using TypeSouls.Views;
 
 namespace TypeSouls;
 public class GameService
@@ -31,6 +32,12 @@ public class GameService
             string jsonString = File.ReadAllText(_saveFileName);
             ActivePlayer = JsonSerializer.Deserialize<Player>(jsonString);
         }
+    }
+
+    public void GameLoop()
+    {
+        var bonfire = new BonfireMenu() { Area = ActivePlayer.Location };
+        bonfire.BonfireScreen();
     }
 
 }
