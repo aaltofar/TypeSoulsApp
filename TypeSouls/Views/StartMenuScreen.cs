@@ -5,7 +5,7 @@ namespace TypeSouls.Views;
 internal class StartMenuScreen
 {
 
-    public static void StartMenu()
+    public static string StartMenu(bool canContinue)
     {
         string logo = @"[slowblink darkorange]                                                                          
         @@@@@@@  @@@ @@@  @@@@@@@   @@@@@@@@      @@@@@@    @@@@@@   @@@  @@@  @@@        @@@@@@   
@@ -21,14 +21,25 @@ internal class StartMenuScreen
         [/]";
         var menuMusic = new CachedSound("menuMusic.wav");
         AudioPlaybackEngine.Instance.PlaySound(menuMusic);
+        var choiceList = new SelectionPrompt<string>();
 
-        var choiceList = new SelectionPrompt<string>()
-                .AddChoices(new[] {
-                    "Continue",
-                    "New Game",
-                    "GitHub",
-                    "Exit Game"
-                });
+        if (canContinue)
+        {
+            choiceList.AddChoices(new[] {
+                "Continue",
+                "New Game",
+                "GitHub",
+                "Exit Game"
+            });
+        }
+        else
+        {
+            choiceList.AddChoices(new[] {
+                "New Game",
+                "GitHub",
+                "Exit Game"
+            });
+        }
 
         var rule = new Rule("Type Souls v0.1");
         rule.Justification = Justify.Center;
@@ -36,29 +47,8 @@ internal class StartMenuScreen
         AnsiConsole.WriteLine();
         AnsiConsole.Write(rule);
         AnsiConsole.WriteLine();
-        var choice = AnsiConsole.Prompt(choiceList);
 
-        HandleMenuChoice(choice);
-    }
-
-    static void HandleMenuChoice(string choice)
-    {
-        switch (choice)
-        {
-            case "Continue":
-                break;
-
-            case "New Game":
-                //CreateCharacterScreen.CreateCharacter();
-                break;
-
-            case "GitHub":
-                //OpenGitHub();
-                break;
-
-            case "Exit Game":
-                break;
-        }
+        return AnsiConsole.Prompt(choiceList);
     }
 }
 

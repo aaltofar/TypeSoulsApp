@@ -9,9 +9,9 @@ using TypeSouls.Areas;
 namespace TypeSouls.Views;
 public class BonfireMenu
 {
-    public IArea Area { get; init; }
+    public Area Area { get; init; }
 
-    public BonfireMenu(IArea area)
+    public BonfireMenu(Area area)
     {
         Area = area;
     }

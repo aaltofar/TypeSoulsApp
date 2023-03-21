@@ -75,5 +75,6 @@ public class PlayerStats
             (nameof(Faith), Faith.ToString()),
             (nameof(Humanity), Humanity.ToString())
     };
+
 }
 

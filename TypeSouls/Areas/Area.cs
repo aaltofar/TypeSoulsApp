@@ -1,33 +1,45 @@
-﻿using TypeSouls.Entities;
+﻿using System.Xml.Linq;
 
 namespace TypeSouls.Areas;
 
-public class SubArea
+public class Area
 {
     public string AreaName { get; set; }
-    public Boss? AreaBoss { get; set; }
     public string DecoratedName => DecorateName();
+    public Boss? AreaBoss { get; set; }
+    public bool IsMajor { get; set; }
 
-    public SubArea(string areaName, string bossName)
+    public Area(string name, string bossName, bool isMajor)
     {
-        AreaName = areaName;
+        AreaName = name;
         AreaBoss = new Boss()
         {
             Name = bossName,
             IsAlive = true
         };
+        IsMajor = isMajor;
     }
 
-    public SubArea(string areaName)
+    public Area(string name, bool isMajor)
     {
-        AreaName = areaName;
+        AreaName = name;
+        IsMajor = isMajor;
+    }
+
+    public Area()
+    {
+
     }
 
     string DecorateName()
     {
+        if (IsMajor)
+            return "[bold blue]" + AreaName + "[/]";
         if (AreaBoss == null)
             return "[wheat1]" + AreaName + "[/]";
 
         return AreaBoss.IsAlive ? "[orange1]" + AreaName + " ☠︎[/]" : "[green]" + AreaName + "[/]";
     }
+
 }
+
