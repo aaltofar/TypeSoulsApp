@@ -45,6 +45,9 @@ internal class ViewCharacter
                 if (i == currentSelection)
                     AnsiConsole.Markup($">[dodgerblue1] {player.Stats.GetStatArray()[i].Item1}[/] ({player.Stats.GetStatArray()[i].Item2})");
 
+                //if (player.Stats.GetStatArray()[i].Item1 == "Humanity")
+                //    Console.Write($"{player.Stats.GetStatArray()[i].Item1} ({(player.Stats.GetStatArray()[i].Item2 == "True" ? "Intact" : "Faded")})");
+
                 else
                     Console.Write($"{player.Stats.GetStatArray()[i].Item1} ({player.Stats.GetStatArray()[i].Item2})");
 

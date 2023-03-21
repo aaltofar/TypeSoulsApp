@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TypeSouls.Entities;
-public class Enemy
+public class Enemy : IOpponent
 {
     public string Name { get; set; }
     public int Health { get; set; }

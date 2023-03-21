@@ -1,6 +1,7 @@
 ﻿using Spectre.Console;
 using System.Reflection.Emit;
 using TypeSouls.Areas;
+using TypeSouls.Data;
 
 namespace TypeSouls.Views;
 public class MapView
@@ -22,6 +23,7 @@ public class MapView
 
     public static void MapScreen(List<Area[]> allAreas)
     {
+        Console.Clear();
         ConsoleKey lastKey = ConsoleKey.NoName;
         AnsiConsole.Write(BuildMap(allAreas));
         Console.WriteLine();

@@ -9,5 +9,8 @@ using TypeSouls.Views;
 
 Console.OutputEncoding = Encoding.UTF8;
 
-GameService game = new GameService();
+//Initializes gamelogic
+GameService game = new();
+
+//Starts the game
 game.GameLoop();

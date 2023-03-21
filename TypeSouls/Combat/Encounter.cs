@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TypeSouls.Areas;
-public interface IArea
+namespace TypeSouls.Combat;
+internal class Encounter
 {
-    public string AreaName { get; set; }
+
 }
 

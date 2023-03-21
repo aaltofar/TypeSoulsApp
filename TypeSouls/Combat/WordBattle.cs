@@ -3,21 +3,22 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Timers;
-using TypeSouls.Entities;
 using Timer = System.Timers.Timer;
+using TypeSouls.Entities;
 
-namespace TypeSouls;
-public class Battle
+namespace TypeSouls.Combat;
+internal class WordBattle
 {
-    public Enemy Opponent { get; set; }
+    public IOpponent Opponent { get; set; }
     public Random R { get; set; }
     private List<string> AllWordsList { get; set; }
     private Stopwatch Timer { get; set; }
     private string Word { get; set; }
     private string WrittenLetters { get; set; }
     private Timer MyTimer { get; set; }
-    public Battle()
+    public WordBattle()
     {
         Timer = new Stopwatch();
         WrittenLetters = string.Empty;
@@ -35,10 +36,7 @@ public class Battle
         return result;
     }
 
-    private string DrawWord()
-    {
-        return AllWordsList[R.Next(AllWordsList.Count)];
-    }
+    private string DrawWord() => AllWordsList[R.Next(AllWordsList.Count)];
 
     private void InitTimer()
     {

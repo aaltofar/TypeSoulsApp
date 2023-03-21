@@ -32,7 +32,6 @@ public class Player
         Level = 1;
         Stats = new PlayerStats();
         CurrentHealth = MaxHealth;
-
     }
 
     public void CreateCharacter()

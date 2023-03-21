@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TypeSouls.Areas;
+using TypeSouls.Data;
 
 namespace TypeSouls.Views;
 public class BonfireMenu
