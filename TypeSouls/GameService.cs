@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using TypeSouls.Areas;
+using TypeSouls.Data;
 using TypeSouls.Entities;
 using TypeSouls.Views;
 
@@ -14,8 +14,8 @@ namespace TypeSouls;
 public class GameService
 {
     public Player ActivePlayer { get; set; }
-    private String _saveFileName = "saveFile.json";
-    private bool HasContinue => File.Exists(_saveFileName);
+    private const string SaveFileName = "saveFile.json";
+    private bool HasContinue => File.Exists(SaveFileName);
     public List<Area[]> AllAreas { get; set; }
 
     public GameService()
@@ -24,7 +24,7 @@ public class GameService
     }
     public List<Area[]> PopulateAreaList()
     {
-        AllAreas = new()
+        AllAreas = new List<Area[]>
         {
             new Area[]
             {
@@ -68,17 +68,15 @@ public class GameService
     public void SaveGame()
     {
         var options = new JsonSerializerOptions { WriteIndented = true };
-        string _jsonString = JsonSerializer.Serialize(ActivePlayer, options);
-        File.WriteAllText(_saveFileName, _jsonString);
+        var jsonString = JsonSerializer.Serialize(ActivePlayer, options);
+        File.WriteAllText(SaveFileName, jsonString);
     }
 
     public void ContinueGame()
     {
-        if (File.Exists(_saveFileName))
-        {
-            string jsonString = File.ReadAllText(_saveFileName);
-            ActivePlayer = JsonSerializer.Deserialize<Player>(jsonString);
-        }
+        if (!File.Exists(SaveFileName)) return;
+        var jsonString = File.ReadAllText(SaveFileName);
+        ActivePlayer = JsonSerializer.Deserialize<Player>(jsonString);
     }
 
     public void GameLoop()
@@ -114,7 +112,8 @@ public class GameService
         } while (true);
 
     }
-    void HandleMenuChoice(string choice)
+
+    private void HandleMenuChoice(string choice)
     {
         switch (choice)
         {
@@ -138,7 +137,7 @@ public class GameService
 
     public void OpenGitHub()
     {
-        ProcessStartInfo ps = new ProcessStartInfo
+        var ps = new ProcessStartInfo
         {
             FileName = "https://github.com/aaltofar/TypeSoulsApp",
             UseShellExecute = true

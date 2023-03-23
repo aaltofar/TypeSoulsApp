@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using TypeSouls.Areas;
 using TypeSouls.Data;
 
 namespace TypeSouls.Entities;

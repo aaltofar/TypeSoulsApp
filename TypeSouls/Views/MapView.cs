@@ -1,6 +1,5 @@
 ﻿using Spectre.Console;
 using System.Reflection.Emit;
-using TypeSouls.Areas;
 using TypeSouls.Data;
 
 namespace TypeSouls.Views;
@@ -10,11 +9,11 @@ public class MapView
     {
         var root = new Tree("[green]Lordran[/]");
 
-        for (int i = 0; i < allAreas.Count; i++)
+        foreach (var t1 in allAreas)
         {
-            var t = root.AddNode(allAreas[i][0].DecoratedName);
+            var t = root.AddNode(t1[0].DecoratedName);
 
-            foreach (var a in allAreas[i])
+            foreach (var a in t1)
                 if (!a.IsMajor)
                     t.AddNode(a.DecoratedName);
         }
@@ -24,7 +23,7 @@ public class MapView
     public static void MapScreen(List<Area[]> allAreas)
     {
         Console.Clear();
-        ConsoleKey lastKey = ConsoleKey.NoName;
+        var lastKey = ConsoleKey.NoName;
         AnsiConsole.Write(BuildMap(allAreas));
         Console.WriteLine();
         AnsiConsole.Write("Press [L] to toggle legend or [BACKSPACE] to exit");
@@ -57,7 +56,7 @@ public class MapView
         }
     }
 
-    static void MapLegend()
+    private static void MapLegend()
     {
         Console.WriteLine();
         AnsiConsole.Markup(@"

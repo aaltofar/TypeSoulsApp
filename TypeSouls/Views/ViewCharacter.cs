@@ -13,19 +13,19 @@ internal class ViewCharacter
 {
     public static string ViewStats(Player player)
     {
-        int startXMenu = Console.WindowWidth / 8 - 25;
-        int startYMenu = Console.WindowHeight / 8 + 2;
+        var startXMenu = Console.WindowWidth / 8 - 25;
+        var startYMenu = Console.WindowHeight / 8 + 2;
 
-        int startXStats = startXMenu + 20;
-        int startYStats = Console.WindowHeight / 8;
+        var startXStats = startXMenu + 20;
+        var startYStats = Console.WindowHeight / 8;
 
-        int startXDesc = Console.WindowWidth / 4;
-        int startYDesc = Console.WindowHeight / 4 + 2;
+        var startXDesc = Console.WindowWidth / 4;
+        var startYDesc = Console.WindowHeight / 4 + 2;
 
         const int optionsPerLine = 1;
         const int spacingPerLine = 14;
 
-        int currentSelection = 0;
+        var currentSelection = 0;
 
         ConsoleKey key;
 
@@ -72,7 +72,7 @@ internal class ViewCharacter
                     PrintHumanityInfo(startXStats, startYStats, startYDesc);
                     break;
             }
-
+            MakeHelpBox();
             key = Console.ReadKey(true).Key;
             var menuMove = new CachedSound("move.wav");
             switch (key)
@@ -94,11 +94,12 @@ internal class ViewCharacter
                         break;
                     }
             }
-        } while (key != ConsoleKey.Enter);
+        } while (key != ConsoleKey.Backspace);
         var menuSelect = new CachedSound("select.wav");
         Console.CursorVisible = true;
 
         AudioPlaybackEngine.Instance.PlaySound(menuSelect);
+
         return player.Stats.GetStatArray()[currentSelection].Item1;
     }
 
@@ -112,6 +113,16 @@ internal class ViewCharacter
             Justification = Justify.Left
         };
         AnsiConsole.Write(divider);
+    }
+
+    private static void MakeHelpBox()
+    {
+        Console.SetCursorPosition(5, Console.WindowHeight / 3 - 5);
+        AnsiConsole.Markup(@"
+*************************************************************
+*   Use the [wheat1]arrow keys[/] to navigate the menu.                *
+*   Press [wheat1]Backspace[/] to return to the previous menu.         *
+*************************************************************");
     }
 
     private static void PrintStrengthInfo(int startXStats, int startYStats, int startYDesc)

@@ -18,8 +18,9 @@ internal class WordBattle
     private string Word { get; set; }
     private string WrittenLetters { get; set; }
     private Timer MyTimer { get; set; }
-    public WordBattle()
+    public WordBattle(IOpponent opponent)
     {
+        Opponent = opponent;
         Timer = new Stopwatch();
         WrittenLetters = string.Empty;
         AllWordsList = FillWordList();
@@ -30,10 +31,7 @@ internal class WordBattle
 
     private static List<string> FillWordList()
     {
-        var result = new List<string>();
-        foreach (string line in File.ReadLines(@"WordList.txt"))
-            result.Add(line);
-        return result;
+        return File.ReadLines(@"WordList.txt").ToList();
     }
 
     private string DrawWord() => AllWordsList[R.Next(AllWordsList.Count)];

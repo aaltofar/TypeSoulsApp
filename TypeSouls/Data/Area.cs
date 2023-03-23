@@ -1,6 +1,6 @@
-﻿using System.Xml.Linq;
+﻿using TypeSouls.Entities;
 
-namespace TypeSouls.Areas;
+namespace TypeSouls.Data;
 
 public class Area
 {
@@ -31,7 +31,7 @@ public class Area
 
     }
 
-    string DecorateName()
+    private string DecorateName()
     {
         if (IsMajor)
             return "[bold blue]" + AreaName + "[/]";

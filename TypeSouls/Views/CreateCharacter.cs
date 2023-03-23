@@ -32,19 +32,19 @@ internal static class CreateCharacter
 
     public static string ChooseClass()
     {
-        int startXMenu = Console.WindowWidth / 8 - 25;
-        int startYMenu = Console.WindowHeight / 8 + 2;
+        var startXMenu = Console.WindowWidth / 8 - 25;
+        var startYMenu = Console.WindowHeight / 8 + 2;
 
-        int startXStats = startXMenu + 20;
-        int startYStats = Console.WindowHeight / 8;
+        var startXStats = startXMenu + 20;
+        var startYStats = Console.WindowHeight / 8;
 
-        int startXDesc = Console.WindowWidth / 4;
-        int startYDesc = Console.WindowHeight / 4 + 2;
+        var startXDesc = Console.WindowWidth / 4;
+        var startYDesc = Console.WindowHeight / 4 + 2;
 
         const int optionsPerLine = 1;
         const int spacingPerLine = 14;
 
-        int currentSelection = 0;
+        var currentSelection = 0;
 
         ConsoleKey key;
 

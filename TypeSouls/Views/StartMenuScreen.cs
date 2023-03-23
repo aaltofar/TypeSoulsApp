@@ -7,7 +7,7 @@ internal class StartMenuScreen
 
     public static string StartMenu(bool canContinue)
     {
-        string logo = @"[slowblink darkorange]                                                                          
+        const string logo = @"[slowblink darkorange]                                                                          
         @@@@@@@  @@@ @@@  @@@@@@@   @@@@@@@@      @@@@@@    @@@@@@   @@@  @@@  @@@        @@@@@@   
         @@@@@@@  @@@ @@@  @@@@@@@@  @@@@@@@@     @@@@@@@   @@@@@@@@  @@@  @@@  @@@       @@@@@@@   
           @@!    @@! !@@  @@!  @@@  @@!          !@@       @@!  @@@  @@!  @@@  @@!       !@@       
@@ -41,8 +41,10 @@ internal class StartMenuScreen
             });
         }
 
-        var rule = new Rule("Type Souls v0.1");
-        rule.Justification = Justify.Center;
+        var rule = new Rule("Type Souls v0.1")
+        {
+            Justification = Justify.Center
+        };
         AnsiConsole.Markup(logo);
         AnsiConsole.WriteLine();
         AnsiConsole.Write(rule);

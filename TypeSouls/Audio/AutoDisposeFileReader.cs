@@ -21,7 +21,7 @@ namespace TypeSouls.Audio
         {
             if (isDisposed)
                 return 0;
-            int read = reader.Read(buffer, offset, count);
+            var read = reader.Read(buffer, offset, count);
             if (read == 0)
             {
                 reader.Dispose();

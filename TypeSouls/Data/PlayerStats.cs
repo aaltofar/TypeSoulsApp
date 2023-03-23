@@ -23,18 +23,18 @@ public class PlayerStats
         Humanity = true;
     }
 
-    public void LevelUpAllStats(string Class)
+    public void LevelUpAllStats(string @class)
     {
         Strength++;
         Intellect++;
         Endurance++;
         Faith++;
-        LevelEfficiencyStat(Class);
+        LevelEfficiencyStat(@class);
     }
 
-    private void LevelEfficiencyStat(string Class)
+    private void LevelEfficiencyStat(string @class)
     {
-        switch (Class)
+        switch (@class)
         {
             case "Warrior":
                 Strength++;
@@ -51,21 +51,24 @@ public class PlayerStats
         }
     }
 
-    //public void PlaceStatPoints(String stat)
-    //{
-    //    switch (stat)
-    //    {
-    //        case "Strength":
-
-    //            break;
-    //        case "Endurance":
-    //            break;
-    //        case "Intellect":
-    //            break;
-    //        case "Faith":
-    //            break;
-    //    }
-    //}
+    public void PlaceStatPoints(string stat, int amountToIncrease)
+    {
+        switch (stat)
+        {
+            case "Strength":
+                Strength += amountToIncrease;
+                break;
+            case "Endurance":
+                Endurance += amountToIncrease;
+                break;
+            case "Intellect":
+                Intellect += amountToIncrease;
+                break;
+            case "Faith":
+                Faith += amountToIncrease;
+                break;
+        }
+    }
 
     public (string, string)[] GetStatArray() => new[]
     {
