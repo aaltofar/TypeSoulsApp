@@ -17,6 +17,7 @@ public class GameService
     private const string SaveFileName = "saveFile.json";
     private bool HasContinue => File.Exists(SaveFileName);
     public List<Area[]> AllAreas { get; set; }
+    private Random _r = new Random();
 
     public GameService()
     {
@@ -28,10 +29,10 @@ public class GameService
         {
             new Area[]
             {
-                new Area("Firelink Shrine", true),
-                new Area("New Londo Ruins", false),
-                new Area("The Abyss", "Four Kings", false),
-                new Area("Kiln of the First Flame", "Gwyn, Lord of Cinder", false)
+                new Area("Firelink Shrine", true, true),
+                new Area("New Londo Ruins", false, false),
+                new Area("The Abyss", "Four Kings", false, false),
+                new Area("Kiln of the First Flame", "Gwyn, Lord of Cinder", false, false)
             },
             new Area[]
             {
@@ -81,10 +82,7 @@ public class GameService
 
     public void GameLoop()
     {
-        //Player always spawns at a bonfire
-        //Bonfire menu to choose what happens next, Venture Forth = progress in major area
-        //if area is beat and has nowhere to lead to player will be prompted to go back to firelink or progress to the next major area.
-        //
+
         HandleMenuChoice(StartMenuScreen.StartMenu(HasContinue));
         do
         {
@@ -93,6 +91,8 @@ public class GameService
             switch (bonfireMenuChoice)
             {
                 case "Travel":
+                    //TravelMenu.BuildMap(AllAreas);
+                    TravelMenu.MapScreen(AllAreas, ActivePlayer);
                     break;
                 case "Venture forth":
                     break;
@@ -144,5 +144,32 @@ public class GameService
         };
         Process.Start(ps);
     }
+
+    private void CalculateEncounters()
+    {
+
+    }
+
+    private void Travel(bool hasCombat)
+    {
+        if (hasCombat)
+            return;
+
+
+    }
+
+    private bool CanTravel(Area destination)
+    {
+        if (destination.IsExplored)
+            return true;
+
+        foreach (var a in AllAreas)
+            for (int j = 0; j < a.Length; j++)
+                if (ActivePlayer.Location.AreaName == a[j].AreaName && a[j + 1].AreaName == destination.AreaName)
+                    return true;
+
+        return false;
+    }
+
 }
 

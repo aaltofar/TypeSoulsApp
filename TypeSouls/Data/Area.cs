@@ -8,6 +8,7 @@ public class Area
     public string DecoratedName => DecorateName();
     public Boss? AreaBoss { get; set; }
     public bool IsMajor { get; set; }
+    public bool IsExplored = false;
 
     public Area(string name, string bossName, bool isMajor)
     {
@@ -19,17 +20,35 @@ public class Area
         };
         IsMajor = isMajor;
     }
+    public Area(string name, string bossName, bool isMajor, bool isExplored)
+    {
+        AreaName = name;
+        AreaBoss = new Boss()
+        {
+            Name = bossName,
+            IsAlive = true
+        };
+        IsMajor = isMajor;
+        IsExplored = isExplored;
+    }
 
     public Area(string name, bool isMajor)
     {
         AreaName = name;
         IsMajor = isMajor;
     }
+    public Area(string name, bool isMajor, bool isExplored)
+    {
+        AreaName = name;
+        IsMajor = isMajor;
+        IsExplored = isExplored;
+    }
 
     public Area()
     {
 
     }
+
 
     private string DecorateName()
     {

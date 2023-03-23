@@ -34,7 +34,7 @@ internal class ViewCharacter
         do
         {
             //Header and dividerline
-            MakeHeader(player);
+            ConsoleSegments.MakeHeader(player.CharName, $@"Level {player.Level} {player.Class}");
             Console.SetCursorPosition(startXStats - 23, startYStats);
             AnsiConsole.Markup("[underline wheat1]Stat attributes:[/]");
             //Menu
@@ -103,17 +103,17 @@ internal class ViewCharacter
         return player.Stats.GetStatArray()[currentSelection].Item1;
     }
 
-    private static void MakeHeader(Player player)
-    {
-        Console.Clear();
-        AnsiConsole.Write(
-            new FigletText(player.CharName).LeftJustified().Color(Color.DodgerBlue1));
-        var divider = new Rule($"Level {player.Level} {player.Class}")
-        {
-            Justification = Justify.Left
-        };
-        AnsiConsole.Write(divider);
-    }
+    //private static void MakeHeader(Player player)
+    //{
+    //    Console.Clear();
+    //    AnsiConsole.Write(
+    //        new FigletText(player.CharName).LeftJustified().Color(Color.DodgerBlue1));
+    //    var divider = new Rule($"Level {player.Level} {player.Class}")
+    //    {
+    //        Justification = Justify.Left
+    //    };
+    //    AnsiConsole.Write(divider);
+    //}
 
     private static void MakeHelpBox()
     {

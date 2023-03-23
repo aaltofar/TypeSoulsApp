@@ -135,9 +135,6 @@ internal class WordBattle
         Console.Write(Timer.Elapsed.ToString(@"s\.ff") + " Seconds");
     }
 
-    private static string GetInput()
-    {
-        return Console.ReadKey().KeyChar.ToString().ToUpper();
-    }
+    private static string GetInput() => Console.ReadKey().KeyChar.ToString().ToUpper();
 }
 
