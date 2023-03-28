@@ -13,7 +13,7 @@ public static class ConsoleSegments
     {
         Console.Clear();
         AnsiConsole.Write(
-            new FigletText(figTxt).LeftJustified().Color(Color.DodgerBlue1));
+            new FigletText(figTxt).LeftJustified().Color(Color.SteelBlue3));
         var divider = new Rule(lineTxt)
         {
             Justification = Justify.Left

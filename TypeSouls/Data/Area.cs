@@ -9,6 +9,7 @@ public class Area
     public Boss? AreaBoss { get; set; }
     public bool IsMajor { get; set; }
     public bool IsExplored = false;
+    public bool SelectedForTravel { get; set; }
 
     public Area(string name, string bossName, bool isMajor)
     {
@@ -52,8 +53,12 @@ public class Area
 
     private string DecorateName()
     {
+        if (!IsExplored)
+            return "[grey]" + "***********" + "[/]";
+        if (SelectedForTravel)
+            return "[bold blue underline]" + AreaName + "[/][bold green] <- Travel here?[/]";
         if (IsMajor)
-            return "[bold blue]" + AreaName + "[/]";
+            return "[bold yellow1]" + AreaName + "[/]";
         if (AreaBoss == null)
             return "[wheat1]" + AreaName + "[/]";
 

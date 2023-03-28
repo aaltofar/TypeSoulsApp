@@ -10,121 +10,79 @@ using TypeSouls.Entities;
 namespace TypeSouls.Views;
 internal class TravelMenu
 {
-    private static Tree BuildMap(List<Area[]> allAreas)
+    private static ConsoleKey _key;
+    private List<string>? MenuChoices => MakeChoiceList();
+    private List<Area[]> AllAreas { get; set; }
+    private Player ActivePlayer { get; set; }
+
+    public TravelMenu(List<Area[]> allAreas, Player activePlayer)
+    {
+        AllAreas = allAreas;
+        ActivePlayer = activePlayer;
+    }
+
+    private List<string> MakeChoiceList()
+    {
+        var result = new List<string>();
+        for (int i = 0; i < AllAreas.Count; i++)
+            for (int j = 0; j < AllAreas[i].Length; j++)
+                if (AllAreas[i][j].IsExplored)
+                    result.Add(AllAreas[i][j].AreaName);
+
+        return result;
+    }
+
+    private Tree BuildMap()
     {
         var tree = new Tree("[green]Lordran[/]");
 
-        for (int i = 0; i < allAreas.Count; i++)
+        for (var i = 0; i < AllAreas.Count; i++)
         {
-            var n = tree.AddNode(allAreas[i][0].DecoratedName);
-            for (int j = 0; j < allAreas[i].Length; j++)
-            {
-                if (allAreas[i][j].IsExplored && !allAreas[i][j].IsMajor)
-                    n.AddNode(allAreas[i][j].DecoratedName);
-
-                if (!allAreas[i][j].IsExplored && !allAreas[i][j].IsMajor)
-                {
-                    n.AddNode(allAreas[i][j].DecoratedName);
-                    return tree;
-                }
-
-                if (!allAreas[i][j].IsExplored)
-                    return tree;
-
-            }
+            var n = tree.AddNode(AllAreas[i][0].DecoratedName);
+            for (var j = 0; j < AllAreas[i].Length; j++)
+                if (!AllAreas[i][j].IsMajor)
+                    n.AddNode(AllAreas[i][j].DecoratedName);
         }
-
-
-        //for (var i = 0; i < allAreas.Count; i++)
-        //{
-        //    var t1 = allAreas[i];
-        //    var t = tree.AddNode(t1[0].DecoratedName);
-
-        //    for (var j = 0; i < t1.Length; i++)
-        //    {
-        //        var a = t1[j];
-        //        if (!allAreas[i][j + 1].IsExplored)
-        //        {
-        //            t.AddNode(allAreas[i][j].DecoratedName);
-        //            return tree;
-        //        }
-
-
-        //        if (!allAreas[i][allAreas[i].Length - 1].IsExplored)
-        //            return tree;
-
-        //        if (!a.IsMajor)
-        //            t.AddNode(a.DecoratedName);
-        //    }
-        //}
-
-
-        //var tree = new Tree("[green]Lordran[/]");
-        //int i = 0;
-        //while (i < allAreas.Count)
-        //{
-        //    var n = tree.AddNode(allAreas[i][0].DecoratedName);
-
-        //    foreach (var area in allAreas[i])
-        //        if (!area.IsMajor)
-        //            n.AddNode(area.DecoratedName);
-
-        //    if (allAreas[i][allAreas[i].Length - 1].IsExplored)
-        //        i++;
-
-        //}
         return tree;
     }
 
-    public static void MapScreen(List<Area[]> allAreas, Player player)
+    public string MapScreen()
     {
-        Console.Clear();
-        ConsoleSegments.MakeHeader("Where do you want to go?", $"Current location: {player.Location.AreaName}");
-        var lastKey = ConsoleKey.NoName;
-        AnsiConsole.Write(BuildMap(allAreas));
-        Console.WriteLine();
-        AnsiConsole.Write("Press [L] to toggle legend or [BACKSPACE] to exit");
-        Console.WriteLine();
-        var key = Console.ReadKey(true).Key;
+        var destination = "";
+        var destinationChoice = new SelectionPrompt<string>();
+        destinationChoice.AddChoices(MenuChoices);
 
-        while (key != ConsoleKey.Backspace)
+        while (_key != ConsoleKey.Backspace)
         {
-            if (key == ConsoleKey.L && key != lastKey)
-            {
-                Console.Clear();
-                ConsoleSegments.MakeHeader("Where do you want to go?", $"Current location: {player.Location.AreaName}");
-                AnsiConsole.Write(BuildMap(allAreas));
-                Console.WriteLine();
-                AnsiConsole.Write("Press [L] to toggle legend or [BACKSPACE] to exit");
-                Console.WriteLine();
-                MapLegend();
-                key = Console.ReadKey(true).Key;
-                lastKey = key;
-            }
-            else
-            {
-                Console.Clear();
-                ConsoleSegments.MakeHeader("Where do you want to go?", $"Current location: {player.Location.AreaName}");
-                AnsiConsole.Write(BuildMap(allAreas));
-                Console.WriteLine();
-                AnsiConsole.Write("Press [L] to toggle legend or [BACKSPACE] to exit");
-                Console.WriteLine();
-                key = Console.ReadKey(true).Key;
-                lastKey = ConsoleKey.NoName;
-            }
+            Console.Clear();
+
+            ConsoleSegments.MakeHeader("Where do you want to go?", $"Current location: {ActivePlayer.Location.AreaName}");
+            Console.WriteLine();
+
+            AnsiConsole.Write(BuildMap());
+
+            MapLegend();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+
+            destination = AnsiConsole.Prompt(destinationChoice);
+
+            Console.WriteLine();
+
+            _key = Console.ReadKey(true).Key;
         }
+
+        return destination;
     }
 
     private static void MapLegend()
     {
-        Console.WriteLine();
-        AnsiConsole.Markup(@"
-******************************
-*  [blue]Major Areas[/]               *
-*  [wheat1]Area without a boss[/]       *
-*  [orange1]Area with an alive boss[/]   *
-*  [green]Area with a killed boss[/]   *
-******************************");
+        AnsiConsole.Markup($@"
+*************************************************************************
+Use [steelblue3]↑ ↓ Arrow keys[/] to select destination, confirm with [steelblue3]ENTER[/]
+Press [steelblue3]BACKSPACE[/] to go back 
+*************************************************************************");
 
     }
 }

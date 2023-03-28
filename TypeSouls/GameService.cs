@@ -91,19 +91,20 @@ public class GameService
             switch (bonfireMenuChoice)
             {
                 case "Travel":
-                    //TravelMenu.BuildMap(AllAreas);
-                    TravelMenu.MapScreen(AllAreas, ActivePlayer);
+                    var travelMenu = new TravelMenu(AllAreas, ActivePlayer);
+                    travelMenu.MapScreen();
                     break;
+
                 case "Venture forth":
                     break;
-                case "View map":
-                    MapView.MapScreen(AllAreas);
-                    break;
+
                 case "View Character":
                     ViewCharacter.ViewStats(ActivePlayer);
                     break;
+
                 case "Level up":
                     break;
+
                 case "Save and exit game":
                     SaveGame();
                     Environment.Exit(1);
@@ -164,7 +165,7 @@ public class GameService
             return true;
 
         foreach (var a in AllAreas)
-            for (int j = 0; j < a.Length; j++)
+            for (var j = 0; j < a.Length; j++)
                 if (ActivePlayer.Location.AreaName == a[j].AreaName && a[j + 1].AreaName == destination.AreaName)
                     return true;
 
