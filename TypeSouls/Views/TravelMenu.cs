@@ -24,8 +24,8 @@ internal class TravelMenu
     private List<string> MakeChoiceList()
     {
         var result = new List<string>();
-        for (int i = 0; i < AllAreas.Count; i++)
-            for (int j = 0; j < AllAreas[i].Length; j++)
+        for (var i = 0; i < AllAreas.Count; i++)
+            for (var j = 0; j < AllAreas[i].Length; j++)
                 if (AllAreas[i][j].IsExplored)
                     result.Add(AllAreas[i][j].AreaName);
 
@@ -48,11 +48,9 @@ internal class TravelMenu
 
     public string MapScreen()
     {
-        var destination = "";
-        var destinationChoice = new SelectionPrompt<string>();
-        destinationChoice.AddChoices(MenuChoices);
 
-        while (_key != ConsoleKey.Backspace)
+        var destination = "";
+        while (true)
         {
             Console.Clear();
 
@@ -62,15 +60,13 @@ internal class TravelMenu
             AnsiConsole.Write(BuildMap());
 
             MapLegend();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
 
-            destination = AnsiConsole.Prompt(destinationChoice);
+            (destination, _key) = ConsoleService.MakeArrowMenu(MenuChoices);
+
+            if (_key is ConsoleKey.Enter or ConsoleKey.Backspace)
+                break;
 
             Console.WriteLine();
-
-            _key = Console.ReadKey(true).Key;
         }
 
         return destination;

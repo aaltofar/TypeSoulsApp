@@ -23,6 +23,7 @@ public class GameService
     {
         PopulateAreaList();
     }
+
     public List<Area[]> PopulateAreaList()
     {
         AllAreas = new List<Area[]>
@@ -63,7 +64,7 @@ public class GameService
     {
         ActivePlayer = new Player();
         ActivePlayer.CreateCharacter();
-        ActivePlayer.Location = new Area("Firelink Shrine", true);
+        ActivePlayer.Location = new Area("Firelink Shrine", false);
     }
 
     public void SaveGame()
@@ -86,7 +87,7 @@ public class GameService
         HandleMenuChoice(StartMenuScreen.StartMenu(HasContinue));
         do
         {
-            var bonfireMenuChoice = new BonfireMenu(ActivePlayer.Location).BonfireScreen();
+            var bonfireMenuChoice = new BonfireMenu(ActivePlayer.Location).BonfireScreen(IsLastArea());
 
             switch (bonfireMenuChoice)
             {
@@ -155,8 +156,6 @@ public class GameService
     {
         if (hasCombat)
             return;
-
-
     }
 
     private bool CanTravel(Area destination)
@@ -167,6 +166,16 @@ public class GameService
         foreach (var a in AllAreas)
             for (var j = 0; j < a.Length; j++)
                 if (ActivePlayer.Location.AreaName == a[j].AreaName && a[j + 1].AreaName == destination.AreaName)
+                    return true;
+
+        return false;
+    }
+
+    private bool IsLastArea()
+    {
+        foreach (var a in AllAreas)
+            for (int j = 0; j < a.Length; j++)
+                if (a[j].AreaName == ActivePlayer.Location.AreaName && j == a.Length - 1)
                     return true;
 
         return false;

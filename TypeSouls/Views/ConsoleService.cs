@@ -10,54 +10,48 @@ using TypeSouls.Entities;
 namespace TypeSouls.Views;
 public class ConsoleService
 {
-    public static void MakeArrowMenu(List<string> choices)
+    private static int _currentSelection = 0;
+    public static (string, ConsoleKey) MakeArrowMenu(List<string> choices)
     {
-        var startXMenu = Console.WindowWidth / 8 - 25;
-        var startYMenu = Console.WindowHeight / 8 + 2;
 
-        const int optionsPerLine = 1;
-        const int spacingPerLine = 14;
-
-        var currentSelection = 0;
-
-        ConsoleKey key;
+        const int startXMenu = 2;
+        var startYMenu = Console.WindowHeight / 2;
 
         Console.CursorVisible = false;
 
-        do
+        for (var i = 0; i < choices.Count; i++)
         {
-            for (var i = 0; i < choices.Count; i++)
-            {
-                Console.SetCursorPosition(startXMenu + i % optionsPerLine * spacingPerLine, startYMenu + i / optionsPerLine);
+            Console.SetCursorPosition(startXMenu, startYMenu + i);
 
-                if (i == currentSelection)
-                    AnsiConsole.Markup($">[dodgerblue1] {choices[i]})");
+            if (i == _currentSelection)
+                AnsiConsole.Markup($">[steelblue3] {choices[i]}[/]");
 
-                else
-                    Console.Write(choices[i]);
+            else
+                Console.Write(choices[i]);
+        }
 
-            }
+        var key = Console.ReadKey(true).Key;
 
-            key = Console.ReadKey(true).Key;
+        switch (key)
+        {
+            case ConsoleKey.UpArrow:
+            case ConsoleKey.W:
+                {
+                    if (_currentSelection > 0)
+                        _currentSelection--;
+                    break;
+                }
+            case ConsoleKey.DownArrow:
+            case ConsoleKey.S:
+                {
+                    if (_currentSelection < choices.Count - 1)
+                        _currentSelection++;
 
-            switch (key)
-            {
-                case ConsoleKey.UpArrow:
-                case ConsoleKey.W:
-                    {
-                        if (currentSelection >= optionsPerLine)
-                            currentSelection -= optionsPerLine;
-                        break;
-                    }
-                case ConsoleKey.DownArrow:
-                case ConsoleKey.S:
-                    {
-                        if (currentSelection + optionsPerLine < choices.Count)
-                            currentSelection += optionsPerLine;
-                        break;
-                    }
-            }
-        } while (key != ConsoleKey.Backspace);
+                    break;
+                }
+        }
+
         Console.CursorVisible = true;
+        return (choices[_currentSelection], key);
     }
 }

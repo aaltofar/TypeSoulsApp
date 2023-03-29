@@ -50,17 +50,13 @@ public class BonfireMenu
             [orange3 slowblink]⢺⣥⢿⠾⠿⠿⠿⡿⠚⢋⣠⠯⣿⢉⢉⠻⠾⠛⢿⣿⠻⠿⢛⢋⣤⣯⣭⠽⠶⣾⣻⢿⣻⢿⠶⢛⣻⡿⢽⠄[/]
             ";
 
-    public string BonfireScreen()
+    public string BonfireScreen(bool IsLastArea)
     {
         Console.Clear();
+        string[] choicesIfNotLastArea = new string[] { "Travel", "Venture forth", "View Character", "Level up", "Save and exit game" };
+        string[] choicesIfLastArea = new string[] { "Travel", "View Character", "Level up", "Save and exit game" };
         var menuChoices = new SelectionPrompt<string>()
-            .AddChoices(
-                "Travel",
-                "Venture forth",
-                "View map",
-                "View Character",
-                "Level up",
-                "Save and exit game");
+            .AddChoices(IsLastArea ? choicesIfLastArea : choicesIfNotLastArea);
         BonfireHeader();
         Console.WriteLine();
         Console.WriteLine();

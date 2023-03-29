@@ -50,7 +50,6 @@ public class Area
 
     }
 
-
     private string DecorateName()
     {
         if (!IsExplored)

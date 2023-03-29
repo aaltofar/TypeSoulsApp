@@ -9,7 +9,7 @@ using TypeSouls.Views;
 
 Console.OutputEncoding = Encoding.UTF8;
 
-//Initializes gamelogic
+//Initializes logic and data
 GameService game = new();
 
 //Starts the game
