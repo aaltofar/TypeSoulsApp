@@ -1,6 +1,5 @@
 ﻿using Spectre.Console;
 using System.Reflection.Emit;
-using TypeSouls.Data;
 
 namespace TypeSouls.Views;
 public class MapView

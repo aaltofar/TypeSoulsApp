@@ -1,6 +1,4 @@
-﻿using TypeSouls.Entities;
-
-namespace TypeSouls.Data;
+﻿namespace TypeSouls.Data;
 
 public class Area
 {

@@ -1,12 +1,6 @@
 ﻿using Spectre.Console;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TypeSouls.Audio;
-using TypeSouls.Entities;
 
 namespace TypeSouls.Views;
 internal class ViewCharacter

@@ -1,15 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
-using TypeSouls.Data;
-using TypeSouls.Entities;
-using TypeSouls.Views;
-
-namespace TypeSouls;
+﻿namespace TypeSouls;
 
 public class GameService
 {
@@ -97,6 +86,8 @@ public class GameService
                     break;
 
                 case "Venture forth":
+                    VentureForth();
+
                     break;
 
                 case "View Character":
@@ -113,6 +104,25 @@ public class GameService
             }
         } while (true);
 
+    }
+
+    private void VentureForth()
+    {
+        var destination = FindNextArea();
+        BriefRespiteScreen.ShowRespiteScreen(ActivePlayer);
+
+    }
+
+    private Area FindNextArea()
+    {
+        Area nextArea = null;
+
+        foreach (var aArray in AllAreas)
+            for (int j = 0; j < aArray.Length; j++)
+                if (aArray[j].AreaName == ActivePlayer.Location.AreaName && !IsLastArea())
+                    nextArea = aArray[j + 1];
+
+        return nextArea;
     }
 
     private void HandleMenuChoice(string choice)
@@ -163,9 +173,9 @@ public class GameService
         if (destination.IsExplored)
             return true;
 
-        foreach (var a in AllAreas)
-            for (var j = 0; j < a.Length; j++)
-                if (ActivePlayer.Location.AreaName == a[j].AreaName && a[j + 1].AreaName == destination.AreaName)
+        foreach (var aArray in AllAreas)
+            for (var j = 0; j < aArray.Length; j++)
+                if (ActivePlayer.Location.AreaName == aArray[j].AreaName && aArray[j + 1].AreaName == destination.AreaName)
                     return true;
 
         return false;
@@ -173,9 +183,9 @@ public class GameService
 
     private bool IsLastArea()
     {
-        foreach (var a in AllAreas)
-            for (int j = 0; j < a.Length; j++)
-                if (a[j].AreaName == ActivePlayer.Location.AreaName && j == a.Length - 1)
+        foreach (var aArray in AllAreas)
+            for (int j = 0; j < aArray.Length; j++)
+                if (aArray[j].AreaName == ActivePlayer.Location.AreaName && j == aArray.Length - 1)
                     return true;
 
         return false;

@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Design;
+﻿using System.ComponentModel.Design;
 using System.Data;
-using System.Linq;
-using System.Text;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
-using TypeSouls.Data;
 
 namespace TypeSouls.Entities;
 [Serializable]
-public class Player
+public class Player : IEntity
 {
     public int Level { get; set; }
     public string Class { get; set; }
