@@ -2,7 +2,7 @@
 using Timer = System.Timers.Timer;
 
 namespace TypeSouls.Combat;
-internal class Encounter
+public class Encounter
 {
     public IOpponent Opponent { get; set; }
     public Random R { get; set; }
@@ -11,42 +11,36 @@ internal class Encounter
     private string Word { get; set; }
     private string WrittenLetters { get; set; }
     private Timer MyTimer { get; set; }
+    private static bool IsDone { get; set; }
+    private int CursorStartLeft { get; set; }
+    private int CursorStartTop { get; set; }
     public Encounter()
     {
         Opponent = new Enemy();
         Timer = new Stopwatch();
-        WrittenLetters = string.Empty;
-        AllWordsList = FillWordList();
-        Word = DrawWord().ToUpper();
         R = new Random();
+        WrittenLetters = string.Empty;
+        AllWordsList = File.ReadLines(@"WordList.txt").ToList();
+        Word = AllWordsList[R.Next(AllWordsList.Count)].ToUpper();
         MyTimer = new Timer();
+        CursorStartLeft = Console.WindowWidth / 2;
+        CursorStartTop = Console.WindowHeight / 2;
     }
-
-    private static List<string> FillWordList()
-    {
-        return File.ReadLines(@"WordList.txt").ToList();
-    }
-
-    private string DrawWord() => AllWordsList[R.Next(AllWordsList.Count)];
 
     private void InitTimer()
     {
         Timer.Start();
-
         MyTimer.Elapsed += myEvent;
-        MyTimer.Interval = 250;
+        MyTimer.Interval = 50;
         MyTimer.Enabled = true;
-        void myEvent(object source, ElapsedEventArgs e)
-        {
-            UpdateTimer();
-        }
+        void myEvent(object source, ElapsedEventArgs e) => UpdateTimerAndCheckFail();
     }
 
     public bool PlayWordGame()
     {
         InitTimer();
 
-        while (Timer.ElapsedMilliseconds < 4000)
+        while (Timer.ElapsedMilliseconds < 5000)
         {
             if (WrittenLetters.Length == Word.Length)
                 return true;
@@ -56,13 +50,6 @@ internal class Encounter
                 {
                     PrintWordAndProgress();
                     var inputKey = GetInput();
-                    if (Timer.ElapsedMilliseconds >= 4000)
-                    {
-                        MyTimer.Stop();
-                        Timer.Stop();
-                        Console.WriteLine("Womp womp");
-                        return false;
-                    }
 
                     while (inputKey != Word[i].ToString())
                     {
@@ -72,10 +59,7 @@ internal class Encounter
 
                     if (inputKey == Word[i].ToString() && WrittenLetters.Length == Word.Length - 1)
                     {
-                        WrittenLetters += inputKey;
-                        FlashGreen();
-                        Timer.Stop();
-                        MyTimer.Stop();
+                        WinScreen();
                         return true;
                     }
 
@@ -86,7 +70,6 @@ internal class Encounter
                 }
                 else
                     break;
-
         }
         Timer.Stop();
         MyTimer.Stop();
@@ -109,23 +92,51 @@ internal class Encounter
 
     private void PrintWordAndProgress()
     {
-        Console.CursorLeft = Console.WindowWidth / 2;
-        Console.CursorTop = Console.WindowHeight / 2;
+        Console.SetCursorPosition(CursorStartLeft, CursorStartTop);
         Console.WriteLine("Your word is: ");
-        Console.CursorLeft = Console.WindowWidth / 2;
-        Console.CursorTop = Console.WindowHeight / 2 + 1;
-        Console.CursorLeft = Console.WindowWidth / 2;
+        Console.SetCursorPosition(CursorStartLeft, CursorStartTop + 1);
         Console.WriteLine(Word);
-        Console.CursorTop = Console.WindowHeight / 2 + 2;
-        Console.CursorLeft = Console.WindowWidth / 2;
+        Console.SetCursorPosition(CursorStartLeft, CursorStartTop + 2);
         Console.WriteLine(WrittenLetters);
     }
 
-    private void UpdateTimer()
+    private void UpdateTimerAndCheckFail()
     {
-        Console.CursorLeft = Console.WindowWidth / 2;
-        Console.CursorTop = Console.WindowHeight / 2 + 3;
+        Console.SetCursorPosition(CursorStartLeft, CursorStartTop + 3);
         Console.Write(Timer.Elapsed.ToString(@"s\.ff") + " Seconds");
+        Console.SetCursorPosition(CursorStartLeft, CursorStartTop + 2);
+        if (Timer.ElapsedMilliseconds >= 5000)
+            FailScreen();
+    }
+
+    private void FailScreen()
+    {
+        Timer.Stop();
+        MyTimer.Stop();
+        Console.Clear();
+        Console.BackgroundColor = ConsoleColor.DarkRed;
+        Console.ResetColor();
+        Console.Clear();
+        Console.SetCursorPosition(CursorStartLeft - 15, CursorStartTop);
+        Console.WriteLine("You failed to write the word correctly in time");
+        Console.SetCursorPosition(CursorStartLeft - 15, CursorStartTop + 1);
+        Console.WriteLine($"{Opponent.Name} hit you for 69 damage");
+        Console.ReadLine();
+    }
+
+    private void WinScreen()
+    {
+        Timer.Stop();
+        MyTimer.Stop();
+        Console.Clear();
+        Console.BackgroundColor = ConsoleColor.Green;
+        Console.ResetColor();
+        Console.Clear();
+        Console.SetCursorPosition(CursorStartLeft - 7, CursorStartTop);
+        Console.WriteLine("You did it!");
+        Console.SetCursorPosition(CursorStartLeft - 7, CursorStartTop + 1);
+        Console.WriteLine($"You hit {Opponent.Name} for 69 damage");
+        Console.ReadLine();
     }
 
     private static string GetInput() => Console.ReadKey().KeyChar.ToString().ToUpper();

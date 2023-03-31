@@ -31,8 +31,8 @@ public class CombatScreen
 
             if (entity.CurrentHealth is > 0 and < 5)
                 return "█";
-
         }
+
         return result;
     }
 }
