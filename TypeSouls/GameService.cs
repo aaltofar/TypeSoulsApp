@@ -99,19 +99,20 @@ public class GameService
 
                 case "Save and exit game":
                     SaveGame();
-                    Environment.Exit(1);
+                    Environment.Exit(69);
                     break;
             }
         } while (true);
 
     }
 
-    private void VentureForth()
+    public void VentureForth()
     {
         var destination = FindNextArea();
-        BriefRespiteScreen.ShowRespiteScreen(ActivePlayer);
 
     }
+
+
 
     private Area FindNextArea()
     {

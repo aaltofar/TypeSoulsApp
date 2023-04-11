@@ -4,7 +4,7 @@ using TypeSouls.Audio;
 namespace TypeSouls.Views;
 internal static class CreateCharacter
 {
-    private static string[] _classes = new[]
+    private static string?[] _classes = new[]
     {
         "Warrior",
         "Knight",
@@ -13,7 +13,7 @@ internal static class CreateCharacter
         "Depraved"
     };
 
-    public static string NameCharacter()
+    public static string? NameCharacter()
     {
         MakeHeader();
         Console.SetCursorPosition(Console.WindowWidth / 2 - 10, Console.WindowHeight / 4);
@@ -30,7 +30,7 @@ internal static class CreateCharacter
         return charName;
     }
 
-    public static string ChooseClass()
+    public static string? ChooseClass()
     {
         var startXMenu = Console.WindowWidth / 8 - 25;
         var startYMenu = Console.WindowHeight / 8 + 2;

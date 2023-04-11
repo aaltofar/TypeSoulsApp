@@ -3,7 +3,7 @@
 namespace TypeSouls.Views;
 public static class ConsoleSegments
 {
-    public static void MakeHeader(string figTxt, string lineTxt)
+    public static void MakeHeader(string? figTxt, string lineTxt)
     {
         Console.Clear();
         AnsiConsole.Write(

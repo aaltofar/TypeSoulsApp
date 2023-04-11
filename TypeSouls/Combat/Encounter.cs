@@ -2,7 +2,7 @@
 using Timer = System.Timers.Timer;
 
 namespace TypeSouls.Combat;
-public class Encounter
+public class Encounter : IDisposable
 {
     public IOpponent Opponent { get; set; }
     public Random R { get; set; }
@@ -11,12 +11,13 @@ public class Encounter
     private string Word { get; set; }
     private string WrittenLetters { get; set; }
     private Timer MyTimer { get; set; }
-    private static bool IsDone { get; set; }
+    public bool IsDone { get; set; }
     private int CursorStartLeft { get; set; }
     private int CursorStartTop { get; set; }
     public Encounter()
     {
         Opponent = new Enemy();
+        IsDone = false;
         Timer = new Stopwatch();
         R = new Random();
         WrittenLetters = string.Empty;
@@ -140,5 +141,9 @@ public class Encounter
     }
 
     private static string GetInput() => Console.ReadKey().KeyChar.ToString().ToUpper();
+    public void Dispose()
+    {
+        throw new NotImplementedException();
+    }
 }
 

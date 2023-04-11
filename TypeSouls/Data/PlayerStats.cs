@@ -17,7 +17,7 @@ public class PlayerStats
         Humanity = true;
     }
 
-    public void LevelUpAllStats(string @class)
+    public void LevelUpAllStats(string? @class)
     {
         Strength++;
         Intellect++;
@@ -26,7 +26,7 @@ public class PlayerStats
         LevelEfficiencyStat(@class);
     }
 
-    private void LevelEfficiencyStat(string @class)
+    private void LevelEfficiencyStat(string? @class)
     {
         switch (@class)
         {

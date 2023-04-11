@@ -5,7 +5,7 @@ internal class Adventure
 {
     public int AdventureLength { get; set; }
     public Player ActivePlayer { get; set; }
-    private List<Encounter> Encounters { get; set; }
+    //private List<Encounter> Encounters { get; set; }
     public bool HasInvasion => ActivePlayer.Stats.Humanity && R.NextDouble() > 0.7;
     public Random R { get; set; }
     public Adventure(Player activePlayer)
@@ -17,14 +17,29 @@ internal class Adventure
 
     public void AdventureLoop()
     {
-        const int battleCount = 0;
-        for (int i = 0; i < AdventureLength; i++)
-            Encounters.Add(new Encounter());
+        var battleCount = 0;
 
         while (battleCount < AdventureLength)
         {
+            var encounter = new Encounter();
+            using (encounter)
+            {
+                encounter.PlayWordGame();
+                var respite = new BriefRespiteScreen(ActivePlayer);
+                var choice = respite.ShowRespiteScreen();
+                if (choice == "Retreat")
+                {
+                    encounter.Dispose();
+                    break;
+                }
 
+                if (choice == "Drink Estus")
+                    ActivePlayer.CurrentHealth = ActivePlayer.MaxHealth;
+
+                battleCount++;
+            }
         }
+
     }
 
 }

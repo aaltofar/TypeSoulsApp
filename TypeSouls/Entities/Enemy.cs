@@ -13,9 +13,22 @@ public class Enemy : IOpponent, IEntity
         CurrentHealth = 100;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage) => CurrentHealth -= damage;
+
+
+    public string MakeHealthBar()
     {
-        CurrentHealth -= damage;
+        var result = "";
+        for (var i = 0; i < CurrentHealth; i++)
+        {
+            if (i % 5 == 0)
+                result += "█";
+
+            if (CurrentHealth is > 0 and < 5)
+                return "█";
+        }
+
+        return result;
     }
 
 }

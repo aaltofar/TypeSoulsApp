@@ -3,9 +3,9 @@
 namespace TypeSouls.Views;
 public class BonfireMenu
 {
-    public Area Area { get; init; }
+    public Area? Area { get; init; }
 
-    public BonfireMenu(Area area)
+    public BonfireMenu(Area? area)
     {
         Area = area;
     }

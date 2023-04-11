@@ -5,19 +5,36 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TypeSouls.Views;
-internal static class BriefRespiteScreen
+public class BriefRespiteScreen
 {
-    private static List<string> choices = new()
-    {
-        "Continue",
-        "Retreat"
-    };
+    public Player? ActivePlayer { get; set; }
+    public List<string> Choices { get; set; }
 
-    public static string ShowRespiteScreen(Player activePlayer)
+    public BriefRespiteScreen(Player activePlayer)
     {
-        ConsoleSegments.MakeHeader("Brief respite", activePlayer.EstusAmount.ToString());
+        ActivePlayer = activePlayer;
+        Choices = new List<string>();
+        FillChoiceList();
+    }
+
+    private void FillChoiceList()
+    {
+        if (ActivePlayer is { EstusAmount: > 0 })
+            Choices.Add("Drink Estus");
+
+        Choices.Add("Continue");
+        Choices.Add("Retreat");
+    }
+
+    public string ShowRespiteScreen()
+    {
+        ConsoleSegments.MakeHeader("Brief respite", ActivePlayer.EstusAmount.ToString());
         Console.WriteLine();
-        var (choice, key) = ConsoleService.MakeArrowMenu(choices);
+        var (choice, key) = ConsoleService.MakeArrowMenu(Choices);
+
+        while (key != ConsoleKey.Enter)
+            (choice, key) = ConsoleService.MakeArrowMenu(Choices);
+
         return choice;
     }
 }

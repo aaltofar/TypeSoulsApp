@@ -20,20 +20,5 @@ public class CombatScreen
     {
 
     }
-
-    private string MakeHealthBar(IEntity entity)
-    {
-        string result = "";
-        for (int i = 0; i < entity.CurrentHealth; i++)
-        {
-            if (i % 5 == 0)
-                result += "█";
-
-            if (entity.CurrentHealth is > 0 and < 5)
-                return "█";
-        }
-
-        return result;
-    }
 }
 
