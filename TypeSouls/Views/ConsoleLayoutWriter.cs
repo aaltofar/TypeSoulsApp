@@ -33,5 +33,11 @@ internal class ConsoleLayoutWriter
         RightTop = (Console.WindowWidth / 4 * 3, Console.WindowHeight / 4);
         RightBot = (Console.WindowWidth / 4 * 3, Console.WindowHeight / 4 * 3);
     }
+
+    public void Writer(string text, (int, int) position)
+    {
+        Console.SetCursorPosition(position.Item1, position.Item2);
+        Console.Write(text);
+    }
 }
 
