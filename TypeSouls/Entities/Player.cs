@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.Design;
 using System.Data;
+using System.Reflection.Metadata.Ecma335;
 using System.Text.Json.Serialization;
 
 namespace TypeSouls.Entities;
@@ -68,28 +69,46 @@ public class Player : IEntity
         Stats.LevelUpAllStats(Class);
     }
 
-    public void TakeDamage(bool isBoss)
+    public void TakeDamage(IOpponent opponent) => CurrentHealth -= opponent.IsBoss ? 45 : 25;
+
+    public string MakeHealthBar() => new('█', CurrentHealth is > 0 and < 5 ? CurrentHealth / 5 + 1 : CurrentHealth / 5);
+
+    //public string MakeHealthBar()
+    //{
+    //    var result = "";
+    //    for (var i = 0; i < CurrentHealth; i++)
+    //        if (i % 5 == 0 || CurrentHealth is > 0 and < 5)
+    //            result += "█";
+    //    return result;
+    //}
+
+    //public string MakeHealthBar() => CurrentHealth switch
+    //{
+    //    < 20 => "██",
+    //    > 20 and < 40 => "████",
+    //    > 40 and < 60 => "██████",
+    //    > 60 and < 80 => "████████",
+    //    > 80 and < 100 => "██████████",
+    //    _ => ""
+    //};
+
+    //public string MakeHealthBar()
+    //{
+    //    var result = "";
+    //    for (int i = 0; i < CurrentHealth / 5; i++)
+    //        result += "█";
+
+    //    return result;
+    //}
+    public int DoDamage()
     {
-        if (isBoss)
-            CurrentHealth -= 45;
-
-        else
-            CurrentHealth -= 25;
+        return 25;
     }
-    public string MakeHealthBar()
+
+    public void DrinkEstus()
     {
-        var result = "";
-        for (var i = 0; i < CurrentHealth; i++)
-        {
-            if (i % 5 == 0)
-                result += "█";
-
-            if (CurrentHealth is > 0 and < 5)
-                return "█";
-        }
-
-        return result;
+        CurrentHealth = MaxHealth;
+        EstusAmount--;
     }
-
 }
 

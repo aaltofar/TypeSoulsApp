@@ -5,7 +5,7 @@ namespace TypeSouls.Views;
 public class ConsoleService
 {
     private static int _currentSelection = 0;
-    public static (string, ConsoleKey) MakeArrowMenu(List<string> choices)
+    public static (string, ConsoleKey) MakeArrowMenu(List<string> choices, string position)
     {
 
         const int startXMenu = 2;
@@ -15,7 +15,14 @@ public class ConsoleService
 
         for (var i = 0; i < choices.Count; i++)
         {
-            Console.SetCursorPosition(startXMenu, startYMenu + i);
+            //Console.SetCursorPosition(startXMenu, startYMenu + i);
+
+            switch (position)
+            {
+                case "top": Console.SetCursorPosition(2, Console.WindowHeight / 3 + i); break;
+                case "mid": Console.SetCursorPosition(2, Console.WindowHeight / 2 + i); break;
+                case "bot": Console.SetCursorPosition(2, Console.WindowHeight / 4 * 3 + i); break;
+            }
 
             if (i == _currentSelection)
                 AnsiConsole.Markup($">[steelblue3] {choices[i]}[/]");

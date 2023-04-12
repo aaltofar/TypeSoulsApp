@@ -1,4 +1,6 @@
-﻿namespace TypeSouls;
+﻿using TypeSouls.Combat;
+
+namespace TypeSouls;
 
 public class GameService
 {
@@ -86,8 +88,9 @@ public class GameService
                     break;
 
                 case "Venture forth":
-                    VentureForth();
-
+                    //VentureForth();
+                    var adventure = new Adventure(ActivePlayer);
+                    adventure.AdventureLoop();
                     break;
 
                 case "View Character":

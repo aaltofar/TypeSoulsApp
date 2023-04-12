@@ -3,6 +3,7 @@ public class Enemy : IOpponent, IEntity
 {
     public string Name { get; set; }
     public int CurrentHealth { get; set; }
+    public bool IsBoss { get; set; }
     private List<string> AllNamesList { get; set; }
     private Random R { get; } = new Random();
 

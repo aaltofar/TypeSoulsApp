@@ -1,4 +1,7 @@
-﻿using System.Timers;
+﻿using System.ComponentModel;
+using System.Numerics;
+using System.Timers;
+using TypeSouls.Entities;
 using Timer = System.Timers.Timer;
 
 namespace TypeSouls.Combat;
@@ -14,6 +17,7 @@ public class Encounter : IDisposable
     public bool IsDone { get; set; }
     private int CursorStartLeft { get; set; }
     private int CursorStartTop { get; set; }
+
     public Encounter()
     {
         Opponent = new Enemy();
@@ -90,7 +94,6 @@ public class Encounter : IDisposable
         PrintWordAndProgress();
         Console.ResetColor();
     }
-
     private void PrintWordAndProgress()
     {
         Console.SetCursorPosition(CursorStartLeft, CursorStartTop);
@@ -99,6 +102,7 @@ public class Encounter : IDisposable
         Console.WriteLine(Word);
         Console.SetCursorPosition(CursorStartLeft, CursorStartTop + 2);
         Console.WriteLine(WrittenLetters);
+        Console.CursorVisible = false;
     }
 
     private void UpdateTimerAndCheckFail()
@@ -141,9 +145,10 @@ public class Encounter : IDisposable
     }
 
     private static string GetInput() => Console.ReadKey().KeyChar.ToString().ToUpper();
+
     public void Dispose()
     {
-        throw new NotImplementedException();
+
     }
 }
 

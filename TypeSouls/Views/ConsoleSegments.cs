@@ -14,5 +14,13 @@ public static class ConsoleSegments
         };
         AnsiConsole.Write(divider);
     }
+    //string playerHealthBar, string opponentHealthBar
+    public static void MakeFooter()
+    {
+        var divider = new Rule();
+        Console.SetCursorPosition(0, Console.WindowHeight / 4 * 3);
+        AnsiConsole.Write(divider);
+        Console.ReadLine();
+    }
 }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Console = System.Console;
 
 namespace TypeSouls.Views;
 public class BriefRespiteScreen
@@ -28,13 +29,19 @@ public class BriefRespiteScreen
 
     public string ShowRespiteScreen()
     {
-        ConsoleSegments.MakeHeader("Brief respite", ActivePlayer.EstusAmount.ToString());
-        Console.WriteLine();
-        var (choice, key) = ConsoleService.MakeArrowMenu(Choices);
+        Console.Clear();
+        ConsoleSegments.MakeHeader("Brief respite", "Health: " + ActivePlayer.CurrentHealth + ActivePlayer.MakeHealthBar() + "  |  Estus left: " + ActivePlayer.EstusAmount.ToString());
+
+        var (choice, key) = ConsoleService.MakeArrowMenu(Choices, "mid");
 
         while (key != ConsoleKey.Enter)
-            (choice, key) = ConsoleService.MakeArrowMenu(Choices);
-
+        {
+            Console.Clear();
+            ConsoleSegments.MakeHeader("Brief respite", "Estus left: " + ActivePlayer.EstusAmount.ToString());
+            Console.WriteLine();
+            (choice, key) = ConsoleService.MakeArrowMenu(Choices, "top");
+        }
+        Console.Clear();
         return choice;
     }
 }

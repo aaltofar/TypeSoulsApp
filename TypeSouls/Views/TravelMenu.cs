@@ -54,7 +54,7 @@ internal class TravelMenu
 
             MapLegend();
 
-            (destination, _key) = ConsoleService.MakeArrowMenu(MenuChoices);
+            (destination, _key) = ConsoleService.MakeArrowMenu(MenuChoices, "mid");
 
             if (_key is ConsoleKey.Enter or ConsoleKey.Backspace)
                 break;
