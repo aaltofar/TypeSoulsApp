@@ -30,19 +30,17 @@ public class BriefRespiteScreen
     public string ShowRespiteScreen()
     {
         Console.Clear();
-        ConsoleSegments.MakeHeader("Brief respite", "Health: " + ActivePlayer.CurrentHealth + ActivePlayer.MakeHealthBar() + "  |  Estus left: " + ActivePlayer.EstusAmount.ToString());
-
-        var (choice, key) = ConsoleService.MakeArrowMenu(Choices, "mid");
+        ConsoleSegments.MakeHeader("Brief respite", "Estus left: " + ActivePlayer.EstusAmount.ToString());
+        var (choice, key) = ConsoleSegments.MakeArrowMenu(Choices, "top");
 
         while (key != ConsoleKey.Enter)
         {
             Console.Clear();
             ConsoleSegments.MakeHeader("Brief respite", "Estus left: " + ActivePlayer.EstusAmount.ToString());
             Console.WriteLine();
-            (choice, key) = ConsoleService.MakeArrowMenu(Choices, "top");
+            (choice, key) = ConsoleSegments.MakeArrowMenu(Choices, "top");
         }
         Console.Clear();
         return choice;
     }
 }
-

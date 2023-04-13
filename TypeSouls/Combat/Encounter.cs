@@ -14,14 +14,14 @@ public class Encounter : IDisposable
     private string Word { get; set; }
     private string WrittenLetters { get; set; }
     private Timer MyTimer { get; set; }
-    public bool IsDone { get; set; }
+    public bool IsFail { get; set; }
     private int CursorStartLeft { get; set; }
     private int CursorStartTop { get; set; }
 
     public Encounter()
     {
         Opponent = new Enemy();
-        IsDone = false;
+        IsFail = false;
         Timer = new Stopwatch();
         R = new Random();
         WrittenLetters = string.Empty;
@@ -43,17 +43,27 @@ public class Encounter : IDisposable
 
     public bool PlayWordGame()
     {
+        Console.Clear();
+
         InitTimer();
 
         while (Timer.ElapsedMilliseconds < 5000)
         {
-            if (WrittenLetters.Length == Word.Length)
-                return true;
+            //if (WrittenLetters.Length == Word.Length)
+            //    return true;
 
             for (var i = 0; i < Word.Length; i++)
+            {
+                if (IsFail)
+                    return false;
+
                 if (WrittenLetters.Length != Word.Length)
                 {
+                    if (Timer.ElapsedMilliseconds >= 5000)
+                        return false;
+
                     PrintWordAndProgress();
+
                     var inputKey = GetInput();
 
                     while (inputKey != Word[i].ToString())
@@ -74,7 +84,12 @@ public class Encounter : IDisposable
                     PrintWordAndProgress();
                 }
                 else
-                    break;
+                {
+                    Timer.Stop();
+                    MyTimer.Stop();
+                    return false;
+                }
+            }
         }
         Timer.Stop();
         MyTimer.Stop();
@@ -94,6 +109,7 @@ public class Encounter : IDisposable
         PrintWordAndProgress();
         Console.ResetColor();
     }
+
     private void PrintWordAndProgress()
     {
         Console.SetCursorPosition(CursorStartLeft, CursorStartTop);
@@ -111,13 +127,17 @@ public class Encounter : IDisposable
         Console.Write(Timer.Elapsed.ToString(@"s\.ff") + " Seconds");
         Console.SetCursorPosition(CursorStartLeft, CursorStartTop + 2);
         if (Timer.ElapsedMilliseconds >= 5000)
+        {
             FailScreen();
+        }
+
     }
 
     private void FailScreen()
     {
         Timer.Stop();
         MyTimer.Stop();
+        IsFail = true;
         Console.Clear();
         Console.BackgroundColor = ConsoleColor.DarkRed;
         Console.ResetColor();
@@ -127,6 +147,7 @@ public class Encounter : IDisposable
         Console.SetCursorPosition(CursorStartLeft - 15, CursorStartTop + 1);
         Console.WriteLine($"{Opponent.Name} hit you for 69 damage");
         Console.ReadLine();
+        Console.Clear();
     }
 
     private void WinScreen()
@@ -146,9 +167,7 @@ public class Encounter : IDisposable
 
     private static string GetInput() => Console.ReadKey().KeyChar.ToString().ToUpper();
 
-    public void Dispose()
-    {
+    public void Dispose() => GC.SuppressFinalize(this);
 
-    }
 }
 
