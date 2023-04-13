@@ -4,7 +4,7 @@ namespace TypeSouls.Views;
 internal class TravelMenu
 {
     private static ConsoleKey _key;
-    private List<string>? MenuChoices => MakeChoiceList();
+    private List<MenuChoice>? MenuChoices => MakeChoiceList();
     private List<Area[]> AllAreas { get; set; }
     private Player ActivePlayer { get; set; }
 
@@ -14,13 +14,13 @@ internal class TravelMenu
         ActivePlayer = activePlayer;
     }
 
-    private List<string> MakeChoiceList()
+    private List<MenuChoice> MakeChoiceList()
     {
-        var result = new List<string>();
+        var result = new List<MenuChoice>();
         for (var i = 0; i < AllAreas.Count; i++)
             for (var j = 0; j < AllAreas[i].Length; j++)
                 if (AllAreas[i][j].IsExplored)
-                    result.Add(AllAreas[i][j].AreaName);
+                    result.Add(new MenuChoice(AllAreas[i][j].AreaName));
 
         return result;
     }

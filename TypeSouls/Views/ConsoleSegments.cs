@@ -1,8 +1,10 @@
 ﻿using Spectre.Console;
+using Console = System.Console;
 
 namespace TypeSouls.Views;
 public static class ConsoleSegments
 {
+
     private static int _currentSelection;
     public static void MakeHeader(string? figTxt, string lineTxt)
     {
@@ -15,6 +17,7 @@ public static class ConsoleSegments
         };
         AnsiConsole.Write(divider);
     }
+
     public static void MakeFooter()
     {
         var divider = new Rule();
@@ -22,24 +25,24 @@ public static class ConsoleSegments
         AnsiConsole.Write(divider);
         Console.ReadLine();
     }
-    public static (string, ConsoleKey) MakeArrowMenu(List<string> choices, string position)
+
+    public static (string, ConsoleKey) MakeArrowMenu(List<MenuChoice> choices, string position)
     {
         Console.CursorVisible = false;
-
         for (var i = 0; i < choices.Count; i++)
         {
-            switch (position)
-            {
-                case "top": Console.SetCursorPosition(2, Console.WindowHeight / 8 + i); break;
-                case "mid": Console.SetCursorPosition(2, Console.WindowHeight / 2 + i); break;
-                case "bot": Console.SetCursorPosition(2, Console.WindowHeight / 4 * 3 + i); break;
-            }
+
+            SetWriteArea(position, i, false, choices.Count);
 
             if (i == _currentSelection)
-                AnsiConsole.Markup($">[steelblue3] {choices[i]}[/]");
+                AnsiConsole.Markup($">[steelblue3] {choices[i].ChoiceName}[/]");
 
             else
-                Console.Write(choices[i]);
+                Console.Write(choices[i].ChoiceName);
+
+            SetWriteArea(position, i, true, choices.Count);
+            if (i == _currentSelection)
+                Console.Write(choices[i].ChoiceDescription);
         }
 
         var key = Console.ReadKey(true).Key;
@@ -61,10 +64,20 @@ public static class ConsoleSegments
                     break;
                 }
         }
-
-        Console.CursorVisible = true;
-        return (choices[_currentSelection], key);
+        return (choices[_currentSelection].ChoiceName, key);
     }
+
+    private static void SetWriteArea(string position, int i, bool isDescription, int menuHeigth)
+    {
+        switch (position)
+        {
+            case "top": Console.SetCursorPosition(2, isDescription ? Console.WindowHeight / 8 + menuHeigth + 2 : Console.WindowHeight / 8 + i); break;
+            case "mid": Console.SetCursorPosition(2, isDescription ? Console.WindowHeight / 2 + menuHeigth + 2 : Console.WindowHeight / 2 + i); break;
+            case "bot": Console.SetCursorPosition(2, isDescription ? Console.WindowHeight / 4 * 3 + menuHeigth + 2 : Console.WindowHeight / 4 * 3 + i); break;
+
+        }
+    }
+
 
 }
 

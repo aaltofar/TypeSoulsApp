@@ -19,27 +19,15 @@ internal class StartMenuScreen
            ::       ::     ::        :: ::::     :::: ::   ::::: ::  ::::: ::   :: ::::  :::: ::   
             :        :      :         :::::       :::::     :::::     ::::::     :::::    :::::
         [/]";
-        var menuMusic = new CachedSound("menuMusic.wav");
-        AudioPlaybackEngine.Instance.PlaySound(menuMusic);
+        //var menuMusic = new CachedSound("menuMusic.wav");
+        //AudioPlaybackEngine.Instance.PlaySound(menuMusic);
         var choiceList = new SelectionPrompt<string>();
 
         if (canContinue)
-        {
-            choiceList.AddChoices(new[] {
-                "Continue",
-                "New Game",
-                "GitHub",
-                "Exit Game"
-            });
-        }
+            choiceList.AddChoices("Continue", "New Game", "GitHub", "Exit Game");
+
         else
-        {
-            choiceList.AddChoices(new[] {
-                "New Game",
-                "GitHub",
-                "Exit Game"
-            });
-        }
+            choiceList.AddChoices("New Game", "GitHub", "Exit Game");
 
         var rule = new Rule("Type Souls v0.1")
         {

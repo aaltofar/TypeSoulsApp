@@ -78,7 +78,7 @@ public class GameService
         HandleMenuChoice(StartMenuScreen.StartMenu(HasContinue));
         do
         {
-            var bonfireMenuChoice = new BonfireMenu(ActivePlayer.Location).BonfireScreen(IsLastArea());
+            var bonfireMenuChoice = new BonfireMenu(ActivePlayer.Location).BonfireScreen(IsLastArea(), ActivePlayer.StatPointsToPlace);
 
             switch (bonfireMenuChoice)
             {
@@ -114,8 +114,6 @@ public class GameService
         var destination = FindNextArea();
 
     }
-
-
 
     private Area FindNextArea()
     {

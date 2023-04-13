@@ -68,13 +68,13 @@ internal class ViewCharacter
             }
             MakeHelpBox();
             key = Console.ReadKey(true).Key;
-            var menuMove = new CachedSound("move.wav");
+            //var menuMove = new CachedSound("move.wav");
             switch (key)
             {
                 case ConsoleKey.UpArrow:
                 case ConsoleKey.W:
                     {
-                        AudioPlaybackEngine.Instance.PlaySound(menuMove);
+                        //AudioPlaybackEngine.Instance.PlaySound(menuMove);
                         if (currentSelection >= optionsPerLine)
                             currentSelection -= optionsPerLine;
                         break;
@@ -82,17 +82,17 @@ internal class ViewCharacter
                 case ConsoleKey.DownArrow:
                 case ConsoleKey.S:
                     {
-                        AudioPlaybackEngine.Instance.PlaySound(menuMove);
+                        //AudioPlaybackEngine.Instance.PlaySound(menuMove);
                         if (currentSelection + optionsPerLine < player.Stats.GetStatArray().Length)
                             currentSelection += optionsPerLine;
                         break;
                     }
             }
         } while (key != ConsoleKey.Backspace);
-        var menuSelect = new CachedSound("select.wav");
+        //var menuSelect = new CachedSound("select.wav");
         Console.CursorVisible = true;
 
-        AudioPlaybackEngine.Instance.PlaySound(menuSelect);
+        //AudioPlaybackEngine.Instance.PlaySound(menuSelect);
 
         return player.Stats.GetStatArray()[currentSelection].Item1;
     }

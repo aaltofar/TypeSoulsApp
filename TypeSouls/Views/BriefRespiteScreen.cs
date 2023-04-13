@@ -9,38 +9,34 @@ namespace TypeSouls.Views;
 public class BriefRespiteScreen
 {
     public Player? ActivePlayer { get; set; }
-    public List<string> Choices { get; set; }
+    public List<MenuChoice> Choices { get; set; }
 
     public BriefRespiteScreen(Player activePlayer)
     {
         ActivePlayer = activePlayer;
-        Choices = new List<string>();
+        Choices = new List<MenuChoice>();
         FillChoiceList();
     }
 
     private void FillChoiceList()
     {
         if (ActivePlayer is { EstusAmount: > 0 })
-            Choices.Add("Drink Estus");
+            Choices.Add(new MenuChoice("Drink estus", "Replenishes health, removes a charge of estus on use"));
 
-        Choices.Add("Continue");
-        Choices.Add("Retreat");
+        Choices.Add(new MenuChoice("Continue", "Continue deeper into the unknown"));
+        Choices.Add(new MenuChoice("Retreat", "Cowardly return to the previous bonfire. Your progress is NOT saved."));
     }
 
     public string ShowRespiteScreen()
     {
-        Console.Clear();
-        ConsoleSegments.MakeHeader("Brief respite", "Estus left: " + ActivePlayer.EstusAmount.ToString());
-        var (choice, key) = ConsoleSegments.MakeArrowMenu(Choices, "top");
-
-        while (key != ConsoleKey.Enter)
+        while (true)
         {
             Console.Clear();
             ConsoleSegments.MakeHeader("Brief respite", "Estus left: " + ActivePlayer.EstusAmount.ToString());
             Console.WriteLine();
-            (choice, key) = ConsoleSegments.MakeArrowMenu(Choices, "top");
+            var (choice, key) = ConsoleSegments.MakeArrowMenu(Choices, "top");
+            if (key == ConsoleKey.Enter)
+                return choice;
         }
-        Console.Clear();
-        return choice;
     }
 }

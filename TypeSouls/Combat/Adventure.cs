@@ -26,6 +26,7 @@ internal class Adventure
                 if (encounter.PlayWordGame())
                 {
                     encounter.Opponent.TakeDamage(ActivePlayer.DoDamage());
+                    ActivePlayer.GiveExp(encounter.Opponent);
                 }
 
                 else

@@ -62,7 +62,7 @@ public class Player : IEntity
         }
     }
 
-    public void LevelUp()
+    private void LevelUp()
     {
         Level++;
         StatPointsToPlace += 5;
@@ -109,6 +109,17 @@ public class Player : IEntity
     {
         CurrentHealth = MaxHealth;
         EstusAmount--;
+    }
+
+    public void GiveExp(IOpponent opponent)
+    {
+        if (opponent is Boss or Invader)
+            CurrentExp += 100;
+        else
+            CurrentExp += 50;
+
+        if (CurrentExp >= MaxExp)
+            LevelUp();
     }
 }
 
