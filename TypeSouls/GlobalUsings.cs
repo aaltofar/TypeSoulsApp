@@ -14,3 +14,6 @@ global using TypeSouls;
 global using TypeSouls.Data;
 global using TypeSouls.Entities;
 global using TypeSouls.Views;
+global using Console = System.Console;
+global using Spectre.Console;
+global using TypeSouls.Combat;

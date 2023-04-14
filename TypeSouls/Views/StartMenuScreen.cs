@@ -1,7 +1,4 @@
-﻿using Spectre.Console;
-using TypeSouls.Audio;
-
-namespace TypeSouls.Views;
+﻿namespace TypeSouls.Views;
 internal class StartMenuScreen
 {
 

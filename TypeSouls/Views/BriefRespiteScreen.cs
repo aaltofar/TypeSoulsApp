@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Console = System.Console;
-
-namespace TypeSouls.Views;
+﻿namespace TypeSouls.Views;
 public class BriefRespiteScreen
 {
     public Player? ActivePlayer { get; set; }
@@ -32,9 +25,9 @@ public class BriefRespiteScreen
         while (true)
         {
             Console.Clear();
-            ConsoleSegments.MakeHeader("Brief respite", "Estus left: " + ActivePlayer.EstusAmount.ToString());
+            ConsoleService.MakeHeader("Brief respite", "Estus left: " + ActivePlayer.EstusAmount.ToString());
             Console.WriteLine();
-            var (choice, key) = ConsoleSegments.MakeArrowMenu(Choices, "top");
+            var (choice, key) = ConsoleService.MakeArrowMenu(Choices, "top");
             if (key == ConsoleKey.Enter)
                 return choice;
         }

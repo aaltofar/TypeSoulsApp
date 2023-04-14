@@ -1,6 +1,4 @@
-﻿using Spectre.Console;
-
-namespace TypeSouls.Views;
+﻿namespace TypeSouls.Views;
 internal class TravelMenu
 {
     private static ConsoleKey _key;
@@ -47,14 +45,14 @@ internal class TravelMenu
         {
             Console.Clear();
 
-            ConsoleSegments.MakeHeader("Where do you want to go?", $"Current location: {ActivePlayer.Location.AreaName}");
+            ConsoleService.MakeHeader("Where do you want to go?", $"Current location: {ActivePlayer.Location.AreaName}");
             Console.WriteLine();
 
             AnsiConsole.Write(BuildMap());
 
             MapLegend();
 
-            (destination, _key) = ConsoleSegments.MakeArrowMenu(MenuChoices, "mid");
+            (destination, _key) = ConsoleService.MakeArrowMenu(MenuChoices, "mid");
 
             if (_key is ConsoleKey.Enter or ConsoleKey.Backspace)
                 break;

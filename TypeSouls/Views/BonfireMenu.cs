@@ -81,7 +81,7 @@ public class BonfireMenu
             Console.WriteLine();
             Console.WriteLine();
 
-            var choice = ConsoleSegments.MakeArrowMenu(PopulateChoiceList(isLastArea, hasLevelUp), "bot");
+            var choice = ConsoleService.MakeArrowMenu(PopulateChoiceList(isLastArea, hasLevelUp), "bot");
 
             if (choice.Item2 == ConsoleKey.Enter)
                 return choice.Item1;

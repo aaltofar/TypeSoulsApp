@@ -1,8 +1,4 @@
-﻿using Spectre.Console;
-using System.IO;
-using TypeSouls.Audio;
-
-namespace TypeSouls.Views;
+﻿namespace TypeSouls.Views;
 internal class ViewCharacter
 {
     public static string ViewStats(Player player)
@@ -28,7 +24,7 @@ internal class ViewCharacter
         do
         {
             //Header and dividerline
-            ConsoleSegments.MakeHeader(player.CharName, $@"Level {player.Level} {player.Class}");
+            ConsoleService.MakeHeader(player.CharName, $@"Level {player.Level} {player.Class}");
             Console.SetCursorPosition(startXStats - 23, startYStats);
             AnsiConsole.Markup("[underline wheat1]Stat attributes:[/]");
             //Menu

@@ -1,8 +1,5 @@
-﻿using Spectre.Console;
-using Console = System.Console;
-
-namespace TypeSouls.Views;
-public static class ConsoleSegments
+﻿namespace TypeSouls.Views;
+public static class ConsoleService
 {
 
     private static int _currentSelection;
@@ -32,7 +29,7 @@ public static class ConsoleSegments
         for (var i = 0; i < choices.Count; i++)
         {
 
-            SetWriteArea(position, i, false, choices.Count);
+            SetWritePosition(position, i, false, choices.Count);
 
             if (i == _currentSelection)
                 AnsiConsole.Markup($">[steelblue3] {choices[i].ChoiceName}[/]");
@@ -40,9 +37,15 @@ public static class ConsoleSegments
             else
                 Console.Write(choices[i].ChoiceName);
 
-            SetWriteArea(position, i, true, choices.Count);
+            SetWritePosition(position, i, true, choices.Count);
             if (i == _currentSelection)
-                Console.Write(choices[i].ChoiceDescription);
+            {
+                //Console.Write("  ");
+                for (int j = 0; j < choices[i].ChoiceDescription.Length; j++)
+                    Console.Write("*");
+                Console.WriteLine();
+                AnsiConsole.Markup($"[wheat1]  {choices[i].ChoiceDescription}[/]");
+            }
         }
 
         var key = Console.ReadKey(true).Key;
@@ -67,17 +70,14 @@ public static class ConsoleSegments
         return (choices[_currentSelection].ChoiceName, key);
     }
 
-    private static void SetWriteArea(string position, int i, bool isDescription, int menuHeigth)
+    private static void SetWritePosition(string position, int i, bool isDescription, int menuHeight)
     {
         switch (position)
         {
-            case "top": Console.SetCursorPosition(2, isDescription ? Console.WindowHeight / 8 + menuHeigth + 2 : Console.WindowHeight / 8 + i); break;
-            case "mid": Console.SetCursorPosition(2, isDescription ? Console.WindowHeight / 2 + menuHeigth + 2 : Console.WindowHeight / 2 + i); break;
-            case "bot": Console.SetCursorPosition(2, isDescription ? Console.WindowHeight / 4 * 3 + menuHeigth + 2 : Console.WindowHeight / 4 * 3 + i); break;
-
+            case "top": Console.SetCursorPosition(2, isDescription ? Console.WindowHeight / 8 + menuHeight + 2 : Console.WindowHeight / 8 + i); break;
+            case "mid": Console.SetCursorPosition(2, isDescription ? Console.WindowHeight / 2 + menuHeight + 2 : Console.WindowHeight / 2 + i); break;
+            case "bot": Console.SetCursorPosition(2, isDescription ? Console.WindowHeight / 4 * 3 + menuHeight + 2 : Console.WindowHeight / 4 * 3 + i); break;
         }
     }
 
-
 }
-

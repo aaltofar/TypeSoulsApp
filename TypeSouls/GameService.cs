@@ -1,6 +1,4 @@
-﻿using TypeSouls.Combat;
-
-namespace TypeSouls;
+﻿namespace TypeSouls;
 
 public class GameService
 {

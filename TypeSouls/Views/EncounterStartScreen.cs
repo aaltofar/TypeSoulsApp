@@ -9,7 +9,7 @@ public static class EncounterStartScreen
 {
     public static void ShowEncounterStartScreen(Player player, IOpponent opponent)
     {
-        ConsoleSegments.MakeHeader(opponent.Name, player.MakeHealthBar());
+        ConsoleService.MakeHeader(opponent.Name, player.MakeHealthBar());
     }
 }
 
