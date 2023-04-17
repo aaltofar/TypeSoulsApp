@@ -1,8 +1,14 @@
-﻿namespace TypeSouls.Views;
+﻿using System.Runtime.CompilerServices;
+
+namespace TypeSouls.Views;
 public static class ConsoleService
 {
-
+    private const int DefaultLeftPosition = 2;
     private static int _currentSelection;
+    private static readonly int DefaultTopPosition = Console.WindowHeight / 8;
+    private static readonly int DefaultMidPosition = Console.WindowHeight / 2;
+    private static readonly int DefaultBotPosition = Console.WindowHeight / 4 * 3;
+    private const int DefaultDescriptionVerticalPadding = 2;
     public static void MakeHeader(string? figTxt, string lineTxt)
     {
         Console.Clear();
@@ -18,7 +24,7 @@ public static class ConsoleService
     public static void MakeFooter()
     {
         var divider = new Rule();
-        Console.SetCursorPosition(0, Console.WindowHeight / 4 * 3);
+        Console.SetCursorPosition(DefaultLeftPosition, DefaultBotPosition);
         AnsiConsole.Write(divider);
         Console.ReadLine();
     }
@@ -74,9 +80,9 @@ public static class ConsoleService
     {
         switch (position)
         {
-            case "top": Console.SetCursorPosition(2, isDescription ? Console.WindowHeight / 8 + menuHeight + 2 : Console.WindowHeight / 8 + i); break;
-            case "mid": Console.SetCursorPosition(2, isDescription ? Console.WindowHeight / 2 + menuHeight + 2 : Console.WindowHeight / 2 + i); break;
-            case "bot": Console.SetCursorPosition(2, isDescription ? Console.WindowHeight / 4 * 3 + menuHeight + 2 : Console.WindowHeight / 4 * 3 + i); break;
+            case "top": Console.SetCursorPosition(DefaultLeftPosition, isDescription ? DefaultTopPosition + menuHeight + DefaultDescriptionVerticalPadding : DefaultTopPosition + i); break;
+            case "mid": Console.SetCursorPosition(DefaultLeftPosition, isDescription ? DefaultMidPosition + menuHeight + DefaultDescriptionVerticalPadding : DefaultMidPosition + i); break;
+            case "bot": Console.SetCursorPosition(DefaultLeftPosition, isDescription ? DefaultBotPosition + menuHeight + DefaultDescriptionVerticalPadding : DefaultBotPosition + i); break;
         }
     }
 
