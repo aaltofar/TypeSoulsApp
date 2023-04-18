@@ -46,9 +46,8 @@ public static class ConsoleService
             SetWritePosition(position, i, true, choices.Count);
             if (i == _currentSelection)
             {
-                //Console.Write("  ");
                 for (int j = 0; j < choices[i].ChoiceDescription.Length; j++)
-                    Console.Write("*");
+                    Console.Write("_");
                 Console.WriteLine();
                 AnsiConsole.Markup($"[wheat1]  {choices[i].ChoiceDescription}[/]");
             }

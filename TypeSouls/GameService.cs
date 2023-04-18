@@ -1,4 +1,6 @@
-﻿namespace TypeSouls;
+﻿using JsonSerializer = System.Text.Json.JsonSerializer;
+
+namespace TypeSouls;
 
 public class GameService
 {
@@ -11,6 +13,7 @@ public class GameService
     public GameService()
     {
         PopulateAreaList();
+
     }
 
     public List<Area[]> PopulateAreaList()
@@ -19,30 +22,30 @@ public class GameService
         {
             new Area[]
             {
-                new Area("Firelink Shrine", true, true),
-                new Area("New Londo Ruins", false, false),
-                new Area("The Abyss", "Four Kings", false, false),
-                new Area("Kiln of the First Flame", "Gwyn, Lord of Cinder", false, false)
+                new("Firelink Shrine", true, true),
+                new("New Londo Ruins", false, false),
+                new("The Abyss", "Four Kings", false, false),
+                new("Kiln of the First Flame", "Gwyn, Lord of Cinder", false, false, new List<string>(){"Dialog1", "Dialog2", "Dialog3"})
             },
             new Area[]
             {
-                new Area("Undead Parish", true),
-                new Area("New Londo Ruins", "Bell Gargoyles", false),
-                new Area("Darkroot Garden", false),
-                new Area("Darkroot Basin", "Hydra", false),
+                new("Undead Parish", true),
+                new("New Londo Ruins", "Bell Gargoyles", false),
+                new("Darkroot Garden", false),
+                new("Darkroot Basin", "Hydra", false,new List<string>(){"Dialog1", "Dialog2", "Dialog3"}),
             },
             new Area[]
             {
-                new Area("The Depths", true),
-                new Area("Blighttown", false),
-                new Area("Poison Swamp", false),
-                new Area("Quelaag's Domain", "Chaos Witch Quelaag", false),
+                new("The Depths", true),
+                new("Blighttown", false),
+                new("Poison Swamp", false),
+                new("Quelaag's Domain", "Chaos Witch Quelaag", false, new List < string >() { "Dialog1", "Dialog2", "Dialog3" }),
             },
             new Area[]
             {
-                new Area("Sen's Fortress", "Iron Golem", true),
-                new Area("Anor Londo", "Ornstein and Smough", false),
-                new Area("The Dukes Archives", "Seath the Scaleless", false),
+                new("Sen's Fortress", "Iron Golem", true,new List<string>(){"Dialog1", "Dialog2", "Dialog3"}),
+                new("Anor Londo", "Ornstein and Smough", false, new List < string >() { "Dialog1", "Dialog2", "Dialog3" }),
+                new("The Dukes Archives", "Seath the Scaleless", false, new List < string >() { "Dialog1", "Dialog2", "Dialog3" }),
             },
         };
 
@@ -54,6 +57,7 @@ public class GameService
         ActivePlayer = new Player();
         ActivePlayer.CreateCharacter();
         ActivePlayer.Location = new Area("Firelink Shrine", false);
+
     }
 
     public void SaveGame()

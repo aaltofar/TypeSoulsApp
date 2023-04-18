@@ -13,7 +13,7 @@ public class BriefRespiteScreen
 
     private void FillChoiceList()
     {
-        if (ActivePlayer is { EstusAmount: > 0 })
+        if (ActivePlayer is { EstusAmount: > 0, CurrentHealth: < 100 })
             Choices.Add(new MenuChoice("Drink estus", "Replenishes health, removes a charge of estus on use"));
 
         Choices.Add(new MenuChoice("Continue", "Continue deeper into the unknown"));

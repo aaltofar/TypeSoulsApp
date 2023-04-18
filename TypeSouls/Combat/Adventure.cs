@@ -18,33 +18,22 @@ internal class Adventure
     {
         var battleCount = 0;
         Console.Clear();
+
         while (battleCount < AdventureLength)
         {
             var encounter = new Encounter();
-            using (encounter)
-            {
-                if (encounter.PlayWordGame())
-                {
-                    encounter.Opponent.TakeDamage(ActivePlayer.DoDamage());
-                    ActivePlayer.GiveExp(encounter.Opponent);
-                }
+            encounter.PlayWordGame(ActivePlayer);
 
-                else
-                    ActivePlayer.TakeDamage(encounter.Opponent);
+            var respite = new BriefRespiteScreen(ActivePlayer);
+            var choice = respite.ShowRespiteScreen();
 
-                var respite = new BriefRespiteScreen(ActivePlayer);
-                var choice = respite.ShowRespiteScreen();
-                if (choice == "Retreat")
-                {
-                    encounter.Dispose();
-                    break;
-                }
+            if (choice == "Retreat")
+                break;
 
-                if (choice == "Drink Estus")
-                    ActivePlayer.DrinkEstus();
+            if (choice == "Drink Estus")
+                ActivePlayer.DrinkEstus();
 
-                battleCount++;
-            }
+            battleCount++;
         }
     }
 }

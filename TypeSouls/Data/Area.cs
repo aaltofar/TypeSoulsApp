@@ -12,23 +12,31 @@ public class Area
     public Area(string name, string bossName, bool isMajor)
     {
         AreaName = name;
-        AreaBoss = new Boss()
-        {
-            Name = bossName,
-            IsAlive = true
-        };
+        AreaBoss = new Boss(bossName);
         IsMajor = isMajor;
     }
+
     public Area(string name, string bossName, bool isMajor, bool isExplored)
     {
         AreaName = name;
-        AreaBoss = new Boss()
-        {
-            Name = bossName,
-            IsAlive = true
-        };
+        AreaBoss = new Boss(bossName);
         IsMajor = isMajor;
         IsExplored = isExplored;
+    }
+
+    public Area(string name, string bossName, bool isMajor, bool isExplored, List<string> dialogue)
+    {
+        AreaName = name;
+        AreaBoss = new Boss(bossName, dialogue);
+        IsMajor = isMajor;
+        IsExplored = isExplored;
+    }
+
+    public Area(string name, string bossName, bool isMajor, List<string> dialogue)
+    {
+        AreaName = name;
+        AreaBoss = new Boss(bossName, dialogue);
+        IsMajor = isMajor;
     }
 
     public Area(string name, bool isMajor)
@@ -36,6 +44,7 @@ public class Area
         AreaName = name;
         IsMajor = isMajor;
     }
+
     public Area(string name, bool isMajor, bool isExplored)
     {
         AreaName = name;

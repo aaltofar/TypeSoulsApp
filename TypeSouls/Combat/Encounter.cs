@@ -14,14 +14,14 @@ public class Encounter : IDisposable
     private string Word { get; set; }
     private string WrittenLetters { get; set; }
     private Timer MyTimer { get; set; }
-    public bool IsFail { get; set; }
     private int CursorStartLeft { get; set; }
     private int CursorStartTop { get; set; }
+    private bool PlayerWinner { get; set; }
 
     public Encounter()
     {
+        PlayerWinner = false;
         Opponent = new Enemy();
-        IsFail = false;
         Timer = new Stopwatch();
         R = new Random();
         WrittenLetters = string.Empty;
@@ -34,6 +34,9 @@ public class Encounter : IDisposable
 
     private void InitTimer()
     {
+        Timer.Reset();
+        MyTimer.Stop();
+
         Timer.Start();
         MyTimer.Elapsed += myEvent;
         MyTimer.Interval = 50;
@@ -41,67 +44,84 @@ public class Encounter : IDisposable
         void myEvent(object source, ElapsedEventArgs e) => UpdateTimerAndCheckFail();
     }
 
-    public bool PlayWordGame()
+    public void BossBattle()
     {
         Console.Clear();
+        InitTimer();
+    }
 
+    private void ResetEncounterSameEnemy()
+    {
+        PlayerWinner = false;
+        Word = AllWordsList[R.Next(AllWordsList.Count)].ToUpper();
+        WrittenLetters = string.Empty;
+        Console.Clear();
+    }
+
+    public bool PlayWordGame(Player activePlayer)
+    {
+        ResetEncounterSameEnemy();
         InitTimer();
 
-        while (Timer.ElapsedMilliseconds < 5000)
-        {
-            //if (WrittenLetters.Length == Word.Length)
-            //    return true;
-
+        if (Timer.ElapsedMilliseconds < 5000)
             for (var i = 0; i < Word.Length; i++)
             {
-                if (IsFail)
-                    return false;
-
                 if (WrittenLetters.Length != Word.Length)
                 {
-                    if (Timer.ElapsedMilliseconds >= 5000)
-                        return false;
-
                     PrintWordAndProgress();
 
                     var inputKey = GetInput();
+
+                    if (inputKey == Word[i].ToString())
+                        WrittenLetters += inputKey;
 
                     while (inputKey != Word[i].ToString())
                     {
                         FlashRed();
                         inputKey = GetInput();
-                    }
+                        if (inputKey != Word[i].ToString())
+                            continue;
 
-                    if (inputKey == Word[i].ToString() && WrittenLetters.Length == Word.Length - 1)
-                    {
-                        WinScreen();
-                        return true;
-                    }
-
-                    if (inputKey == Word[i].ToString())
                         WrittenLetters += inputKey;
+                        break;
+                    }
 
-                    PrintWordAndProgress();
-                }
-                else
-                {
-                    Timer.Stop();
-                    MyTimer.Stop();
-                    return false;
+                    if (WrittenLetters != Word.ToUpper() || Timer.ElapsedMilliseconds >= 5000)
+                        PlayerWinner = false;
+
+                    PlayerWinner = WrittenLetters == Word;
+                    inputKey = string.Empty;
                 }
             }
-        }
+
         Timer.Stop();
         MyTimer.Stop();
-        return false;
+
+        if (PlayerWinner)
+        {
+            Opponent.TakeDamage(51);
+            DoDamageScreen();
+        }
+        else
+        {
+            activePlayer.TakeDamage(Opponent);
+            FailScreen();
+        }
+
+        if (Opponent.CurrentHealth > 0)
+            PlayWordGame(activePlayer);
+
+        //WinScreen();
+        return PlayerWinner;
     }
 
-    private void FlashGreen()
-    {
-        Console.ForegroundColor = ConsoleColor.Green;
-        PrintWordAndProgress();
-        Console.ResetColor();
-    }
+    //private void PrintAmbienceText()
+    //{
+    //    if (Opponent.IsBoss)
+    //    {
+
+    //    }
+    //}
 
     private void FlashRed()
     {
@@ -128,6 +148,7 @@ public class Encounter : IDisposable
         Console.SetCursorPosition(CursorStartLeft, CursorStartTop + 2);
         if (Timer.ElapsedMilliseconds >= 5000)
         {
+            PlayerWinner = false;
             FailScreen();
         }
 
@@ -137,17 +158,13 @@ public class Encounter : IDisposable
     {
         Timer.Stop();
         MyTimer.Stop();
-        IsFail = true;
         Console.Clear();
-        Console.BackgroundColor = ConsoleColor.DarkRed;
-        Console.ResetColor();
-        Console.Clear();
+
         Console.SetCursorPosition(CursorStartLeft - 15, CursorStartTop);
         Console.WriteLine("You failed to write the word correctly in time");
         Console.SetCursorPosition(CursorStartLeft - 15, CursorStartTop + 1);
         Console.WriteLine($"{Opponent.Name} hit you for 69 damage");
-        Console.ReadLine();
-        Console.Clear();
+        Thread.Sleep(2000);
     }
 
     private void WinScreen()
@@ -155,14 +172,24 @@ public class Encounter : IDisposable
         Timer.Stop();
         MyTimer.Stop();
         Console.Clear();
-        Console.BackgroundColor = ConsoleColor.Green;
-        Console.ResetColor();
-        Console.Clear();
+
         Console.SetCursorPosition(CursorStartLeft - 7, CursorStartTop);
         Console.WriteLine("You did it!");
         Console.SetCursorPosition(CursorStartLeft - 7, CursorStartTop + 1);
+        Console.WriteLine($"Defeated {Opponent.Name}");
+        Thread.Sleep(2000);
+    }
+    private void DoDamageScreen()
+    {
+        Timer.Stop();
+        MyTimer.Stop();
+        Console.Clear();
+
+        Console.SetCursorPosition(CursorStartLeft - 7, CursorStartTop);
+        Console.WriteLine("Success!");
+        Console.SetCursorPosition(CursorStartLeft - 7, CursorStartTop + 1);
         Console.WriteLine($"You hit {Opponent.Name} for 69 damage");
-        Console.ReadLine();
+        Thread.Sleep(2000);
     }
 
     private static string GetInput() => Console.ReadKey().KeyChar.ToString().ToUpper();
