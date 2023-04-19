@@ -21,8 +21,8 @@ internal class Adventure
 
         while (battleCount < AdventureLength)
         {
-            var encounter = new Encounter();
-            encounter.PlayWordGame(ActivePlayer);
+            var encounter = new Encounter(ActivePlayer);
+            encounter.PlayWordGame();
 
             var respite = new BriefRespiteScreen(ActivePlayer);
             var choice = respite.ShowRespiteScreen();

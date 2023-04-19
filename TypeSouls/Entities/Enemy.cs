@@ -6,15 +6,22 @@ public class Enemy : IOpponent, IEntity
     public bool IsBoss { get; set; }
     private List<string> AllNamesList { get; set; }
     private Random R { get; } = new Random();
+    public bool IsAlive { get; set; }
 
     public Enemy()
     {
         AllNamesList = File.ReadLines(@"EnemyList.txt").ToList();
         Name = AllNamesList[R.Next(AllNamesList.Count)];
         CurrentHealth = 100;
+        IsAlive = true;
     }
 
-    public void TakeDamage(int damage) => CurrentHealth -= damage;
+    public void TakeDamage(int damage)
+    {
+        CurrentHealth -= damage;
+        if (CurrentHealth <= 0)
+            IsAlive = false;
+    }
 
 
     public string MakeHealthBar()

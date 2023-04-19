@@ -17,8 +17,9 @@ public class Encounter : IDisposable
     private int CursorStartLeft { get; set; }
     private int CursorStartTop { get; set; }
     private bool PlayerWinner { get; set; }
+    private Player? ActivePlayer { get; set; }
 
-    public Encounter()
+    public Encounter(Player activePlayer)
     {
         PlayerWinner = false;
         Opponent = new Enemy();
@@ -30,16 +31,15 @@ public class Encounter : IDisposable
         MyTimer = new Timer();
         CursorStartLeft = Console.WindowWidth / 2;
         CursorStartTop = Console.WindowHeight / 2;
+        ActivePlayer = activePlayer;
     }
 
     private void InitTimer()
     {
-        Timer.Reset();
-        MyTimer.Stop();
-
         Timer.Start();
+        MyTimer.Start();
         MyTimer.Elapsed += myEvent;
-        MyTimer.Interval = 50;
+        MyTimer.Interval = 125;
         MyTimer.Enabled = true;
         void myEvent(object source, ElapsedEventArgs e) => UpdateTimerAndCheckFail();
     }
@@ -50,49 +50,46 @@ public class Encounter : IDisposable
         InitTimer();
     }
 
-    private void ResetEncounterSameEnemy()
+    private void ResetEncounter()
     {
+        Timer.Reset();
+        MyTimer.Stop();
         PlayerWinner = false;
         Word = AllWordsList[R.Next(AllWordsList.Count)].ToUpper();
         WrittenLetters = string.Empty;
         Console.Clear();
     }
 
-    public bool PlayWordGame(Player activePlayer)
+    public bool PlayWordGame()
     {
-        ResetEncounterSameEnemy();
+        ResetEncounter();
         InitTimer();
 
-        if (Timer.ElapsedMilliseconds < 5000)
-            for (var i = 0; i < Word.Length; i++)
+        for (var i = 0; i < Word.Length; i++)
+        {
+            if (WrittenLetters.Length != Word.Length)
             {
-                if (WrittenLetters.Length != Word.Length)
+                PrintWordAndProgress();
+
+                var inputKey = GetInput();
+
+                if (inputKey == Word[i].ToString())
+                    WrittenLetters += inputKey;
+
+                while (inputKey != Word[i].ToString())
                 {
-                    PrintWordAndProgress();
+                    FlashRed();
+                    inputKey = GetInput();
+                    if (inputKey != Word[i].ToString())
+                        continue;
 
-                    var inputKey = GetInput();
-
-                    if (inputKey == Word[i].ToString())
-                        WrittenLetters += inputKey;
-
-                    while (inputKey != Word[i].ToString())
-                    {
-                        FlashRed();
-                        inputKey = GetInput();
-                        if (inputKey != Word[i].ToString())
-                            continue;
-
-                        WrittenLetters += inputKey;
-                        break;
-                    }
-
-                    if (WrittenLetters != Word.ToUpper() || Timer.ElapsedMilliseconds >= 5000)
-                        PlayerWinner = false;
-
-                    PlayerWinner = WrittenLetters == Word;
-                    inputKey = string.Empty;
+                    WrittenLetters += inputKey;
                 }
+
+                inputKey = string.Empty;
+                PlayerWinner = WrittenLetters == Word.ToUpper();
             }
+        }
 
         Timer.Stop();
         MyTimer.Stop();
@@ -103,15 +100,14 @@ public class Encounter : IDisposable
             DoDamageScreen();
         }
         else
-        {
-            activePlayer.TakeDamage(Opponent);
-            FailScreen();
-        }
+            ActivePlayer.TakeDamage(Opponent);
 
-        if (Opponent.CurrentHealth > 0)
-            PlayWordGame(activePlayer);
+        //if (activePlayer.CurrentHealth < 0)
+        if (Opponent.IsAlive)
+            PlayWordGame();
 
-        //WinScreen();
+        WinScreen();
+
         return PlayerWinner;
     }
 
@@ -119,7 +115,6 @@ public class Encounter : IDisposable
     //{
     //    if (Opponent.IsBoss)
     //    {
-
     //    }
     //}
 
@@ -139,6 +134,11 @@ public class Encounter : IDisposable
         Console.SetCursorPosition(CursorStartLeft, CursorStartTop + 2);
         Console.WriteLine(WrittenLetters);
         Console.CursorVisible = false;
+        if (!Timer.IsRunning)
+        {
+            Timer.Start();
+            MyTimer.Start();
+        }
     }
 
     private void UpdateTimerAndCheckFail()
@@ -151,7 +151,6 @@ public class Encounter : IDisposable
             PlayerWinner = false;
             FailScreen();
         }
-
     }
 
     private void FailScreen()
@@ -165,12 +164,11 @@ public class Encounter : IDisposable
         Console.SetCursorPosition(CursorStartLeft - 15, CursorStartTop + 1);
         Console.WriteLine($"{Opponent.Name} hit you for 69 damage");
         Thread.Sleep(2000);
+        ResetEncounter();
     }
 
     private void WinScreen()
     {
-        Timer.Stop();
-        MyTimer.Stop();
         Console.Clear();
 
         Console.SetCursorPosition(CursorStartLeft - 7, CursorStartTop);
@@ -179,10 +177,9 @@ public class Encounter : IDisposable
         Console.WriteLine($"Defeated {Opponent.Name}");
         Thread.Sleep(2000);
     }
+
     private void DoDamageScreen()
     {
-        Timer.Stop();
-        MyTimer.Stop();
         Console.Clear();
 
         Console.SetCursorPosition(CursorStartLeft - 7, CursorStartTop);
