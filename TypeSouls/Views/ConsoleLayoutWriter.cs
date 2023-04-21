@@ -22,15 +22,15 @@ internal class ConsoleLayoutWriter
     public ConsoleLayoutWriter()
     {
         MidMid = (Console.WindowWidth / 2, Console.WindowHeight / 2);
-        MidTop = (Console.WindowWidth / 2, Console.WindowHeight / 4);
+        MidTop = (Console.WindowWidth / 2, Console.WindowHeight / 8);
         MidBot = (Console.WindowWidth / 2, Console.WindowHeight / 4 * 3);
 
-        LeftMid = (Console.WindowWidth / 4, Console.WindowHeight / 2);
-        LeftTop = (Console.WindowWidth / 4, Console.WindowHeight / 4);
-        LeftBot = (Console.WindowWidth / 4, Console.WindowHeight / 4 * 3);
+        LeftMid = (Console.WindowWidth / 8, Console.WindowHeight / 2);
+        LeftTop = (Console.WindowWidth / 8, Console.WindowHeight / 8);
+        LeftBot = (Console.WindowWidth / 8, Console.WindowHeight / 4 * 3);
 
         RightMid = (Console.WindowWidth / 4 * 3, Console.WindowHeight / 2);
-        RightTop = (Console.WindowWidth / 4 * 3, Console.WindowHeight / 4);
+        RightTop = (Console.WindowWidth / 4 * 3, Console.WindowHeight / 8);
         RightBot = (Console.WindowWidth / 4 * 3, Console.WindowHeight / 4 * 3);
     }
 

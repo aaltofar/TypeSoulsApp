@@ -18,8 +18,7 @@ public class Player : IEntity
     public int CurrentHealth { get; set; }
     public int StatPointsToPlace { get; set; }
     public PlayerStats Stats { get; set; }
-    public int BossKills { get; set; }
-    public int EstusAmount = 3;
+    public int EstusAmount { get; set; }
 
     public Player()
     {
@@ -69,7 +68,7 @@ public class Player : IEntity
         Stats.LevelUpAllStats(Class);
     }
 
-    public void TakeDamage(IOpponent opponent) => CurrentHealth -= opponent.IsBoss ? 45 : 25;
+    public void TakeDamage(IOpponent opponent) => CurrentHealth -= opponent is Boss ? 45 : 25;
 
     public string MakeHealthBar() => new('█', CurrentHealth is > 0 and < 5 ? CurrentHealth / 5 + 1 : CurrentHealth / 5);
 

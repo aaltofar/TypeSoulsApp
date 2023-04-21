@@ -27,7 +27,7 @@ public class BriefRespiteScreen
             Console.Clear();
             ConsoleService.MakeHeader("Brief respite", "Estus left: " + ActivePlayer.EstusAmount.ToString());
             Console.WriteLine();
-            var (choice, key) = ConsoleService.MakeArrowMenu(Choices, "top");
+            var (choice, key) = ConsoleService.MakeArrowMenu(Choices, "midTop");
             if (key == ConsoleKey.Enter)
                 return choice;
         }

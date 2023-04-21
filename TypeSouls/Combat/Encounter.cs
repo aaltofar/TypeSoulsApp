@@ -86,7 +86,6 @@ public class Encounter : IDisposable
                     WrittenLetters += inputKey;
                 }
 
-                inputKey = string.Empty;
                 PlayerWinner = WrittenLetters == Word.ToUpper();
             }
         }
@@ -139,6 +138,11 @@ public class Encounter : IDisposable
             Timer.Start();
             MyTimer.Start();
         }
+    }
+
+    private void PrintHealthBars()
+    {
+
     }
 
     private void UpdateTimerAndCheckFail()
