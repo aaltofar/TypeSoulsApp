@@ -16,24 +16,82 @@ public static class ConsoleService
 
     private const int DefaultDescriptionVerticalPadding = 2;
 
-    public static void MakeHeader(string? figTxt, string lineTxt)
+    public static void MakeHeader(string? figTxt, [Optional] string lineTxt, Color figColor = default, string fontName = "standard")
     {
         Console.Clear();
 
-        AnsiConsole.Write(
-            new FigletText(figTxt).Centered().Color(Color.SteelBlue3));
-        var divider = new Rule(lineTxt)
-        {
-            Justification = Justify.Center
-        };
+        var font = FigletFont.Load($"{fontName}.flf");
+
+        AnsiConsole.Write(new FigletText(font, figTxt).Centered().Color(figColor));
+        var divider = new Rule(lineTxt) { Justification = Justify.Center };
         AnsiConsole.Write(divider);
     }
 
-    public static void MakeFooter()
+    public static Layout testLayout()
     {
-        var divider = new Rule();
-        Console.SetCursorPosition(XLeftPosition, YBotPosition);
-        AnsiConsole.Write(divider);
+        return new Layout()
+        {
+            LeftTop = new List<string>() { "heilo lefttop" },
+            MidMid = new List<string>() { "testeteste midmid" },
+            RightBot = new List<string>() { "testeteste rightbot" }
+        };
+    }
+
+    public static void PrintLayout(Layout modules)
+    {
+        modules.GetModules();
+        foreach (var module in modules.GetModules().Where(module => module != null))
+        {
+            for (int i = 0; i < module.Count; i++)
+            {
+                if (module == modules.LeftTop)
+                {
+                    SetWritePosition("leftTop", i, false, stringLength: module[i].Length);
+                    Console.Write(module[i]);
+                }
+                if (module == modules.LeftMid)
+                {
+                    SetWritePosition("leftMid", i, false, stringLength: module[i].Length);
+                    Console.Write(module[i]);
+                }
+                if (module == modules.LeftBot)
+                {
+                    SetWritePosition("leftBot", i, false, stringLength: module[i].Length);
+                    Console.Write(module[i]);
+                }
+                if (module == modules.MidTop)
+                {
+                    SetWritePosition("midTop", i, false, stringLength: module[i].Length);
+                    Console.Write(module[i]);
+                }
+                if (module == modules.MidMid)
+                {
+                    SetWritePosition("midMid", i, false, stringLength: module[i].Length);
+                    Console.Write(module[i]);
+                }
+                if (module == modules.MidBot)
+                {
+                    SetWritePosition("midBot", i, false, stringLength: module[i].Length);
+                    Console.Write(module[i]);
+                }
+                if (module == modules.RightTop)
+                {
+                    SetWritePosition("rightTop", i, false, stringLength: module[i].Length);
+                    Console.Write(module[i]);
+                }
+                if (module == modules.RightMid)
+                {
+                    SetWritePosition("rightMid", i, false, stringLength: module[i].Length);
+                    Console.Write(module[i]);
+                }
+                if (module == modules.RightBot)
+                {
+                    SetWritePosition("rightBot", i, false, stringLength: module[i].Length);
+                    Console.Write(module[i]);
+                }
+            }
+        }
+
         Console.ReadLine();
     }
 
@@ -54,12 +112,11 @@ public static class ConsoleService
             SetWritePosition(position, i, true, choices.Count, choices[i].ChoiceDescription.Length);
             if (i == _currentSelection)
             {
-                //choices[i].ChoiceDescription.Length
                 for (int j = 0; j < choices[i].ChoiceDescription.Length; j++)
-                    Console.Write("_");
+                    AnsiConsole.Markup("[dim grey]_[/]");
 
                 SetWritePosition(position, i, true, choices.Count + 1, choices[i].ChoiceDescription.Length);
-                AnsiConsole.Markup($"[wheat1]{choices[i].ChoiceDescription}[/]");
+                AnsiConsole.Markup($"[dim orange3]{choices[i].ChoiceDescription}[/]");
             }
         }
 
@@ -147,6 +204,13 @@ public static class ConsoleService
             case "rightMid": Console.SetCursorPosition(XRightPosition, isDescription ? YMidPosition + verticalOffset : YMidPosition + i); break;
             case "rightBot": Console.SetCursorPosition(XRightPosition, isDescription ? YBotPosition + verticalOffset : YBotPosition + i); break;
         }
+    }
+    public static void MakeFooter()
+    {
+        var divider = new Rule();
+        Console.SetCursorPosition(XLeftPosition, YBotPosition);
+        AnsiConsole.Write(divider);
+        Console.ReadLine();
     }
 
     public static void DrawScreen()

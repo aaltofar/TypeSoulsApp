@@ -1,7 +1,4 @@
-﻿using System.ComponentModel;
-using System.Numerics;
-using System.Timers;
-using TypeSouls.Entities;
+﻿using System.Timers;
 using Timer = System.Timers.Timer;
 
 namespace TypeSouls.Combat;
@@ -38,10 +35,10 @@ public class Encounter : IDisposable
     {
         Timer.Start();
         MyTimer.Start();
-        MyTimer.Elapsed += myEvent;
+        MyTimer.Elapsed += MyEvent;
         MyTimer.Interval = 125;
         MyTimer.Enabled = true;
-        void myEvent(object source, ElapsedEventArgs e) => UpdateTimerAndCheckFail();
+        void MyEvent(object source, ElapsedEventArgs e) => UpdateTimerAndCheckFail();
     }
 
     public void BossBattle()
@@ -69,7 +66,7 @@ public class Encounter : IDisposable
         {
             if (WrittenLetters.Length != Word.Length)
             {
-                PrintWordAndProgress();
+                EncounterView();
 
                 var inputKey = GetInput();
 
@@ -120,11 +117,11 @@ public class Encounter : IDisposable
     private void FlashRed()
     {
         Console.ForegroundColor = ConsoleColor.Red;
-        PrintWordAndProgress();
+        EncounterView();
         Console.ResetColor();
     }
 
-    private void PrintWordAndProgress()
+    private void EncounterView()
     {
         Console.SetCursorPosition(CursorStartLeft, CursorStartTop);
         Console.WriteLine("Your word is: ");
@@ -138,11 +135,6 @@ public class Encounter : IDisposable
             Timer.Start();
             MyTimer.Start();
         }
-    }
-
-    private void PrintHealthBars()
-    {
-
     }
 
     private void UpdateTimerAndCheckFail()
