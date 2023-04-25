@@ -8,17 +8,17 @@ namespace TypeSouls.Entities;
 internal class NonPlayerCharacter
 {
     public string Name { get; set; }
-    private List<string>? DialogueList { get; set; }
+    private List<string>? Dialogue { get; set; }
 
     public NonPlayerCharacter(string name)
     {
         Name = name;
-        DialogueList = FillDialogueList();
+        Dialogue = FillDialogueList();
     }
 
     public NonPlayerCharacter()
     {
-        DialogueList = FillDialogueList();
+        Dialogue = FillDialogueList();
         Name = "NoName";
     }
 

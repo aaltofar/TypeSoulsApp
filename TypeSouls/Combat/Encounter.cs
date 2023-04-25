@@ -12,11 +12,10 @@ public class Encounter : IDisposable
     private string Word { get; set; }
     private string WrittenLetters { get; set; }
     private Timer MyTimer { get; set; }
-    private int CursorStartLeft { get; set; }
-    private int CursorStartTop { get; set; }
     private bool PlayerWinner { get; set; }
     private Player? ActivePlayer { get; set; }
     private Layout EncounterLayout { get; set; }
+    private int CombatTimer { get; set; }
 
     public Encounter(Player activePlayer)
     {
@@ -28,10 +27,9 @@ public class Encounter : IDisposable
         AllWordsList = File.ReadLines(@"WordList.txt").ToList();
         Word = AllWordsList[R.Next(AllWordsList.Count)].ToUpper();
         MyTimer = new Timer();
-        CursorStartLeft = Console.WindowWidth / 2;
-        CursorStartTop = Console.WindowHeight / 2;
         ActivePlayer = activePlayer;
         EncounterLayout = new Layout();
+        CombatTimer = 5000 + ActivePlayer.Stats.Intellect * 100;
     }
 
     private void InitTimer()
@@ -96,7 +94,7 @@ public class Encounter : IDisposable
 
         if (PlayerWinner)
         {
-            Opponent.TakeDamage(51);
+            Opponent.TakeDamage(ActivePlayer.DoDamage());
             DoDamageScreen();
         }
         else
@@ -131,14 +129,14 @@ public class Encounter : IDisposable
         {
             ActivePlayer.CharName + " " + "Level " + ActivePlayer.Level + " " + ActivePlayer.Class,
             ActivePlayer.MakeHealthBar(),
-            ActivePlayer.CurrentHealth.ToString()
+            "Health: " + ActivePlayer.CurrentHealth.ToString()
         };
 
         EncounterLayout.RightTop = new List<string>()
         {
             Opponent.Name,
             Opponent.MakeHealthBar(),
-            Opponent.CurrentHealth.ToString()
+            "Health: " + Opponent.CurrentHealth.ToString()
         };
 
         EncounterLayout.MidMid = new List<string>()
@@ -161,7 +159,7 @@ public class Encounter : IDisposable
     private void UpdateTimerAndCheckFail()
     {
         EncounterView();
-        if (Timer.ElapsedMilliseconds >= 5000)
+        if (Timer.ElapsedMilliseconds >= CombatTimer)
         {
             PlayerWinner = false;
             FailScreen();
@@ -177,7 +175,7 @@ public class Encounter : IDisposable
         EncounterLayout.MidMid = new List<string>()
         {
             "You failed to write the word correctly in time",
-            $"{Opponent.Name} hit you for 69 damage",
+            $"{Opponent.Name} hit you for {ActivePlayer.TakeDamage(Opponent).ToString()} damage",
         };
         ConsoleService.PrintLayout(EncounterLayout);
         Thread.Sleep(2000);
@@ -206,7 +204,7 @@ public class Encounter : IDisposable
         EncounterLayout.MidMid = new List<string>()
         {
             "Success!",
-            $"You hit {Opponent.Name} for 69 damage",
+            $"You hit {Opponent.Name} for {ActivePlayer.DoDamage().ToString()} damage",
             "",
         };
         if (Opponent.CurrentHealth < 0)

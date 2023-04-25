@@ -90,9 +90,12 @@ public class GameService
                     break;
 
                 case "Venture forth":
-                    //VentureForth();
                     var adventure = new Adventure(ActivePlayer);
                     adventure.AdventureLoop();
+                    break;
+
+                case "Look around":
+                    var lookAround = new LookAround(ActivePlayer.Location);
                     break;
 
                 case "View Character":

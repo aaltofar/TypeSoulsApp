@@ -133,6 +133,8 @@ public static class ConsoleService
             case ConsoleKey.DownArrow:
             case ConsoleKey.S:
                 {
+                    if (choices.Count <= 1)
+                        break;
                     if (_currentSelection < choices.Count - 1)
                         _currentSelection++;
                     break;

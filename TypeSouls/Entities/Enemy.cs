@@ -23,7 +23,6 @@ public class Enemy : IOpponent, IEntity
             IsAlive = false;
     }
 
-
     public string MakeHealthBar()
     {
         int missingHealth = (100 - CurrentHealth) / 5;

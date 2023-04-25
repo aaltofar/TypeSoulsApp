@@ -68,14 +68,19 @@ public class Player : IEntity
         Stats.LevelUpAllStats(Class);
     }
 
-    public void TakeDamage(IOpponent opponent) => CurrentHealth -= opponent is Boss ? 45 : 25;
-
+    public int TakeDamage(IOpponent opponent)
+    {
+        int damage = opponent is Boss ? 45 : 25;
+        CurrentHealth -= damage;
+        return damage;
+    }
 
     public string MakeHealthBar()
     {
-        int missingHealth = (MaxHealth - CurrentHealth) / 5;
+        const int barLength = 5;
+        int missingHealth = (MaxHealth - CurrentHealth) / barLength;
 
-        string bar = new('█', CurrentHealth is > 0 and < 5 ? CurrentHealth / 5 + 1 : CurrentHealth / 5);
+        string bar = new('█', CurrentHealth is > 0 and < 5 ? CurrentHealth / 5 + 1 : CurrentHealth / barLength);
         string missingBar = new('█', missingHealth);
 
         return "[maroon]" + bar + "[/]" + "[silver]" + missingBar + "[/]";
@@ -83,7 +88,9 @@ public class Player : IEntity
 
     public int DoDamage()
     {
-        return 25;
+        int damage = 33 + Stats.Strength / 2;
+
+        return damage;
     }
 
     public void DrinkEstus()

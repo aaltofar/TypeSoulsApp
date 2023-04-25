@@ -52,6 +52,7 @@ public class BonfireMenu
         var saveAndExit = new MenuChoice("Save and exit game", "Saves your game then exits to desktop");
         var levelUp = new MenuChoice("Level Up", "Level up your character");
         var ventureForth = new MenuChoice("Venture forth", "Venture forth into the next area");
+        var lookAround = new MenuChoice("Look around", "Look around the area, who knows what you might find");
 
         var choices = new List<MenuChoice>();
 
@@ -64,6 +65,7 @@ public class BonfireMenu
             choices.Add(ventureForth);
 
         choices.Add(travel);
+        choices.Add(lookAround);
         choices.Add(viewCharacter);
         choices.Add(saveAndExit);
 
