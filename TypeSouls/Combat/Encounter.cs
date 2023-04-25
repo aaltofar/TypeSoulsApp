@@ -1,4 +1,5 @@
 ﻿using System.Timers;
+using Layout = TypeSouls.Views.Layout;
 using Timer = System.Timers.Timer;
 
 namespace TypeSouls.Combat;
@@ -15,6 +16,7 @@ public class Encounter : IDisposable
     private int CursorStartTop { get; set; }
     private bool PlayerWinner { get; set; }
     private Player? ActivePlayer { get; set; }
+    private Layout EncounterLayout { get; set; }
 
     public Encounter(Player activePlayer)
     {
@@ -29,6 +31,7 @@ public class Encounter : IDisposable
         CursorStartLeft = Console.WindowWidth / 2;
         CursorStartTop = Console.WindowHeight / 2;
         ActivePlayer = activePlayer;
+        EncounterLayout = new Layout();
     }
 
     private void InitTimer()
@@ -55,6 +58,7 @@ public class Encounter : IDisposable
         Word = AllWordsList[R.Next(AllWordsList.Count)].ToUpper();
         WrittenLetters = string.Empty;
         Console.Clear();
+        EncounterLayout = new Layout();
     }
 
     public bool PlayWordGame()
@@ -123,12 +127,29 @@ public class Encounter : IDisposable
 
     private void EncounterView()
     {
-        Console.SetCursorPosition(CursorStartLeft, CursorStartTop);
-        Console.WriteLine("Your word is: ");
-        Console.SetCursorPosition(CursorStartLeft, CursorStartTop + 1);
-        Console.WriteLine(Word);
-        Console.SetCursorPosition(CursorStartLeft, CursorStartTop + 2);
-        Console.WriteLine(WrittenLetters);
+        EncounterLayout.LeftTop = new List<string>()
+        {
+            ActivePlayer.CharName + " " + "Level " + ActivePlayer.Level + " " + ActivePlayer.Class,
+            ActivePlayer.MakeHealthBar(),
+            ActivePlayer.CurrentHealth.ToString()
+        };
+
+        EncounterLayout.RightTop = new List<string>()
+        {
+            Opponent.Name,
+            Opponent.MakeHealthBar(),
+            Opponent.CurrentHealth.ToString()
+        };
+
+        EncounterLayout.MidMid = new List<string>()
+        {
+            "Your word is: ",
+            Word,
+            WrittenLetters,
+            Timer.Elapsed.ToString(@"s\.ff") + " Seconds"
+        };
+        ConsoleService.PrintLayout(EncounterLayout);
+
         Console.CursorVisible = false;
         if (!Timer.IsRunning)
         {
@@ -139,9 +160,7 @@ public class Encounter : IDisposable
 
     private void UpdateTimerAndCheckFail()
     {
-        Console.SetCursorPosition(CursorStartLeft, CursorStartTop + 3);
-        Console.Write(Timer.Elapsed.ToString(@"s\.ff") + " Seconds");
-        Console.SetCursorPosition(CursorStartLeft, CursorStartTop + 2);
+        EncounterView();
         if (Timer.ElapsedMilliseconds >= 5000)
         {
             PlayerWinner = false;
@@ -153,35 +172,49 @@ public class Encounter : IDisposable
     {
         Timer.Stop();
         MyTimer.Stop();
+        EncounterLayout = new Layout();
         Console.Clear();
-
-        Console.SetCursorPosition(CursorStartLeft - 15, CursorStartTop);
-        Console.WriteLine("You failed to write the word correctly in time");
-        Console.SetCursorPosition(CursorStartLeft - 15, CursorStartTop + 1);
-        Console.WriteLine($"{Opponent.Name} hit you for 69 damage");
+        EncounterLayout.MidMid = new List<string>()
+        {
+            "You failed to write the word correctly in time",
+            $"{Opponent.Name} hit you for 69 damage",
+        };
+        ConsoleService.PrintLayout(EncounterLayout);
         Thread.Sleep(2000);
         ResetEncounter();
     }
 
     private void WinScreen()
     {
+        Timer.Stop();
+        MyTimer.Stop();
+        EncounterLayout = new Layout();
         Console.Clear();
-
-        Console.SetCursorPosition(CursorStartLeft - 7, CursorStartTop);
-        Console.WriteLine("You did it!");
-        Console.SetCursorPosition(CursorStartLeft - 7, CursorStartTop + 1);
-        Console.WriteLine($"Defeated {Opponent.Name}");
+        EncounterLayout.MidMid = new List<string>()
+        {
+            "You did it!",
+            $"Defeated {Opponent.Name}",
+        };
+        ConsoleService.PrintLayout(EncounterLayout);
         Thread.Sleep(2000);
     }
 
     private void DoDamageScreen()
     {
         Console.Clear();
+        EncounterLayout = new Layout();
+        EncounterLayout.MidMid = new List<string>()
+        {
+            "Success!",
+            $"You hit {Opponent.Name} for 69 damage",
+            "",
+        };
+        if (Opponent.CurrentHealth < 0)
+            EncounterLayout.MidMid.Add($"{Opponent.Name} perished");
+        else
+            EncounterLayout.MidMid.Add($"{Opponent.Name} has {Opponent.CurrentHealth} health left");
 
-        Console.SetCursorPosition(CursorStartLeft - 7, CursorStartTop);
-        Console.WriteLine("Success!");
-        Console.SetCursorPosition(CursorStartLeft - 7, CursorStartTop + 1);
-        Console.WriteLine($"You hit {Opponent.Name} for 69 damage");
+        ConsoleService.PrintLayout(EncounterLayout);
         Thread.Sleep(2000);
     }
 

@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TypeSouls.Views;
+﻿namespace TypeSouls.Views;
 public class Layout
 {
     public List<string>? LeftTop { get; set; }
@@ -33,6 +26,13 @@ public class Layout
             RightTop
         };
     }
+
+    public void PrintLayout()
+    {
+
+    }
+
+    //Dictionary<string, (int, int)>
 
 }
 

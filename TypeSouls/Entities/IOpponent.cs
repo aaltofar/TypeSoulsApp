@@ -7,6 +7,7 @@ public interface IOpponent
     public bool IsAlive { get; set; }
 
     public void TakeDamage(int damage);
+    public string MakeHealthBar();
 
 }
 

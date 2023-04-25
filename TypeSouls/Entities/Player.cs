@@ -70,35 +70,17 @@ public class Player : IEntity
 
     public void TakeDamage(IOpponent opponent) => CurrentHealth -= opponent is Boss ? 45 : 25;
 
-    public string MakeHealthBar() => new('█', CurrentHealth is > 0 and < 5 ? CurrentHealth / 5 + 1 : CurrentHealth / 5);
 
-    //public string MakeHealthBar()
-    //{
-    //    var result = "";
-    //    for (var i = 0; i < CurrentHealth; i++)
-    //        if (i % 5 == 0 || CurrentHealth is > 0 and < 5)
-    //            result += "█";
-    //    return result;
-    //}
+    public string MakeHealthBar()
+    {
+        int missingHealth = (MaxHealth - CurrentHealth) / 5;
 
-    //public string MakeHealthBar() => CurrentHealth switch
-    //{
-    //    < 20 => "██",
-    //    > 20 and < 40 => "████",
-    //    > 40 and < 60 => "██████",
-    //    > 60 and < 80 => "████████",
-    //    > 80 and < 100 => "██████████",
-    //    _ => ""
-    //};
+        string bar = new('█', CurrentHealth is > 0 and < 5 ? CurrentHealth / 5 + 1 : CurrentHealth / 5);
+        string missingBar = new('█', missingHealth);
 
-    //public string MakeHealthBar()
-    //{
-    //    var result = "";
-    //    for (int i = 0; i < CurrentHealth / 5; i++)
-    //        result += "█";
+        return "[maroon]" + bar + "[/]" + "[silver]" + missingBar + "[/]";
+    }
 
-    //    return result;
-    //}
     public int DoDamage()
     {
         return 25;

@@ -8,7 +8,7 @@ public static class ConsoleService
 
     private static readonly int XLeftPosition = 2;
     private static readonly int XMidPosition = Console.WindowWidth / 2;
-    private static readonly int XRightPosition = Console.WindowWidth / 4 * 3;
+    private static readonly int XRightPosition = Console.WindowWidth / 4 * 3 + 20;
 
     private static readonly int YTopPosition = Console.WindowHeight / 8;
     private static readonly int YMidPosition = Console.WindowHeight / 2 - Console.WindowHeight / 9;
@@ -33,66 +33,65 @@ public static class ConsoleService
         {
             LeftTop = new List<string>() { "heilo lefttop" },
             MidMid = new List<string>() { "testeteste midmid" },
-            RightBot = new List<string>() { "testeteste rightbot" }
+            RightTop = new List<string>() { "testeteste rightbot" }
         };
     }
 
     public static void PrintLayout(Layout modules)
     {
         modules.GetModules();
-        foreach (var module in modules.GetModules().Where(module => module != null))
+        foreach (var m in modules.GetModules().Where(module => module != null))
         {
-            for (int i = 0; i < module.Count; i++)
+            for (int i = 0; i < m.Count; i++)
             {
-                if (module == modules.LeftTop)
+                if (m == modules.LeftTop)
                 {
-                    SetWritePosition("leftTop", i, false, stringLength: module[i].Length);
-                    Console.Write(module[i]);
+                    SetWritePosition("leftTop", i, false, stringLength: m[i].Length);
+                    AnsiConsole.Markup(m[i]);
                 }
-                if (module == modules.LeftMid)
+                if (m == modules.LeftMid)
                 {
-                    SetWritePosition("leftMid", i, false, stringLength: module[i].Length);
-                    Console.Write(module[i]);
+                    SetWritePosition("leftMid", i, false, stringLength: m[i].Length);
+                    Console.Write(m[i]);
                 }
-                if (module == modules.LeftBot)
+                if (m == modules.LeftBot)
                 {
-                    SetWritePosition("leftBot", i, false, stringLength: module[i].Length);
-                    Console.Write(module[i]);
+                    SetWritePosition("leftBot", i, false, stringLength: m[i].Length);
+                    Console.Write(m[i]);
                 }
-                if (module == modules.MidTop)
+                if (m == modules.MidTop)
                 {
-                    SetWritePosition("midTop", i, false, stringLength: module[i].Length);
-                    Console.Write(module[i]);
+                    SetWritePosition("midTop", i, false, stringLength: m[i].Length);
+                    Console.Write(m[i]);
                 }
-                if (module == modules.MidMid)
+                if (m == modules.MidMid)
                 {
-                    SetWritePosition("midMid", i, false, stringLength: module[i].Length);
-                    Console.Write(module[i]);
+                    SetWritePosition("midMid", i, false, stringLength: m[i].Length);
+                    Console.Write(m[i]);
                 }
-                if (module == modules.MidBot)
+                if (m == modules.MidBot)
                 {
-                    SetWritePosition("midBot", i, false, stringLength: module[i].Length);
-                    Console.Write(module[i]);
+                    SetWritePosition("midBot", i, false, stringLength: m[i].Length);
+                    Console.Write(m[i]);
                 }
-                if (module == modules.RightTop)
+                if (m == modules.RightTop)
                 {
-                    SetWritePosition("rightTop", i, false, stringLength: module[i].Length);
-                    Console.Write(module[i]);
+                    SetWritePosition("rightTop", i, false, stringLength: m[i].Length);
+                    AnsiConsole.Markup(m[i]);
                 }
-                if (module == modules.RightMid)
+                if (m == modules.RightMid)
                 {
-                    SetWritePosition("rightMid", i, false, stringLength: module[i].Length);
-                    Console.Write(module[i]);
+                    SetWritePosition("rightMid", i, false, stringLength: m[i].Length);
+                    Console.Write(m[i]);
                 }
-                if (module == modules.RightBot)
+                if (m == modules.RightBot)
                 {
-                    SetWritePosition("rightBot", i, false, stringLength: module[i].Length);
-                    Console.Write(module[i]);
+                    SetWritePosition("rightBot", i, false, stringLength: m[i].Length);
+                    Console.Write(m[i]);
                 }
             }
         }
-
-        Console.ReadLine();
+        Console.CursorVisible = false;
     }
 
     public static (string, ConsoleKey) MakeArrowMenu(List<MenuChoice> choices, string position)
@@ -205,6 +204,7 @@ public static class ConsoleService
             case "rightBot": Console.SetCursorPosition(XRightPosition, isDescription ? YBotPosition + verticalOffset : YBotPosition + i); break;
         }
     }
+
     public static void MakeFooter()
     {
         var divider = new Rule();

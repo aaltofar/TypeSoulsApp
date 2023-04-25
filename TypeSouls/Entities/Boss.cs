@@ -25,4 +25,6 @@ public class Boss : IOpponent
     }
 
     public void TakeDamage(int damage) => CurrentHealth -= damage;
+
+    public string MakeHealthBar() => new('█', CurrentHealth is > 0 and < 5 ? CurrentHealth / 5 + 1 : CurrentHealth / 5);
 }

@@ -1,25 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TypeSouls.Views;
-internal class PositionDictionary
+﻿namespace TypeSouls.Views;
+public static class PositionDictionary
 {
-    private readonly Dictionary<string, int> _positionDictionary = new();
-
-    public PositionDictionary()
+    private static readonly Dictionary<string, (int, int)> _positionDictionary = new()
     {
-        _positionDictionary.Add("YTop", Console.WindowHeight / 8);
-        _positionDictionary.Add("YMid", Console.WindowHeight / 2);
-        _positionDictionary.Add("YBot", Console.WindowHeight / 4 * 3);
-        _positionDictionary.Add("XLeft", Console.WindowWidth / 8);
-        _positionDictionary.Add("XMid", Console.WindowWidth / 2);
-        _positionDictionary.Add("XRight", Console.WindowWidth / 4 * 3);
-    }
+        {"MidMid", (Console.WindowWidth / 2, Console.WindowHeight / 2)},
+        {"MidTop", (Console.WindowWidth / 2, Console.WindowHeight / 8)},
+        {"MidBot", (Console.WindowWidth / 2, Console.WindowHeight / 4 * 3)},
+        {"LeftMid", (Console.WindowWidth / 8, Console.WindowHeight / 2)},
+        {"LeftTop", (Console.WindowWidth / 8, Console.WindowHeight / 8)},
+        {"LeftBot", (Console.WindowWidth / 8, Console.WindowHeight / 4 * 3)},
+        {"RightMid", (Console.WindowWidth / 4 * 3 + 20, Console.WindowHeight / 2)},
+        {"RightTop", (Console.WindowWidth / 4 * 3 + 20, Console.WindowHeight / 8)},
+        {"RightBot", (Console.WindowWidth / 4 * 3 + 20, Console.WindowHeight / 4 * 3)}
+    };
 
-    public int GetPosition(string position)
+    public static (int, int) GetPosition(string position)
     {
         return _positionDictionary[position];
     }

@@ -26,17 +26,12 @@ public class Enemy : IOpponent, IEntity
 
     public string MakeHealthBar()
     {
-        var result = "";
-        for (var i = 0; i < CurrentHealth; i++)
-        {
-            if (i % 5 == 0)
-                result += "█";
+        int missingHealth = (100 - CurrentHealth) / 5;
 
-            if (CurrentHealth is > 0 and < 5)
-                return "█";
-        }
+        string bar = new('█', CurrentHealth is > 0 and < 5 ? CurrentHealth / 5 + 1 : CurrentHealth / 5);
+        string missingBar = new('█', missingHealth);
 
-        return result;
+        return "[maroon]" + bar + "[/]" + "[silver]" + missingBar + "[/]";
     }
 
 }
