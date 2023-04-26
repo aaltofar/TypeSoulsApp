@@ -220,4 +220,24 @@ public static class ConsoleService
 
     }
 
+    public static void DialoguePrompter(NonPlayerCharacter npc)
+    {
+        var dialogueLayout = new Layout();
+
+        for (int i = 0; i < npc.Dialogue.Count; i++)
+        {
+            Console.Clear();
+            dialogueLayout.MidMid = new List<string>()
+            {
+                npc.Name + ":",
+                "",
+                npc.Dialogue[i]
+            };
+
+            PrintLayout(dialogueLayout);
+            Console.ReadLine();
+        }
+    }
+
+
 }

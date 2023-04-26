@@ -6,11 +6,17 @@ public class LookAround
 
     public LookAround(Area area)
     {
+        LookAroundLayout = new Layout();
         CurrentArea = area;
     }
 
     public void MakeLookAroundView()
     {
+        if (CurrentArea.AreaNpc is null)
+            return;
+
+        Console.Clear();
+        ConsoleService.DialoguePrompter(CurrentArea.AreaNpc);
 
     }
 }

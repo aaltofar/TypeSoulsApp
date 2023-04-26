@@ -24,7 +24,7 @@ public class GameService
         {
             new Area[]
             {
-                new("Firelink Shrine", true, true,FindNpcFromList("Knight Lautrec of Carim")),
+                new("Firelink Shrine", true, true,FindNpcFromList("Crestfallen Knight")),
                 new("New Londo Ruins", false, false),
                 new("The Abyss", "Four Kings", false, false),
                 new("Kiln of the First Flame", "Gwyn, Lord of Cinder", false, false, new List<string>(){ "In the deepest depths of the Kiln the Lord of Cinder awaited you", "His crown full of soot, his skin charred and his eyes missing from the hollowing", "Inherit the fire, succeed Lord Gwyn"})
@@ -38,7 +38,7 @@ public class GameService
             },
             new Area[]
             {
-                new("The Depths", true,FindNpcFromList("Crestfallen Knight")),
+                new("The Depths", true,FindNpcFromList("Knight Lautrec of Carim")),
                 new("Blighttown", false),
                 new("Poison Swamp", false),
                 new("Quelaag's Domain", "Chaos Witch Quelaag", false, new List < string >() { "Quelaag, daughter of the Witch of Izalith who failed to escape the chaotic flame and was corrupted by it.", "Due to exposure to the flame, Quelaag mutated into spider-like creatures with their upper body being fused to the monsters' backs.", "Lay her to rest, ring the bell of awakening and succeed Lord Gwyn" }),
@@ -58,7 +58,7 @@ public class GameService
     {
         ActivePlayer = new Player();
         ActivePlayer.CreateCharacter();
-        ActivePlayer.Location = new Area("Firelink Shrine", false);
+        ActivePlayer.Location = AllAreas[0][0];
     }
 
     public void SaveGame()
@@ -97,6 +97,7 @@ public class GameService
 
                 case "Look around":
                     var lookAround = new LookAround(ActivePlayer.Location);
+                    lookAround.MakeLookAroundView();
                     break;
 
                 case "View Character":
