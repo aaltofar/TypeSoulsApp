@@ -7,13 +7,15 @@ public class Area
     public Boss? AreaBoss { get; set; }
     public bool IsMajor { get; set; }
     public bool IsExplored = false;
+    public NonPlayerCharacter? AreaNpc { get; set; }
     public bool SelectedForTravel { get; set; }
 
-    public Area(string name, string bossName, bool isMajor)
+    public Area(string name, string bossName, bool isMajor, NonPlayerCharacter areaNpc)
     {
         AreaName = name;
         AreaBoss = new Boss(bossName);
         IsMajor = isMajor;
+        AreaNpc = areaNpc;
     }
 
     public Area(string name, string bossName, bool isMajor, bool isExplored)
@@ -38,11 +40,24 @@ public class Area
         AreaBoss = new Boss(bossName, dialogue);
         IsMajor = isMajor;
     }
+    public Area(string name, string bossName, bool isMajor, List<string> dialogue, NonPlayerCharacter areaNpc)
+    {
+        AreaName = name;
+        AreaBoss = new Boss(bossName, dialogue);
+        IsMajor = isMajor;
+        AreaNpc = areaNpc;
+    }
 
     public Area(string name, bool isMajor)
     {
         AreaName = name;
         IsMajor = isMajor;
+    }
+    public Area(string name, bool isMajor, NonPlayerCharacter areaNpc)
+    {
+        AreaName = name;
+        IsMajor = isMajor;
+        AreaNpc = areaNpc;
     }
 
     public Area(string name, bool isMajor, bool isExplored)
@@ -50,6 +65,13 @@ public class Area
         AreaName = name;
         IsMajor = isMajor;
         IsExplored = isExplored;
+    }
+    public Area(string name, bool isMajor, bool isExplored, NonPlayerCharacter areaNpc)
+    {
+        AreaName = name;
+        IsMajor = isMajor;
+        IsExplored = isExplored;
+        AreaNpc = areaNpc;
     }
 
     public Area()
