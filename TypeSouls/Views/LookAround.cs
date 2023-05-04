@@ -10,7 +10,7 @@ public class LookAround
         CurrentArea = area;
     }
 
-    public void MakeLookAroundView()
+    public void LookAroundScreen()
     {
         if (CurrentArea.AreaNpc is null)
             return;

@@ -7,6 +7,11 @@ public class Boss : IOpponent
     public bool IsAlive { get; set; }
     public List<string> DialogueList { get; set; }
 
+    public Boss()
+    {
+
+    }
+
     public Boss(string name)
     {
         Name = name;

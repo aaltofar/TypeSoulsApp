@@ -6,9 +6,11 @@ public class Area
     public string DecoratedName => DecorateName();
     public Boss? AreaBoss { get; set; }
     public bool IsMajor { get; set; }
-    public bool IsExplored = false;
+    public bool IsExplored;
+    public List<string>? AreaDescription { get; set; } = new List<string>();
     public NonPlayerCharacter? AreaNpc { get; set; }
     public bool SelectedForTravel { get; set; }
+
 
     public Area(string name, string bossName, bool isMajor, NonPlayerCharacter areaNpc)
     {

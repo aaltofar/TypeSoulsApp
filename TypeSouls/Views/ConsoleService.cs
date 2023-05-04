@@ -67,7 +67,7 @@ public static class ConsoleService
                 if (m == modules.MidMid)
                 {
                     SetWritePosition("midMid", i, false, stringLength: m[i].Length);
-                    Console.Write(m[i]);
+                    AnsiConsole.Markup(m[i]);
                 }
                 if (m == modules.MidBot)
                 {
@@ -229,7 +229,7 @@ public static class ConsoleService
             Console.Clear();
             dialogueLayout.MidMid = new List<string>()
             {
-                npc.Name + ":",
+               "[dim orange3]" + npc.Name + "[/]" + ":",
                 "",
                 npc.Dialogue[i]
             };

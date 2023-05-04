@@ -7,4 +7,6 @@
 
 GameService game = new();
 
+//game.MakeAreaFile();
+
 game.GameLoop();
