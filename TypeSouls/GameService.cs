@@ -10,7 +10,9 @@ public class GameService
     public List<NonPlayerCharacter> NpcList => JsonSerializer.Deserialize<List<NonPlayerCharacter>>(File.ReadAllText("NPCs.json"));
     public List<Area>? AreaList => JsonSerializer.Deserialize<List<Area>>(File.ReadAllText("Areas.json"));
     public List<Area[]> AllAreas { get; set; }
-    private Random _r = new Random();
+    /*
+        private Random _r = new Random();
+    */
 
     public GameService()
     {
@@ -18,7 +20,6 @@ public class GameService
     }
 
     private Area GetArea(string areaName) => AreaList.FirstOrDefault(a => a.AreaName == areaName);
-
 
     private NonPlayerCharacter FindNpcFromList(string name) => NpcList.FirstOrDefault(n => n.Name == name);
 
@@ -72,12 +73,6 @@ public class GameService
 
         return AllAreas;
     }
-
-    //public void MakeAreaFile()
-    //{
-    //    var jsonstring = JsonSerializer.Serialize(AllAreas, new JsonSerializerOptions { WriteIndented = true });
-    //    File.WriteAllText("Areas.json", jsonstring);
-    //}
 
     public void InitGame()
     {
@@ -141,12 +136,6 @@ public class GameService
 
     }
 
-    public void VentureForth()
-    {
-        var destination = FindNextArea();
-
-    }
-
     private Area FindNextArea()
     {
         Area nextArea = null;
@@ -194,12 +183,6 @@ public class GameService
     private void CalculateEncounters()
     {
 
-    }
-
-    private void Travel(bool hasCombat)
-    {
-        if (hasCombat)
-            return;
     }
 
     private bool CanTravel(Area destination)
