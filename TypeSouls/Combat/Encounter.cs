@@ -3,7 +3,7 @@ using Layout = TypeSouls.Views.Layout;
 using Timer = System.Timers.Timer;
 
 namespace TypeSouls.Combat;
-public class Encounter : IDisposable
+public class Encounter
 {
     public IOpponent Opponent { get; set; }
     public Random R { get; set; }
@@ -109,13 +109,6 @@ public class Encounter : IDisposable
         return PlayerWinner;
     }
 
-    //private void PrintAmbienceText()
-    //{
-    //    if (Opponent.IsBoss)
-    //    {
-    //    }
-    //}
-
     private void FlashRed()
     {
         Console.ForegroundColor = ConsoleColor.Red;
@@ -207,6 +200,7 @@ public class Encounter : IDisposable
             $"You hit {Opponent.Name} for {ActivePlayer.DoDamage().ToString()} damage",
             "",
         };
+
         if (Opponent.CurrentHealth < 0)
             EncounterLayout.MidMid.Add($"{Opponent.Name} perished");
         else
@@ -217,8 +211,5 @@ public class Encounter : IDisposable
     }
 
     private static string GetInput() => Console.ReadKey().KeyChar.ToString().ToUpper();
-
-    public void Dispose() => GC.SuppressFinalize(this);
-
 }
 

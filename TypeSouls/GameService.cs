@@ -7,12 +7,13 @@ public class GameService
     public Player ActivePlayer { get; set; }
     private const string SaveFileName = "saveFile.json";
     private bool HasContinue => File.Exists(SaveFileName);
-    public List<NonPlayerCharacter> NpcList => JsonSerializer.Deserialize<List<NonPlayerCharacter>>(File.ReadAllText("NPCs.json"));
-    public List<Area>? AreaList => JsonSerializer.Deserialize<List<Area>>(File.ReadAllText("Areas.json"));
+    private List<NonPlayerCharacter>? NpcList => JsonSerializer.Deserialize<List<NonPlayerCharacter>>(File.ReadAllText("NPCs.json"));
+    private List<Area>? AreaList => JsonSerializer.Deserialize<List<Area>>(File.ReadAllText("Areas.json"));
     public List<Area[]> AllAreas { get; set; }
+
     /*
-        private Random _r = new Random();
-    */
+    private List<Boss>? BossList => JsonSerializer.Deserialize<List<Boss>>(File.ReadAllText("Bosses.json"));
+     */
 
     public GameService()
     {
@@ -20,52 +21,34 @@ public class GameService
     }
 
     private Area GetArea(string areaName) => AreaList.FirstOrDefault(a => a.AreaName == areaName);
-
+    //private Boss GetBoss(string bossName) => BossList.FirstOrDefault(b => b.Name == bossName);
     private NonPlayerCharacter FindNpcFromList(string name) => NpcList.FirstOrDefault(n => n.Name == name);
 
     public List<Area[]> PopulateAreaList()
     {
         AllAreas = new List<Area[]>
         {
-            new Area[]
+            new[]
             {
-                //new("Firelink Shrine", true, true,FindNpcFromList("Crestfallen Knight")),
-                //new("New Londo Ruins", false, false),
-                //new("The Abyss", "Four Kings", false, false),
-                //new("Kiln of the First Flame", "Gwyn, Lord of Cinder", false, false, new List<string>(){ "In the deepest depths of the Kiln the Lord of Cinder awaited you", "His crown full of soot, his skin charred and his eyes missing from the hollowing", "Inherit the fire, succeed Lord Gwyn"})
                 GetArea("Firelink Shrine"),
                 GetArea("New Londo Ruins"),
                 GetArea("The Abyss"),
                 GetArea("Kiln of the First Flame")
             },
-            new Area[]
-            {
-                //new("Undead Burg", true),
-                //new("Undead Parish", "Bell Gargoyles", false, FindNpcFromList("Solaire of Astora")),
-                //new("Darkroot Garden", false),
-                //new("Darkroot Basin", "Hydra", false,new List<string>{"At the deepest part of the basin a towering hydra.", "It's heads are almost too many to count, you see at least 20 of them", "Strike them down, never waver"}),
-                GetArea("Undead Burg"),
+            new[]
+            {   GetArea("Undead Burg"),
                 GetArea("Undead Parish"),
                 GetArea("Darkroot Garden"),
                 GetArea("Darkroot Basin"),
             },
-            new Area[]
-            {
-                //new("The Depths", true,FindNpcFromList("Knight Lautrec of Carim")),
-                //new("Blighttown", false),
-                //new("Poison Swamp", false),
-                //new("Quelaag's Domain", "Chaos Witch Quelaag", false, new List < string >() { "Quelaag, daughter of the Witch of Izalith who failed to escape the chaotic flame and was corrupted by it.", "Due to exposure to the flame, Quelaag mutated into spider-like creatures with their upper body being fused to the monsters' backs.", "Lay her to rest, ring the bell of awakening and succeed Lord Gwyn" }),
-                GetArea("The Depths"),
+            new[]
+            {   GetArea("The Depths"),
                 GetArea("Blighttown"),
                 GetArea("Poison Swamp"),
                 GetArea("Quelaag's Domain"),
             },
-            new Area[]
-            {
-                //new("Sen's Fortress", "Iron Golem", true,new List<string>(){"Three times your height and made of iron on top of the fortress he stood", "Guarding the way forth, this giant must be felled"}),
-                //new("Anor Londo", "Ornstein and Smough", false, new List < string >() { "You enter the cathedral only to be met by two knights.", "Dragon Slayer Ornstein with his lance, and Executioner Smough with his large hammer", "So close to fulfilment of your destiny, surely they will not put and end to your journey" },FindNpcFromList("Gwynevere, Princess of Sunlight")),
-                //new("The Dukes Archives", "Seath the Scaleless", false, new List < string >() { "The room is filled with crystals, every inch glistening","The betrayer of all Dragonkind, awarded Dukedom for his devotion to Gwyn", "A prominent scholar, creator of sorcery, Seath might be the last thing that stands in your way" }),
-                GetArea("Sen's Fortress"),
+            new[]
+            {   GetArea("Sen's Fortress"),
                 GetArea("Anor Londo"),
                 GetArea("The Dukes Archives"),
             },
@@ -133,7 +116,6 @@ public class GameService
                     break;
             }
         } while (true);
-
     }
 
     private Area FindNextArea()
@@ -180,16 +162,8 @@ public class GameService
         Process.Start(ps);
     }
 
-    private void CalculateEncounters()
+    private bool IsNextArea(Area destination)
     {
-
-    }
-
-    private bool CanTravel(Area destination)
-    {
-        if (destination.IsExplored)
-            return true;
-
         foreach (var aArray in AllAreas)
             for (var j = 0; j < aArray.Length; j++)
                 if (ActivePlayer.Location.AreaName == aArray[j].AreaName && aArray[j + 1].AreaName == destination.AreaName)
@@ -197,6 +171,8 @@ public class GameService
 
         return false;
     }
+
+    private bool CanTravel(Area destination) => destination.IsExplored || IsLastArea() || IsNextArea(destination);
 
     private bool IsLastArea()
     {

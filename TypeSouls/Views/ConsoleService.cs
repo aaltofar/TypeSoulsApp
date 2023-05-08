@@ -126,6 +126,9 @@ public static class ConsoleService
             case ConsoleKey.UpArrow:
             case ConsoleKey.W:
                 {
+                    if (choices.Count == 0)
+                        break;
+
                     if (_currentSelection > 0)
                         _currentSelection--;
                     break;
@@ -133,14 +136,15 @@ public static class ConsoleService
             case ConsoleKey.DownArrow:
             case ConsoleKey.S:
                 {
-                    if (choices.Count <= 1)
-                        break;
+
                     if (_currentSelection < choices.Count - 1)
                         _currentSelection++;
+
                     break;
                 }
         }
-        return (choices[_currentSelection].ChoiceName, key);
+
+        return choices.Count == 0 ? ("", key) : (choices[_currentSelection].ChoiceName, key);
     }
 
     public static void TestLayoutThing()
