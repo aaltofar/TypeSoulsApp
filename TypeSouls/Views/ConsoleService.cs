@@ -23,18 +23,8 @@ public static class ConsoleService
         var font = FigletFont.Load($"{fontName}.flf");
 
         AnsiConsole.Write(new FigletText(font, figTxt).Centered().Color(figColor));
-        var divider = new Rule(lineTxt) { Justification = Justify.Center };
+        var divider = lineTxt == string.Empty ? new Rule() : new Rule(lineTxt) { Justification = Justify.Center };
         AnsiConsole.Write(divider);
-    }
-
-    public static Layout testLayout()
-    {
-        return new Layout()
-        {
-            LeftTop = new List<string>() { "heilo lefttop" },
-            MidMid = new List<string>() { "testeteste midmid" },
-            RightTop = new List<string>() { "testeteste rightbot" }
-        };
     }
 
     public static void PrintLayout(Layout modules)
@@ -97,6 +87,7 @@ public static class ConsoleService
     public static (string, ConsoleKey) MakeArrowMenu(List<MenuChoice> choices, string position)
     {
         Console.CursorVisible = false;
+
         for (var i = 0; i < choices.Count; i++)
         {
 
@@ -141,50 +132,6 @@ public static class ConsoleService
         }
 
         return choices.Count == 0 ? ("", key) : (choices[_currentSelection].ChoiceName, key);
-    }
-
-    public static void TestLayoutThing()
-    {
-        string[] tester = new[]
-        {
-            "Teststring nummer 1",
-            "Teststring nummer 2",
-            "Teststring nummer 3",
-            "Teststring nummer 4",
-            "Teststring nummer 5",
-            "Teststring nummer 6",
-            "Teststring nummer 7",
-            "Teststring nummer 8",
-            "Teststring nummer 9",
-        };
-
-        SetWritePosition("leftTop");
-        Console.Write(tester[0]);
-
-        SetWritePosition("leftMid");
-        Console.Write(tester[1]);
-
-        SetWritePosition("leftBot");
-        Console.Write(tester[2]);
-
-        SetWritePosition("midTop", stringLength: tester[3].Length);
-        Console.Write(tester[3]);
-
-        SetWritePosition(position: "midMid", stringLength: tester[4].Length);
-        Console.Write(tester[4]);
-
-        SetWritePosition("midBot", stringLength: tester[5].Length);
-        Console.Write(tester[5]);
-
-        SetWritePosition("rightTop");
-        Console.Write(tester[6]);
-
-        SetWritePosition("rightMid");
-        Console.Write(tester[7]);
-
-        SetWritePosition("rightBot");
-        Console.Write(tester[8]);
-        Console.ReadLine();
     }
 
     private static void SetWritePosition(string position, [Optional] int i, [Optional] bool isDescription, [Optional] int yOffset, [Optional] int stringLength)
@@ -239,5 +186,48 @@ public static class ConsoleService
         }
     }
 
+    public static void StringArraySplitter(Area area)
+    {
+        var areaLayout = new Layout();
 
+        for (int i = 0; i < area.AreaDescription.Count; i++)
+        {
+            Console.Clear();
+            areaLayout.MidMid = new List<string>()
+            {
+                area.AreaDescription[i].ToString()
+            };
+            PrintLayout(areaLayout);
+            Console.ReadLine();
+        }
+    }
+
+    public static String TalkToNpcChoice()
+    {
+        _currentSelection = 0;
+        var _key = ConsoleKey.NoName;
+        string menuChoice = String.Empty;
+
+        string spotPerson = "As you look around the area you see another person";
+
+
+        while (_key != ConsoleKey.Enter)
+        {
+            Console.Clear();
+            SetWritePosition("midTop", stringLength: spotPerson.Length);
+            Console.WriteLine(spotPerson);
+
+            var menu = MakeArrowMenu(new List<MenuChoice>
+        {
+            new MenuChoice("Talk", "Approach the person, have a conversation"),
+            new MenuChoice("Leave", "Leave the person alone, go your own way"),
+        }, "midMid");
+
+            _key = menu.Item2;
+            menuChoice = menu.Item1;
+        }
+
+
+        return menuChoice;
+    }
 }

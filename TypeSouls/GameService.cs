@@ -61,7 +61,8 @@ public class GameService
     {
         ActivePlayer = new Player();
         ActivePlayer.CreateCharacter();
-        ActivePlayer.Location = new Area("Undead Asylum", false, FindNpcFromList("Oscar, knight of Astora"));
+        //ActivePlayer.Location = new Area("Undead Asylum", false, FindNpcFromList("Oscar, knight of Astora"));
+        ActivePlayer.Location = GetArea("Firelink Shrine");
     }
 
     public void SaveGame()

@@ -45,7 +45,7 @@ internal class TravelMenu
         {
             Console.Clear();
 
-            ConsoleService.MakeHeader("Where do you want to go?", $"Current location: {ActivePlayer.Location.AreaName}");
+            ConsoleService.MakeHeader("Where do you want to go?", $"Current location: {ActivePlayer.Location.AreaName}", Color.Orange3);
             Console.WriteLine();
 
             AnsiConsole.Write(BuildMap());

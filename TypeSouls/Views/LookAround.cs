@@ -12,12 +12,19 @@ public class LookAround
 
     public void LookAroundScreen()
     {
+        Console.Clear();
+
+        ConsoleService.StringArraySplitter(CurrentArea);
+
         if (CurrentArea.AreaNpc is null)
             return;
 
-        Console.Clear();
-        ConsoleService.DialoguePrompter(CurrentArea.AreaNpc);
+        var choice = ConsoleService.TalkToNpcChoice();
 
+        if (choice != "Talk")
+            return;
+
+        ConsoleService.DialoguePrompter(CurrentArea.AreaNpc);
     }
 }
 
