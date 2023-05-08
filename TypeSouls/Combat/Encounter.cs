@@ -42,12 +42,6 @@ public class Encounter
         void MyEvent(object source, ElapsedEventArgs e) => UpdateTimerAndCheckFail();
     }
 
-    public void BossBattle()
-    {
-        Console.Clear();
-        InitTimer();
-    }
-
     private void ResetEncounter()
     {
         Timer.Reset();
@@ -61,6 +55,9 @@ public class Encounter
 
     public bool PlayWordGame()
     {
+        if (Opponent is Boss boss)
+            ConsoleService.BossDialoguePrompter(boss);
+
         ResetEncounter();
         InitTimer();
 

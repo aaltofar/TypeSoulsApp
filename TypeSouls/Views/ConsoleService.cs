@@ -186,6 +186,24 @@ public static class ConsoleService
         }
     }
 
+    public static void BossDialoguePrompter(Boss boss)
+    {
+        var dialogueLayout = new Layout();
+
+        for (int i = 0; i < boss.DialogueList.Count; i++)
+        {
+            Console.Clear();
+            dialogueLayout.MidMid = new List<string>()
+            {
+               "[dim orange3]" + boss.Name + "[/]",
+                "",
+                boss.DialogueList[i]
+            };
+            PrintLayout(dialogueLayout);
+            Console.ReadLine();
+        }
+    }
+
     public static void StringArraySplitter(Area area)
     {
         var areaLayout = new Layout();
