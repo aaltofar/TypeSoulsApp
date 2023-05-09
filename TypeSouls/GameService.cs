@@ -62,7 +62,7 @@ public class GameService
         ActivePlayer = new Player();
         ActivePlayer.CreateCharacter();
         //ActivePlayer.Location = new Area("Undead Asylum", false, FindNpcFromList("Oscar, knight of Astora"));
-        ActivePlayer.Location = GetArea("Firelink Shrine");
+        ActivePlayer.Location = GetArea("Darkroot Garden");
     }
 
     public void SaveGame()
@@ -95,7 +95,7 @@ public class GameService
                     break;
 
                 case "Venture forth":
-                    var adventure = new Adventure(ActivePlayer);
+                    var adventure = new Adventure(ActivePlayer, FindNextArea());
                     adventure.AdventureLoop();
                     break;
 
@@ -119,14 +119,26 @@ public class GameService
         } while (true);
     }
 
-    private Area FindNextArea()
+    public Area FindNextArea()
     {
+        Area currentArea = ActivePlayer.Location;
         Area nextArea = null;
 
-        foreach (var aArray in AllAreas)
-            for (int j = 0; j < aArray.Length; j++)
-                if (aArray[j].AreaName == ActivePlayer.Location.AreaName && !IsLastArea())
-                    nextArea = aArray[j + 1];
+        for (int i = 0; i < AllAreas.Count; i++)
+            for (int j = 0; j < AllAreas[i].Length; j++)
+            {
+                if (IsLastArea() && (i + 1 <= AllAreas[i].Length))
+                    nextArea = AllAreas[i + 1][0];
+                else if (AllAreas[i][j].AreaName == currentArea.AreaName)
+                    nextArea = AllAreas[i][j + 1];
+            }
+
+
+
+        //foreach (var aArray in AllAreas)
+        //    for (int j = 0; j < aArray.Length; j++)
+        //        if (aArray[j].AreaName == ActivePlayer.Location.AreaName && !IsLastArea())
+        //            nextArea = aArray[j + 1];
 
         return nextArea;
     }

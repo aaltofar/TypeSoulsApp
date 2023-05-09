@@ -18,9 +18,14 @@ public class Enemy : IOpponent, IEntity
 
     public void TakeDamage(int damage)
     {
-        CurrentHealth -= damage;
-        if (CurrentHealth <= 0)
+        if (CurrentHealth - damage < 0)
+        {
+            CurrentHealth = 0;
             IsAlive = false;
+            return;
+        }
+
+        CurrentHealth -= damage;
     }
 
     public string MakeHealthBar()

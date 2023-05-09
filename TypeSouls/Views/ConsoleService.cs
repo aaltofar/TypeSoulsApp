@@ -1,5 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using TypeSouls.Data;
 
 namespace TypeSouls.Views;
 public static class ConsoleService
@@ -195,9 +196,9 @@ public static class ConsoleService
             Console.Clear();
             dialogueLayout.MidMid = new List<string>()
             {
-               "[dim orange3]" + boss.Name + "[/]",
+                boss.DialogueList[i],
                 "",
-                boss.DialogueList[i]
+                $"{i+1}/{boss.DialogueList.Count}"
             };
             PrintLayout(dialogueLayout);
             Console.ReadLine();
@@ -213,7 +214,9 @@ public static class ConsoleService
             Console.Clear();
             areaLayout.MidMid = new List<string>()
             {
-                area.AreaDescription[i].ToString()
+                area.AreaDescription[i],
+                "",
+                $"{i+1}/{area.AreaDescription.Count}"
             };
             PrintLayout(areaLayout);
             Console.ReadLine();

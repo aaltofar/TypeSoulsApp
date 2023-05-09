@@ -7,23 +7,29 @@ internal class Adventure
     public Player ActivePlayer { get; set; }
     public bool HasInvasion => ActivePlayer.Stats.Humanity && R.NextDouble() > 0.7;
     public Random R { get; set; }
-    public Adventure(Player activePlayer)
+    public Area NextArea { get; set; }
+    public Adventure(Player activePlayer, Area nextArea)
     {
         ActivePlayer = activePlayer;
         R = new Random();
-        AdventureLength = R.Next(MinLength, MaxLength);
+        AdventureLength = R.Next(1, 1);
+        NextArea = nextArea;
     }
 
     public void AdventureLoop()
     {
+
         var battleCount = 0;
         Console.Clear();
         bool playerWinner = false;
 
+        var lookAround = new LookAround(NextArea);
+        lookAround.LookAroundScreen();
+
         while (battleCount < AdventureLength)
         {
-            var encounter = new Encounter(ActivePlayer);
-            playerWinner = encounter.PlayWordGame();
+            var encounter = new Encounter(ActivePlayer, new Enemy());
+            encounter.PlayWordGame();
 
             var respite = new BriefRespiteScreen(ActivePlayer);
             var choice = respite.ShowRespiteScreen();
@@ -37,14 +43,16 @@ internal class Adventure
             battleCount++;
         }
 
-        if (ActivePlayer.Location.AreaBoss is { IsAlive: true })
+        if (NextArea.AreaBoss is { IsAlive: true })
         {
-            var bossEncounter = new Encounter(ActivePlayer);
+            ConsoleService.BossDialoguePrompter(NextArea.AreaBoss);
+            var bossEncounter = new Encounter(ActivePlayer, NextArea.AreaBoss);
 
             if (bossEncounter.PlayWordGame())
             {
-                ActivePlayer.Location.AreaBoss.IsAlive = false;
-                ActivePlayer.Location.IsExplored = true;
+                NextArea.AreaBoss.IsAlive = false;
+                NextArea.IsExplored = true;
+                ActivePlayer.Location = NextArea;
             }
 
         }

@@ -29,7 +29,19 @@ public class Boss : IOpponent
         IsAlive = true;
     }
 
-    public void TakeDamage(int damage) => CurrentHealth -= damage;
+    public void TakeDamage(int damage)
+    {
+        if (CurrentHealth - damage < 0)
+        {
+            CurrentHealth = 0;
+            IsAlive = false;
+            return;
+        }
+
+        CurrentHealth -= damage;
+    }
+
+
 
     public string MakeHealthBar() => new('█', CurrentHealth is > 0 and < 5 ? CurrentHealth / 5 + 1 : CurrentHealth / 5);
 }

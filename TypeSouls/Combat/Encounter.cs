@@ -13,14 +13,14 @@ public class Encounter
     private string WrittenLetters { get; set; }
     private Timer MyTimer { get; set; }
     private bool PlayerWinner { get; set; }
-    private Player? ActivePlayer { get; set; }
+    private Player ActivePlayer { get; set; }
     private Layout EncounterLayout { get; set; }
-    private int CombatTimer { get; set; }
+    private int TimerMax { get; set; }
 
-    public Encounter(Player activePlayer)
+    public Encounter(Player activePlayer, IOpponent opponent)
     {
         PlayerWinner = false;
-        Opponent = new Enemy();
+        Opponent = opponent;
         Timer = new Stopwatch();
         R = new Random();
         WrittenLetters = string.Empty;
@@ -29,7 +29,7 @@ public class Encounter
         MyTimer = new Timer();
         ActivePlayer = activePlayer;
         EncounterLayout = new Layout();
-        CombatTimer = 5000 + ActivePlayer.Stats.Intellect * 100;
+        TimerMax = 5000 + ActivePlayer.Stats.Intellect * 100;
     }
 
     private void InitTimer()
@@ -55,9 +55,6 @@ public class Encounter
 
     public bool PlayWordGame()
     {
-        if (Opponent is Boss boss)
-            ConsoleService.BossDialoguePrompter(boss);
-
         ResetEncounter();
         InitTimer();
 
@@ -149,7 +146,7 @@ public class Encounter
     private void UpdateTimerAndCheckFail()
     {
         EncounterView();
-        if (Timer.ElapsedMilliseconds >= CombatTimer)
+        if (Timer.ElapsedMilliseconds >= TimerMax)
         {
             PlayerWinner = false;
             FailScreen();
