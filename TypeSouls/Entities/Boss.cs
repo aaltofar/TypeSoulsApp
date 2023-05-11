@@ -41,7 +41,13 @@ public class Boss : IOpponent
         CurrentHealth -= damage;
     }
 
+    public string MakeHealthBar()
+    {
+        int missingHealth = (100 - CurrentHealth) / 5;
 
+        string bar = new('█', CurrentHealth is > 0 and < 5 ? CurrentHealth / 5 + 1 : CurrentHealth / 5);
+        string missingBar = new('█', missingHealth);
 
-    public string MakeHealthBar() => new('█', CurrentHealth is > 0 and < 5 ? CurrentHealth / 5 + 1 : CurrentHealth / 5);
+        return "[maroon]" + bar + "[/]" + "[silver]" + missingBar + "[/]";
+    }
 }

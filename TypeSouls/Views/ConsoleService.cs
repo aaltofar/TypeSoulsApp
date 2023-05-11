@@ -101,6 +101,7 @@ public static class ConsoleService
                 Console.Write(choices[i].ChoiceName);
 
             SetWritePosition(position, i, true, choices.Count, choices[i].ChoiceDescription.Length);
+
             if (i == _currentSelection)
             {
                 for (int j = 0; j < choices[i].ChoiceDescription.Length; j++)
@@ -223,13 +224,13 @@ public static class ConsoleService
         }
     }
 
-    public static String TalkToNpcChoice()
+    public static string TalkToNpcChoice()
     {
         _currentSelection = 0;
         var _key = ConsoleKey.NoName;
-        string menuChoice = String.Empty;
+        var menuChoice = string.Empty;
 
-        string spotPerson = "As you look around the area you see another person";
+        const string spotPerson = "As you look around the area you see another person";
 
 
         while (_key != ConsoleKey.Enter)

@@ -77,10 +77,9 @@ public class Player : IEntity
 
     public string MakeHealthBar()
     {
-        const int barLength = 5;
-        int missingHealth = (MaxHealth - CurrentHealth) / barLength;
+        int missingHealth = (100 - CurrentHealth) / 5;
 
-        string bar = new('█', CurrentHealth is > 0 and < 5 ? CurrentHealth / 5 + 1 : CurrentHealth / barLength);
+        string bar = new('█', CurrentHealth is > 0 and < 5 ? CurrentHealth / 5 + 1 : CurrentHealth / 5);
         string missingBar = new('█', missingHealth);
 
         return "[maroon]" + bar + "[/]" + "[silver]" + missingBar + "[/]";

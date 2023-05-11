@@ -116,6 +116,7 @@ public class GameService
                     Environment.Exit(69);
                     break;
             }
+
         } while (true);
     }
 
