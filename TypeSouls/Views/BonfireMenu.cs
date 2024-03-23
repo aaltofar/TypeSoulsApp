@@ -99,7 +99,7 @@ public class BonfireMenu
             Justification = Justify.Center
         };
 
-        AnsiConsole.Markup(BonfireImage);
+        //AnsiConsole.Markup(BonfireImage);
         Console.WriteLine();
         AnsiConsole.Write(locationTitle);
         AnsiConsole.Write(rule);

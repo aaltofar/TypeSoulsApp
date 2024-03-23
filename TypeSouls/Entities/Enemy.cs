@@ -1,4 +1,5 @@
-﻿namespace TypeSouls.Entities;
+﻿
+namespace TypeSouls.Entities;
 public class Enemy : IOpponent, IEntity
 {
     public string Name { get; set; }

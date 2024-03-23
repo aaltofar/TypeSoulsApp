@@ -202,6 +202,8 @@ public class Encounter
 
         ConsoleService.PrintLayout(EncounterLayout);
         Thread.Sleep(2000);
+
+        
     }
 
     private static string GetInput() => Console.ReadKey().KeyChar.ToString().ToUpper();

@@ -39,8 +39,9 @@ internal class TravelMenu
 
     public string MapScreen()
     {
-
+        var selectedIndex = 0;
         var destination = "";
+        ConsoleKey _key;
         while (true)
         {
             Console.Clear();
@@ -48,11 +49,11 @@ internal class TravelMenu
             ConsoleService.MakeHeader("Where do you want to go?", $"Current location: {ActivePlayer.Location.AreaName}", Color.Orange3);
             Console.WriteLine();
 
-            AnsiConsole.Write(BuildMap());
+            //AnsiConsole.Write(BuildMap());
 
-            MapLegend();
+            //MapLegend();
 
-            (destination, _key) = ConsoleService.MakeArrowMenu(MenuChoices, "mid");
+            (destination, _key) = ConsoleService.MakeArrowMenu(MenuChoices, "midMid");
 
             if (_key is ConsoleKey.Enter or ConsoleKey.Backspace)
                 break;

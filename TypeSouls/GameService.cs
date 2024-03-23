@@ -5,15 +5,16 @@ namespace TypeSouls;
 public class GameService
 {
     public Player ActivePlayer { get; set; }
+
     private const string SaveFileName = "saveFile.json";
     private bool HasContinue => File.Exists(SaveFileName);
     private List<NonPlayerCharacter>? NpcList => JsonSerializer.Deserialize<List<NonPlayerCharacter>>(File.ReadAllText("NPCs.json"));
     private List<Area>? AreaList => JsonSerializer.Deserialize<List<Area>>(File.ReadAllText("Areas.json"));
     public List<Area[]> AllAreas { get; set; }
 
-    /*
-    private List<Boss>? BossList => JsonSerializer.Deserialize<List<Boss>>(File.ReadAllText("Bosses.json"));
-     */
+
+    //private List<Boss>? BossList => JsonSerializer.Deserialize<List<Boss>>(File.ReadAllText("Bosses.json"));
+
 
     public GameService()
     {
@@ -54,6 +55,9 @@ public class GameService
             },
         };
 
+        foreach (var a in AllAreas[0])
+            a.IsExplored = true;
+
         return AllAreas;
     }
 
@@ -62,7 +66,8 @@ public class GameService
         ActivePlayer = new Player();
         ActivePlayer.CreateCharacter();
         //ActivePlayer.Location = new Area("Undead Asylum", false, FindNpcFromList("Oscar, knight of Astora"));
-        ActivePlayer.Location = GetArea("Darkroot Garden");
+        ActivePlayer.Location = GetArea("Firelink Shrine");
+        //ActivePlayer.Location = GetArea("Darkroot Garden");
     }
 
     public void SaveGame()
@@ -81,8 +86,9 @@ public class GameService
 
     public void GameLoop()
     {
+        while (true)
+            if (HandleMenuChoice(StartMenuScreen.StartMenu(HasContinue)) != "GitHub") break;
 
-        HandleMenuChoice(StartMenuScreen.StartMenu(HasContinue));
         do
         {
             var bonfireMenuChoice = new BonfireMenu(ActivePlayer.Location).BonfireScreen(IsLastArea(), ActivePlayer.StatPointsToPlace);
@@ -91,7 +97,7 @@ public class GameService
             {
                 case "Travel":
                     var travelMenu = new TravelMenu(AllAreas, ActivePlayer);
-                    travelMenu.MapScreen();
+                    ActivePlayer.Location = GetArea(travelMenu.MapScreen());
                     break;
 
                 case "Venture forth":
@@ -144,7 +150,7 @@ public class GameService
         return nextArea;
     }
 
-    private void HandleMenuChoice(string choice)
+    private string HandleMenuChoice(string choice)
     {
         switch (choice)
         {
@@ -164,9 +170,10 @@ public class GameService
                 Environment.Exit(1);
                 break;
         }
+        return choice;
     }
 
-    public void OpenGitHub()
+    public static void OpenGitHub()
     {
         var ps = new ProcessStartInfo
         {

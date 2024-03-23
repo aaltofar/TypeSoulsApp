@@ -54,7 +54,7 @@ internal static class CreateCharacter
         {
             //Header and dividerline
             MakeHeader();
-            Console.SetCursorPosition(startXStats - 23, startYStats);
+            Console.SetCursorPosition(startXStats, startYStats);
             AnsiConsole.Markup("[underline wheat1]Choose class:[/]");
             //Menu
             for (var i = 0; i < _classes.Length; i++)

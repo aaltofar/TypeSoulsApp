@@ -1,4 +1,5 @@
-﻿namespace TypeSouls.Entities;
+﻿
+namespace TypeSouls.Entities;
 internal class Invader : IOpponent
 {
     public string Name { get; set; }
