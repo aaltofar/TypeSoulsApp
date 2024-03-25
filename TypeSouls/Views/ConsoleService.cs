@@ -21,7 +21,7 @@ public static class ConsoleService
     {
         Console.Clear();
 
-        var font = FigletFont.Load($"{fontName}.flf");
+        var font = FigletFont.Load(Path.Combine(GameService.GetProjectFolder(), "Data", $"{fontName}.flf"));
 
         AnsiConsole.Write(new FigletText(font, figTxt).Centered().Color(figColor));
         var divider = lineTxt == string.Empty ? new Rule() : new Rule(lineTxt) { Justification = Justify.Center };

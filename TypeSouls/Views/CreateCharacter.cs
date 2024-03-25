@@ -115,7 +115,7 @@ internal static class CreateCharacter
                     }
             }
         } while (key != ConsoleKey.Enter);
-        var menuSelect = new CachedSound("select.wav");
+        //var menuSelect = new CachedSound("select.wav");
         Console.CursorVisible = true;
         //AudioPlaybackEngine.Instance.PlaySound(menuSelect);
         return _classes[currentSelection];

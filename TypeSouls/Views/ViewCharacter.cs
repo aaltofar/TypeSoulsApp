@@ -3,7 +3,7 @@ internal class ViewCharacter
 {
     public static string ViewStats(Player player)
     {
-        var startXMenu = Console.WindowWidth / 8 - 25;
+        var startXMenu = Console.WindowWidth / 8;
         var startYMenu = Console.WindowHeight / 8 + 2;
 
         var startXStats = startXMenu + 20;

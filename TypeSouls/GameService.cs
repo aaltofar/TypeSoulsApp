@@ -4,13 +4,13 @@ namespace TypeSouls;
 
 public class GameService
 {
-    public string FolderPath = AppDomain.CurrentDomain.BaseDirectory;
+    public string FolderPath = GetProjectFolder();
     public Player ActivePlayer { get; set; }
 
     private const string SaveFileName = "saveFile.json";
     private bool HasContinue => File.Exists(SaveFileName);
     private List<NonPlayerCharacter>? NpcList => JsonSerializer.Deserialize<List<NonPlayerCharacter>>(File.ReadAllText(Path.Combine(FolderPath, "NPCs.json")));
-    private List<Area>? AreaList => JsonSerializer.Deserialize<List<Area>>(File.ReadAllText(Path.Combine(FolderPath, "Areas.json")));
+    private List<Area>? AreaList => JsonSerializer.Deserialize<List<Area>>(File.ReadAllText(Path.Combine(FolderPath, "Data", "Areas.json")));
     public List<Area[]> AllAreas { get; set; }
 
 
@@ -20,6 +20,21 @@ public class GameService
     public GameService()
     {
         PopulateAreaList();
+    }
+
+
+    public static string GetProjectFolder()
+    {
+        string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
+        DirectoryInfo directory = new DirectoryInfo(currentDirectory);
+
+        while (directory != null && directory.Name != "TypeSouls")
+            directory = directory.Parent;
+
+        if (directory == null)
+            throw new Exception("Project folder not found.");
+
+        return directory.FullName;
     }
 
     private Area GetArea(string areaName) => AreaList.FirstOrDefault(a => a.AreaName == areaName);
