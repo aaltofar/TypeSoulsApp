@@ -4,12 +4,13 @@ namespace TypeSouls;
 
 public class GameService
 {
+    public string FolderPath = AppDomain.CurrentDomain.BaseDirectory;
     public Player ActivePlayer { get; set; }
 
     private const string SaveFileName = "saveFile.json";
     private bool HasContinue => File.Exists(SaveFileName);
-    private List<NonPlayerCharacter>? NpcList => JsonSerializer.Deserialize<List<NonPlayerCharacter>>(File.ReadAllText("NPCs.json"));
-    private List<Area>? AreaList => JsonSerializer.Deserialize<List<Area>>(File.ReadAllText("Areas.json"));
+    private List<NonPlayerCharacter>? NpcList => JsonSerializer.Deserialize<List<NonPlayerCharacter>>(File.ReadAllText(Path.Combine(FolderPath, "NPCs.json")));
+    private List<Area>? AreaList => JsonSerializer.Deserialize<List<Area>>(File.ReadAllText(Path.Combine(FolderPath, "Areas.json")));
     public List<Area[]> AllAreas { get; set; }
 
 

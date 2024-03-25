@@ -1,0 +1,70 @@
+[{
+    "Name": "Solaire of Astora",
+    "Dialogue": [
+      "Ah, hello. You don't look hollow, far from it. I am Solaire of Astora, an adherent of the Lord of Sunlight.",
+      "Now that I am Undead, I have come to this great land, the birthplace of Lord Gwyn, to seek my very own sun!",
+      "To be alive, to walk this earth, that's the real curse right there.",
+      "The flow of time itself is convoluted, with heroes centuries old phasing in and out.",
+      "The sun is a wondrous body, like a magnificent father! If only I could be so grossly incandescent!",
+      "I'm afraid I'm a bit out of practice, but I still have the moves!",
+      "If only I could be so grossly incandescent!",
+      "The way I see it, our fates appear to be intertwined. In a land brimming with Hollows, could that really be mere chance?"
+    ]
+  },
+  {
+    "Name": "Oscar, knight of Astora",
+    "Dialogue":[
+      "...Oh, you... You're no Hollow, eh? Thank goodness... I'm done for, I'm afraid...",
+      "I'll die soon, then lose my sanity... I wish to ask something of you...",
+      "You and I, we're both Undead... Hear me out, will you?",
+      "...Regrettably, I have failed in my mission... But perhaps you can keep the torch lit...",
+      "There is an old saying in my family... Thou who art Undead, art chosen...",
+      "In thine exodus from the Undead Asylum, maketh pilgrimage to the land of Ancient Lords... When thou ringeth the Bell of Awakening, the fate of the Undead thou shalt know...",
+      "Well, now you know... And I can die with hope in my heart... Oh, one more thing... Here, take this... An Estus Flask, an Undead favourite...",
+      "...Now I must bid farewell... I would hate to harm you after death... So, go now... And thank you..."
+    ]
+  },
+  {
+    "Name": "Knight Lautrec of Carim",
+    "Dialogue":[
+      "Oh? Still human, are you? Then I am in luck. Could you help me? As you can see I am stuck, without recourse.",
+      "Please, I have duties to fulfill, and I will reward you handsomely. Well? I am certain you stand to benefit.",
+      "Thank you, yes, sincerely. I am Knight Lautrec of Carim. I truly appreciate this.",
+      "Please accept this reward. I am grateful to you for freeing me... Keh heh heh heh... Not enough for you? Well, let's not be greedy now... Keh heh heh heh..."
+    ]
+  },
+  {
+    "Name": "Crestfallen Knight",
+    "Dialogue":[
+      "Well, what do we have here? You must be a new arrival. Let me guess. Fate of the Undead, right?",
+      "Well, you're not the first. But there's no salvation here. You'd have done better to rot in the Undead Asylum...",
+      "But, too late now. Well, since you're here... Let me help you out. There are actually two Bells of Awakening.",
+      "One's up above, in the Undead Church. The other is far, far below, in the ruins at the base of Blighttown.",
+      "Ring them both, and something happens... Brilliant, right? Not much to go on, but I have a feeling that won't stop you.",
+      "So, off you go. It is why you came, isn't it? To this accursed land of the Undead? Hah hah hah hah..."
+    ]
+  },
+  {
+    "Name": "Gwynevere, Princess of Sunlight",
+    "Dialogue":[
+      "Thou hast journey'd far, and overcome much, chosen Undead. Come hither, child...",
+      "O chosen Undead. I am Gwynevere. Daughter of Lord Gwyn; and Queen of Sunlight.",
+      "Since the day Father his form did obscureth, I have await'd thee. I bequeath the Lordvessel to thee. And beseech thee.",
+      "Succeed Lord Gwyn, and inheriteth the Fire of our world. Thou shall endeth this eternal twilight, and avert further Undead sacrifices.",
+      "Now thou shalt go forth, chosen Undead. May thou be one with the sunlight for evermore."
+    ]
+  },
+  {
+    "Name": "Kingseeker Frampt, the primordial serpent",
+    "Dialogue":[
+      "Ahh, hello. Was it you who rang the Bell of Awakening? I am the primordial serpent, Kingseeker Frampt, close friend of the Great Lord Gwyn.",
+      "Chosen Undead, who has rung the Bell of Awakening. I wish to elucidate your fate. Do you seek such enlightenment?",
+      "After a thousand years! It is you, it is really you! Hraaaoogggh! ... Forgive me.",
+      "I shall take you to the Firelink Chamber, for the successor of Lord Gwyn. Once we arrive, place the Lordvessel on the altar.",
+      "I really should calm down. Now, let us take that vessel on a journey. I assume you are ready. Now, be still!",
+      "Kingseeker Frampt towers over you, opens his mouth and closes it around you, before taking you into the abyss with him.",
+      "Ahh...ohh! The Lordvessel is satiated... Magnificent... You are the righteous successor to Gwyn, the new Great Lord. And I am Kingseeker no more...",
+      "Your acquaintance was an honour. I must admit, I am fond of you humans. May you enjoy your serendipity. And may the Age of Fire perpetuate."
+    ]
+  }
+]

@@ -1,0 +1,43 @@
+{
+  "Level": 1,
+  "Class": "Knight",
+  "CharName": "marius",
+  "CurrentExp": 0,
+  "Location": {
+    "AreaName": "Kiln of the First Flame",
+    "DecoratedName": "[grey]***********[/]",
+    "AreaBoss": {
+      "Name": "Gwyn, Lord of Cinder",
+      "CurrentHealth": 100,
+      "IsBoss": true,
+      "IsAlive": true,
+      "DialogueList": [
+        "As you step into the final chamber, you are met with the sight of Gwyn, Lord of Cinder.",
+        "Once a great and powerful ruler, Gwyn is now a mere shadow of his former self, his once-golden armor now scorched and blackened by the fires that surround him.",
+        "As you face Gwyn, you can feel the weight of his despair and madness bearing down upon you.",
+        "He is a creature consumed by his own power, and his will is as unbreakable as the steel of his sword.",
+        "Defeating Gwyn will not be easy, but the fate of the world rests in your hands.",
+        "The First Flame is dying, and only by defeating Gwyn can you hope to rekindle it and save the world from an eternity of darkness."
+      ]
+    },
+    "IsMajor": false,
+    "AreaDescription": [
+      "As you step into the Kiln of the First Flame, you feel the weight of history bearing down upon you.",
+      "This is the birthplace of the world, where the First Flame was ignited and the age of fire began.",
+      "The air is thick with the scent of ash and smoke, and you can feel the heat of the flames radiating from the walls."
+    ],
+    "AreaNpc": null,
+    "SelectedForTravel": false
+  },
+  "MaxHealth": 150,
+  "CurrentHealth": 100,
+  "StatPointsToPlace": 0,
+  "Stats": {
+    "Strength": 5,
+    "Intellect": 5,
+    "Endurance": 10,
+    "Faith": 5,
+    "Humanity": true
+  },
+  "EstusAmount": 3
+}

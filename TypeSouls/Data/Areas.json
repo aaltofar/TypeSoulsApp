@@ -1,0 +1,344 @@
+[
+    {
+      "AreaName": "Firelink Shrine",
+      "DecoratedName": "[bold yellow1]Firelink Shrine[/]",
+      "AreaBoss": null,
+      "IsMajor": true,
+      "AreaDescription": [
+        "As you arrive at Firelink Shrine, you find yourself in a desolate, circular courtyard surrounded by crumbling stone structures.",
+        "The air is thick with the scent of ash and the ground is littered with debris, giving the place an eerie, abandoned feel.",
+        "Despite its apparent emptiness, there is a sense of foreboding and danger that permeates the air. This is a place of ancient power and mystery, and you cannot shake the feeling that you are being watched.",
+        "Be wary, adventurer, for the dangers of this land are many and the challenges ahead are sure to test your mettle."
+      ],
+      "AreaNpc": {
+        "Name": "Crestfallen Knight",
+        "Dialogue": [
+          "Well, what do we have here? You must be a new arrival. Let me guess. Fate of the Undead, right?",
+          "Well, you're not the first. But there'''s no salvation here. You'd have done better to rot in the Undead Asylum...",
+          "But, too late now. Well, since you're here... Let me help you out. There are actually two Bells of Awakening.",
+          "One's up above, in the Undead Church. The other is far, far below, in the ruins at the base of Blighttown.",
+          "Ring them both, and something happens... Brilliant, right? Not much to go on, but I have a feeling that won't stop you.",
+          "So, off you go. It is why you came, isn't it? To this accursed land of the Undead? Hah hah hah hah..."
+        ]
+      },
+      "SelectedForTravel": false
+    },
+    {
+      "AreaName": "New Londo Ruins",
+      "DecoratedName": "[grey]***********[/]",
+      "AreaBoss": null,
+      "IsMajor": false,
+      "AreaDescription": [
+        "As you make your way to the New Londo Ruins, a chill runs down your spine.",
+        "The once great city of the gods lies in ruins, its crumbling architecture a testament to the tragic fate that befell its inhabitants.",
+        "The darkness ahead beckons you to explore, but you know that danger lurks around every corner.",
+        "For the spirits of the city's former residents still roam the ruins, trapped in a state of eternal unrest.",
+        "You must be careful not to awaken their fury, for the cursed spirits of New Londo will not hesitate to strike out at those who disturb their eternal slumber."
+      ],
+      "AreaNpc": null,
+      "SelectedForTravel": false
+    },
+    {
+      "AreaName": "The Abyss",
+      "DecoratedName": "[grey]***********[/]",
+      "AreaBoss": {
+        "Name": "Four Kings",
+        "CurrentHealth": 100,
+        "IsBoss": true,
+        "IsAlive": true,
+        "DialogueList": [
+          "As you enter the chamber, you are immediately struck by the ominous presence of the Four Kings.",
+          "These towering figures loom over you, their forms shrouded in darkness and their eyes glowing with an eerie red light.",
+          "Each King wields a massive sword, and their armor is adorned with strange symbols and markings that seem to writhe and twist in the darkness.",
+          "To face the Four Kings is to confront the very forces of darkness itself.",
+          "Only the strongest and bravest of warriors have any hope of emerging victorious from such a battle."
+        ]
+      },
+      "IsMajor": false,
+      "AreaDescription": [
+        "As you approach The Abyss, you are struck by a sense of foreboding and dread. The darkness is absolute, and the only sounds you can hear are the echoing whispers of your own footsteps.",
+        "The Abyss is a place of pure darkness, a realm of blackness that seems to go on forever, a place of darkness and evil, a realm of terror and malevolence that has claimed the lives of countless adventurers over the ages.",
+        "It is a place of fear and horror, where only the bravest and most skilled warriors can hope to survive and emerge victorious."
+      ],
+      "AreaNpc": null,
+      "SelectedForTravel": false
+    },
+    {
+      "AreaName": "Kiln of the First Flame",
+      "DecoratedName": "[grey]***********[/]",
+      "AreaBoss": {
+        "Name": "Gwyn, Lord of Cinder",
+        "CurrentHealth": 100,
+        "IsBoss": true,
+        "IsAlive": true,
+        "DialogueList": [
+          "As you step into the final chamber, you are met with the sight of Gwyn, Lord of Cinder.",
+          "Once a great and powerful ruler, Gwyn is now a mere shadow of his former self, his once-golden armor now scorched and blackened by the fires that surround him.",
+          "As you face Gwyn, you can feel the weight of his despair and madness bearing down upon you.",
+          "He is a creature consumed by his own power, and his will is as unbreakable as the steel of his sword.",
+          "Defeating Gwyn will not be easy, but the fate of the world rests in your hands.",
+          "The First Flame is dying, and only by defeating Gwyn can you hope to rekindle it and save the world from an eternity of darkness."
+        ]
+      },
+      "IsMajor": false,
+      "AreaDescription": [
+        "As you step into the Kiln of the First Flame, you feel the weight of history bearing down upon you.",
+        "This is the birthplace of the world, where the First Flame was ignited and the age of fire began.",
+        "The air is thick with the scent of ash and smoke, and you can feel the heat of the flames radiating from the walls."
+      ],
+      "AreaNpc": null,
+      "SelectedForTravel": false
+    }
+  ,
+  
+    {
+      "AreaName": "Undead Burg",
+      "DecoratedName": "[grey]***********[/]",
+      "AreaBoss": null,
+      "IsMajor": true,
+      "AreaDescription": [
+        "As you enter the Undead Burg, you are greeted by the towering walls of an ancient fortress.",
+        "The walls are made of rough-hewn stone, and the air is thick with the scent of ash and decay.",
+        "The Undead Burg is a place of great danger, where the weak are consumed by the strong and only the strongest can hope to survive.",
+        "It is a place where only the most determined and skilled warriors can hope to emerge victorious."
+      ],
+      "AreaNpc": null,
+      "SelectedForTravel": false
+    },
+    {
+      "AreaName": "Undead Parish",
+      "DecoratedName": "[grey]***********[/]",
+      "AreaBoss": {
+        "Name": "Bell Gargoyles",
+        "CurrentHealth": 100,
+        "IsBoss": true,
+        "IsAlive": true,
+        "DialogueList": null
+      },
+      "IsMajor": false,
+      "AreaDescription": [
+        "As you climb the stairs towards the bell tower, you hear the sound of heavy footsteps echoing through the stone corridors.",
+        "As you round the corner, you are met with the sight of the Bell Gargoyles on the roof leading to the final ladder.",
+        "These fearsome creatures tower over you, their skin as hard as steel and their wingspan wider than a man is tall.",
+        "Each gargoyle wields a massive halberd that crackles with lightning, and their eyes gleam with an eerie red light.",
+        "These creatures are protectors of the bell tower, and they will stop at nothing to keep intruders from disturbing the peace of their domain."
+      ],
+      "AreaNpc": {
+        "Name": "Solaire of Astora",
+        "Dialogue": [
+          "Ah, hello. You don't look hollow, far from it. I am Solaire of Astora, an adherent of the Lord of Sunlight.",
+          "Now that I am Undead, I have come to this great land, the birthplace of Lord Gwyn, to seek my very own sun!",
+          "To be alive, to walk this earth, that's the real curse right there.",
+          "The flow of time itself is convoluted, with heroes centuries old phasing in and out.",
+          "The sun is a wondrous body, like a magnificent father! If only I could be so grossly incandescent!",
+          "I'm afraid I'm a bit out of practice, but I still have the moves!",
+          "If only I could be so grossly incandescent!",
+          "The way I see it, our fates appear to be intertwined. In a land brimming with Hollows, could that really be mere chance?"
+        ]
+      },
+      "SelectedForTravel": false
+    },
+    {
+      "AreaName": "Darkroot Garden",
+      "DecoratedName": "[grey]***********[/]",
+      "AreaBoss": null,
+      "IsMajor": false,
+      "AreaDescription": [
+        "As you enter the Darkroot Garden, you are immediately struck by the beauty of the ancient forest that surrounds you.",
+        "The trees are tall and imposing, their twisted branches reaching towards the sky, while the leaves form a dense canopy overhead, blocking out much of the sunlight.",
+        "The ground beneath your feet is covered in a thick layer of moss, soft and spongy to the touch.",
+        "As you make your way deeper into the forest, you hear the sound of trickling water and the occasional rustle of leaves, hinting at the secrets that lie ahead."
+      ],
+      "AreaNpc": null,
+      "SelectedForTravel": false
+    },
+    {
+      "AreaName": "Darkroot Basin",
+      "DecoratedName": "[grey]***********[/]",
+      "AreaBoss": {
+        "Name": "Hydra",
+        "CurrentHealth": 100,
+        "IsBoss": true,
+        "IsAlive": true,
+        "DialogueList": [
+          "As you venture deeper into the Darkroot Basin, you hear a sound that chills you to the bone; the roar of the Hydra.",
+          "This massive serpent-like creature emerges from the murky waters, its heads thrashing and snapping at the air.",
+          "The Hydra is a formidable foe, with multiple heads that each attack independently.",
+          "Its powerful jaws can crush armor and bone alike, and its long necks give it a reach that few opponents can match.",
+          "As you face the Hydra, you feel the full weight of its primal fury bearing down upon you.",
+          "This is a creature that has lived for untold centuries, preying upon anything that ventures too close to its domain."
+        ]
+      },
+      "IsMajor": false,
+      "AreaDescription": [
+        "As you enter the Darkroot Basin, you are struck by the serene beauty of the place.",
+        "The basin is a deep, natural depression, surrounded on all sides by towering cliffs and dense forest. At its center lies a tranquil lake, its surface shimmering in the sunlight.",
+        "The Darkroot Basin is a place of great natural beauty and ancient power, but also of great danger.",
+        "You must tread carefully if you hope to emerge unscathed from this enchanted place."
+      ],
+      "AreaNpc": null,
+      "SelectedForTravel": false
+    }
+  ,
+    {
+      "AreaName": "The Depths",
+      "DecoratedName": "[grey]***********[/]",
+      "AreaBoss": null,
+      "IsMajor": true,
+      "AreaDescription": [],
+      "AreaNpc": {
+        "Name": "Knight Lautrec of Carim",
+        "Dialogue": [
+          "Oh? Still human, are you? Then I am in luck. Could you help me? As you can see I am stuck, without recourse.",
+          "Please, I have duties to fulfill, and I will reward you handsomely. Well? I am certain you stand to benefit.",
+          "Thank you, yes, sincerely. I am Knight Lautrec of Carim. I truly appreciate this.",
+          "Please accept this reward. I am grateful to you for freeing me... Keh heh heh heh... Not enough for you? Well, let's not be greedy now... Keh heh heh heh..."
+        ]
+      },
+      "SelectedForTravel": false
+    },
+    {
+      "AreaName": "Blighttown",
+      "DecoratedName": "[grey]***********[/]",
+      "AreaBoss": null,
+      "IsMajor": false,
+      "AreaDescription": [
+        "As you enter the Depths, you are immediately struck by the foul stench that hangs heavy in the air.",
+        "The putrid smell of rot and decay fills your nostrils, making it hard to breathe.",
+        "The area is a sprawling network of narrow tunnels and damp caverns, with murky water up to your ankles, making each step a slippery challenge.",
+        "The walls are slick with slime, and the sound of dripping water echoes through the darkness."
+      ],
+      "AreaNpc": null,
+      "SelectedForTravel": false
+    },
+    {
+      "AreaName": "Poison Swamp",
+      "DecoratedName": "[grey]***********[/]",
+      "AreaBoss": null,
+      "IsMajor": false,
+      "AreaDescription": [
+        "As you enter the Poison Swamp, you are immediately struck by the overwhelming toxicity of the area.",
+        "The ground is covered in a thick, noxious sludge that seeps into your boots, burning your skin and making it difficult to move.",
+        "The air is thick with the stench of decay and rot, and the fog is so thick that it's hard to see more than a few feet in front of you.",
+        "The trees are twisted and gnarled, with vines and thorns that seem to move of their own accord.",
+        "The Poison Swamp is a place of sickness and disease, infested with hordes of grotesque creatures that thrive in this toxic environment.",
+        "Bloated, toxic creatures and mutated beasts lurk in the shadows, waiting for their next victim."
+      ],
+      "AreaNpc": null,
+      "SelectedForTravel": false
+    },
+    {
+      "AreaName": "Quelaag's Domain",
+      "DecoratedName": "[grey]***********[/]",
+      "AreaBoss": {
+        "Name": "Chaos Witch Quelaag",
+        "CurrentHealth": 100,
+        "IsBoss": true,
+        "IsAlive": true,
+        "DialogueList": [
+          "Quelaag, daughter of the Witch of Izalith who failed to escape the chaotic flame and was corrupted by it.",
+          "Due to exposure to the flame, Quelaag mutated into spider-like creatures with their upper body being fused to the monsters' backs.",
+          "Lay her to rest, ring the bell of awakening and succeed Lord Gwyn"
+        ]
+      },
+      "IsMajor": false,
+      "AreaDescription": [
+        "As you enter Quelaag's Domain, you are struck by the eerie beauty of the place.",
+        "The walls are adorned with intricate carvings and glowing red symbols, giving the area a sinister and foreboding feel.",
+        "The air is thick with the scent of ash and brimstone, and the ground rumbles beneath your feet.",
+        "Quelaag's Domain is a place of mystery and danger, a treacherous lair that few have ever dared to enter.",
+        "It is a place of fear and uncertainty, where only the strongest and most skilled warriors can hope to emerge victorious."
+      ],
+      "AreaNpc": null,
+      "SelectedForTravel": false
+    }
+  ,
+    {
+      "AreaName": "Sen's Fortress",
+      "DecoratedName": "[grey]***********[/]",
+      "AreaBoss": {
+        "Name": "Iron Golem",
+        "CurrentHealth": 100,
+        "IsBoss": true,
+        "IsAlive": true,
+        "DialogueList": [
+          "Three times your height and made of iron on top of the fortress he stood",
+          "Guarding the way forth, this giant must be felled"
+        ]
+      },
+      "IsMajor": true,
+      "AreaDescription": [
+        "As you approach Sen's Fortress, you are struck by the imposing sight of the massive stone structure rising high into the sky.",
+        "The fortress is surrounded by a moat of boiling lava, making it nearly impossible to approach from the ground.",
+        "Once you manage to find your way inside, you realize that the fortress is a labyrinth of traps and dangers.",
+        "The entire place is designed to kill anyone who dares to enter, with pitfalls, swinging blades, and crushing traps waiting at every turn."
+      ],
+      "AreaNpc": null,
+      "SelectedForTravel": false
+    },
+    {
+      "AreaName": "Anor Londo",
+      "DecoratedName": "[grey]***********[/]",
+      "AreaBoss": {
+        "Name": "Ornstein and Smough",
+        "CurrentHealth": 100,
+        "IsBoss": true,
+        "IsAlive": true,
+        "DialogueList": [
+          "As you enter the grand hall of Anor Londo, you are confronted with the towering figures of Ornstein and Smough.",
+          "These two legendary warriors are the guardians of the city, and they will not let you pass without a fight.",
+          "Ornstein wields a spear that crackles with energy, and he is capable of unleashing powerful lightning attacks that can stun even the most battle-hardened warrior.",
+          "Smough, on the other hand, is a hulking brute of a man, wielding a massive hammer that can crush bone and armor alike.",
+          "He is slow and lumbering, but his attacks are devastating, and he can absorb incredible amounts of punishment before going down.",
+          "As you stand before these two giants, you know that you are facing the ultimate challenge.",
+          "Defeat them, and you will have earned the respect and admiration of all who call themselves warriors of Dark Souls."
+        ]
+      },
+      "IsMajor": false,
+      "AreaDescription": [
+        "As you approach Anor Londo, you are struck by the sheer beauty and grandeur of the legendary city.",
+        "The towering buildings and majestic spires are made of shimmering white marble, and the city is bathed in a warm, golden light that seems to radiate from within.",
+        "The city is inhabited by powerful and noble warriors known as the Silver Knights, who are fiercely loyal to the gods that rule over the city.",
+        "Anor Londo is a place of beauty and danger, a city of wonder and mystery that has captivated adventurers for generations.",
+        "It is a place of fear and wonder, where only the strongest and most skilled warriors can hope to survive."
+      ],
+      "AreaNpc": {
+        "Name": "Gwynevere, Princess of Sunlight",
+        "Dialogue": [
+          "Thou hast journey'd far, and overcome much, chosen Undead. Come hither, child...",
+          "O chosen Undead. I am Gwynevere. Daughter of Lord Gwyn; and Queen of Sunlight.",
+          "Since the day Father his form did obscureth, I have await'd thee. I bequeath the Lordvessel to thee. And beseech thee.",
+          "Succeed Lord Gwyn, and inheriteth the Fire of our world. Thou shall endeth this eternal twilight, and avert further Undead sacrifices.",
+          "Now thou shalt go forth, chosen Undead. May thou be one with the sunlight for evermore."
+        ]
+      },
+      "SelectedForTravel": false
+    },
+    {
+      "AreaName": "The Dukes Archives",
+      "DecoratedName": "[grey]***********[/]",
+      "AreaBoss": {
+        "Name": "Seath the Scaleless",
+        "CurrentHealth": 100,
+        "IsBoss": true,
+        "IsAlive": true,
+        "DialogueList": [
+          "As you enter the crystal cavern, you catch a glimpse of a massive figure in the distance.",
+          "It is Seath the Scaleless, one of the four lords who helped to shape the world of Lordran.",
+          "Seath is a towering dragon, but unlike his brethren, he is born without scales, leaving his flesh exposed to the world.",
+          "This vulnerability drove him to pursue forbidden knowledge and magic, leading him to create the crystal golems that now roam the caverns.",
+          "Seath is not just a powerful enemy, he is a symbol of the power and corruption that lies at the heart of the world of Lordran.",
+          "If you can defeat him, you will have proven yourself a true hero, and taken one step closer to saving the world from the darkness that threatens to consume it."
+        ]
+      },
+      "IsMajor": false,
+      "AreaDescription": [
+        "As you approach The Duke's Archives, you are struck by the imposing sight of the massive tower that rises high into the sky.",
+        "The tower is surrounded by a moat of crystal-clear water, and the entire structure seems to radiate an aura of power and knowledge.",
+        "The Duke's Archives are a place of knowledge and danger, a repository of ancient secrets that has captivated adventurers for generations.",
+        "It is a place of fear and wonder, where only the strongest and most skilled warriors can hope to uncover its mysteries and emerge victorious."
+      ],
+      "AreaNpc": null,
+      "SelectedForTravel": false
+    }
+  ]

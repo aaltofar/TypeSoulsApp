@@ -1,0 +1,72 @@
+Torch Hollows
+Hollow Warrior
+Undead Assassin
+Undead Soldier
+Balder Knight
+Undead Knight Archer
+Engorged Hollow
+Infested Barbarian
+Undead Crystal Soldier
+Undead Crystal Archer
+Crystal Knight
+Undead Attack Dog
+Flaming Attack Dog
+Infested Ghoul
+Darkwraith Knight
+Necromancer
+Great Stone Knight
+Giant
+Crystal Golem
+Sentinel
+Royal Sentinel
+Treant Gardener
+Stone Guardian
+Wild Dog
+Oolacile Resident
+Oolacile Sorceress
+Chained Prisoner
+Giant Humanity
+Skeleton
+Giant Skeleton
+Giant Skeleton Archer
+Skeleton Beast
+Wheel Skeleton
+Bone Tower
+Skeleton Baby
+Bat Wing Demon
+Minor Taurus Demon
+Minor Capra Demon
+Stone Demon
+Crow Demon
+Bounding Demon of Izalith
+Ghost
+Banshee
+Phalanx
+Wisp
+Vile Maggot
+Egg Carrier
+Chaos Eater
+Silver Knight
+Painting Guardian
+Pisaca
+Pinwheel Servant
+Basilisk
+Tree Lizard
+Ents
+Frog-Ray
+Small Mushroom People
+Large Mushroom People
+Man-Eater Shell
+Small Rats
+Large Rats
+Snow Rat
+Drake
+Giant Leech
+Giant Mosquito
+Cragspider
+Chaos Bug
+Man Serpent
+Serpent Mage
+Burrowing Rockworm
+Slime
+Minor Moonlight Butterfly

@@ -93,14 +93,14 @@ internal static class CreateCharacter
             }
 
             key = Console.ReadKey(true).Key;
-            var menuMove = new CachedSound("move.wav");
+            //var menuMove = new CachedSound("move.wav");
 
             switch (key)
             {
                 case ConsoleKey.UpArrow:
                 case ConsoleKey.W:
                     {
-                        AudioPlaybackEngine.Instance.PlaySound(menuMove);
+                        //AudioPlaybackEngine.Instance.PlaySound(menuMove);
                         if (currentSelection >= optionsPerLine)
                             currentSelection -= optionsPerLine;
                         break;
@@ -108,7 +108,7 @@ internal static class CreateCharacter
                 case ConsoleKey.DownArrow:
                 case ConsoleKey.S:
                     {
-                        AudioPlaybackEngine.Instance.PlaySound(menuMove);
+                        //AudioPlaybackEngine.Instance.PlaySound(menuMove);
                         if (currentSelection + optionsPerLine < _classes.Length)
                             currentSelection += optionsPerLine;
                         break;
@@ -117,7 +117,7 @@ internal static class CreateCharacter
         } while (key != ConsoleKey.Enter);
         var menuSelect = new CachedSound("select.wav");
         Console.CursorVisible = true;
-        AudioPlaybackEngine.Instance.PlaySound(menuSelect);
+        //AudioPlaybackEngine.Instance.PlaySound(menuSelect);
         return _classes[currentSelection];
     }
 
