@@ -11,7 +11,7 @@ public class Enemy : IOpponent, IEntity
 
     public Enemy()
     {
-        AllNamesList = File.ReadLines(@"EnemyList.txt").ToList();
+        AllNamesList = File.ReadLines(Path.Combine(GameService.GetProjectFolder(), "EnemyList.txt")).ToList();
         Name = AllNamesList[R.Next(AllNamesList.Count)];
         CurrentHealth = 100;
         IsAlive = true;
