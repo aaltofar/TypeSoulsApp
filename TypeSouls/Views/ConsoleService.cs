@@ -147,7 +147,7 @@ public static class ConsoleService
             case "leftBot": Console.SetCursorPosition(XLeftPosition, isDescription ? YBotPosition + verticalOffset : YBotPosition + i); break;
 
             case "midTop": Console.SetCursorPosition(XMidPosition - stringLength / 2, isDescription ? YTopPosition + verticalOffset : YTopPosition + i); break;
-            case "midMid": Console.SetCursorPosition(XMidPosition - stringLength / 2, isDescription ? YMidPosition + verticalOffset : YMidPosition + i); break;
+            case "midMid": Console.SetCursorPosition(XMidPosition - (stringLength / 2), isDescription ? YMidPosition + verticalOffset : YMidPosition + i); break;
             case "midBot": Console.SetCursorPosition(XMidPosition - stringLength / 2, isDescription ? YBotPosition + verticalOffset : YBotPosition + i); break;
 
             case "rightTop": Console.SetCursorPosition(XRightPosition, isDescription ? YTopPosition + verticalOffset : YTopPosition + i); break;

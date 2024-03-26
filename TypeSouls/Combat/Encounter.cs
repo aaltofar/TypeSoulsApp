@@ -24,7 +24,7 @@ public class Encounter
         Timer = new Stopwatch();
         R = new Random();
         WrittenLetters = string.Empty;
-        AllWordsList = File.ReadLines(@"WordList.txt").ToList();
+        AllWordsList = File.ReadLines(Path.Combine(GameService.GetProjectFolder(), "Data", @"WordList.txt")).ToList();
         Word = AllWordsList[R.Next(AllWordsList.Count)].ToUpper();
         MyTimer = new Timer();
         ActivePlayer = activePlayer;
@@ -203,7 +203,7 @@ public class Encounter
         ConsoleService.PrintLayout(EncounterLayout);
         Thread.Sleep(2000);
 
-        
+
     }
 
     private static string GetInput() => Console.ReadKey().KeyChar.ToString().ToUpper();
