@@ -6,7 +6,7 @@ internal class ViewCharacter
         var startXMenu = Console.WindowWidth / 8;
         var startYMenu = Console.WindowHeight / 8 + 2;
 
-        var startXStats = startXMenu + 20;
+        var startXStats = startXMenu;
         var startYStats = Console.WindowHeight / 8;
 
         var startXDesc = Console.WindowWidth / 4;
@@ -25,12 +25,12 @@ internal class ViewCharacter
         {
             //Header and dividerline
             ConsoleService.MakeHeader(player.CharName, $@"Level {player.Level} {player.Class}");
-            Console.SetCursorPosition(startXStats - 23, startYStats);
+            Console.SetCursorPosition(0, startYStats);
             AnsiConsole.Markup("[underline wheat1]Stat attributes:[/]");
             //Menu
             for (var i = 0; i < player.Stats.GetStatArray().Length; i++)
             {
-                Console.SetCursorPosition(startXMenu + i % optionsPerLine * spacingPerLine, startYMenu + i / optionsPerLine);
+                Console.SetCursorPosition(0 + i % optionsPerLine * spacingPerLine, startYMenu + i / optionsPerLine);
 
                 if (i == currentSelection)
                     AnsiConsole.Markup($">[dodgerblue1] {player.Stats.GetStatArray()[i].Item1}[/] ({player.Stats.GetStatArray()[i].Item2})");
